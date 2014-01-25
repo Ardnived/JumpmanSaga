@@ -39,6 +39,7 @@ public class Unit extends SagaBody {
 		return true;
 	}
 	
+	@Override
 	public void update(double elapsedTime) {
 		sprite.update(elapsedTime);
 	}

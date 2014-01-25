@@ -65,10 +65,12 @@ public class Level extends World implements CollisionListener {
 	}
 	
 	public boolean update(double elapsedTime) {
-		this.player.update(elapsedTime);
-		
-		for (Enemy enemy : enemies) {
-			enemy.update(elapsedTime);
+		//this.player.update(elapsedTime);
+
+		for (Body body : super.getBodies()) {
+			if (body instanceof SagaBody) {
+				((SagaBody) body).update(elapsedTime);
+			}
 		}
 		
 		return super.update(elapsedTime);

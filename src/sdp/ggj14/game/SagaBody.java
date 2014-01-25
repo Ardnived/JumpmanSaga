@@ -15,6 +15,10 @@ public abstract class SagaBody extends Body {
 		this.drawHeight = drawHeight;
 	}
 	
+	public void update(double elapsedTime) {
+		// Do Nothing
+	}
+	
 	public abstract BufferedImage getSprite();
 	
 	public double getX() {
