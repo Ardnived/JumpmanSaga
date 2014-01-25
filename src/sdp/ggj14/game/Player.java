@@ -2,6 +2,7 @@ package sdp.ggj14.game;
 
 import java.util.ArrayList;
 
+
 import sdp.ggj14.util.Sprite;
 import org.dyn4j.geometry.Vector2;
 
@@ -16,6 +17,7 @@ public class Player extends Unit {
 		super(100, 100, 50);
 		//super.sprite = "/player/idle/s01.png";
 		super.spriteObj = new Sprite(new String[] {"/player/idle/s01.png", "/player/idle/s02.png", "/player/idle/s03.png"}, 1);
+
 	}
 	
 	public void shoot(Level level) {
