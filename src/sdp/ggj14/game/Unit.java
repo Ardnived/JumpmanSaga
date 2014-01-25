@@ -1,9 +1,13 @@
 package sdp.ggj14.game;
 
 public class Unit {
+	int hp;
+	int x, y;
 
-	public Unit() {
-		// TODO Auto-generated constructor stub
+	public Unit(int x, int y, int hp) {
+		this.hp = hp;
+		this.x = x;
+		this.y = y;
 	}
 
 }
