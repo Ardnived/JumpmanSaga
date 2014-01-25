@@ -25,15 +25,17 @@ public abstract class ImageLoader {
 	 * @throws IOException if an image couldn't be loaded.
 	 * @throws IllegalArgumentException if a path to an image couldn't be constructed properly.
 	 */
-	public static BufferedImage getImage(String imagePath) throws IOException, IllegalArgumentException {
+	public static BufferedImage get(String imagePath) {
 		if (images.containsKey(imagePath)) {
 			return images.get(imagePath);
 		} else {
 			try {
 				images.put(imagePath, ImageIO.read(ImageLoader.class.getResource(imagePath)));
+			} catch (IOException exception) {
+				exception.printStackTrace();
 			} catch (IllegalArgumentException exception) {
-				throw new IllegalArgumentException("'" + imagePath + "' can't be used as an image classpath.", exception);
-				//TODO: Use a reasonably informative message if this error comes up.
+				System.err.println("'" + imagePath + "' can't be used as an image classpath.");
+				exception.printStackTrace();
 			}
 			return images.get(imagePath);
 		}

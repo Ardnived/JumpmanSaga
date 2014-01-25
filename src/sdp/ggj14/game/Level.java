@@ -17,7 +17,7 @@ public class Level {
 	}
 	
 	public void paint(Graphics graphics) {
-		graphics.drawImage(ImageLoader.getImage(player.sprite), player.getX(), player.getY(), null);
+		graphics.drawImage(ImageLoader.get(player.sprite), player.getX(), player.getY(), null);
 	}
 	
 	public void setTile(int x, int y, Tile tile) {
