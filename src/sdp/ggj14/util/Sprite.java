@@ -16,10 +16,10 @@ public class Sprite {
 	
 	public void update(double elapsedTime){
 		timePassed+=elapsedTime;
-		if (timePassed > 1000/60) {
+		if (timePassed > 1000/speed) {
 			currentSprite++;
 			timePassed = 0;
-			if (currentSprite > imagePaths.length) currentSprite = 0;
+			if (currentSprite > imagePaths.length-1) currentSprite = 0;
 		}
 	}
 	
