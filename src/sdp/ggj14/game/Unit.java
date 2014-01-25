@@ -22,16 +22,15 @@ public class Unit extends Body {
 	Sprite spriteObj;
 	BodyFixture fixture;
 
-	public Unit(int x, int y, int hp) {
+	public Unit(double x, double y, int hp) {
 		super(1);
 		this.hp = hp;
-		//this.x = x;
-		//this.y = y;
 		
-		fixture = super.addFixture(new Rectangle(WIDTH, HEIGHT));
-		fixture.getShape().getCenter().x = x;
-		fixture.getShape().getCenter().y = y;
-		fixture.createMass();
+		super.translate(x, y);
+		
+		fixture = super.addFixture(new Rectangle(WIDTH, HEIGHT), BodyFixture.DEFAULT_DENSITY, BodyFixture.DEFAULT_FRICTION, BodyFixture.DEFAULT_RESTITUTION);
+		
+		super.setMass();
 	}
 	
 	public void update(double elapsedTime) {
@@ -43,16 +42,20 @@ public class Unit extends Body {
 	}
 	
 	public void move(double x, double y) {
-		System.out.println("test "+x+", "+y);
-		super.applyImpulse(new Vector2(x, y));
-		//this.velocity.x += x;
-		//this.velocity.y += y;
-		
-		//System.out.println(this.fixture.);
+		super.applyForce(new Vector2(x, y).multiply(10000));
+		/*
+		System.out.println(super.getMass());
+		System.out.println(super.getForce());
+		System.out.println(super.getWorldCenter());
+		*/
 	}
 	
-	public Vector2 getCenter() {
-		return fixture.getShape().getCenter();
+	public double getX() {
+		return super.getWorldCenter().x;
+	}
+	
+	public double getY() {
+		return super.getWorldCenter().y;
 	}
 	
 	public int getHP() {
