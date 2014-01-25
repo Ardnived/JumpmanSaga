@@ -53,7 +53,7 @@ public class Level extends World implements CollisionListener {
 				//this.setTile(x, y, new Tile("/tiles/BACKGROUND"+variations[random.nextInt(variations.length)]+".png", x, y));
 			}
 			
-			this.setTile(x, HEIGHT-1, new ForegroundTile("/tiles/s01.png", x, HEIGHT-1));
+			this.setTile(x, HEIGHT-1, new ForegroundTile("/tiles/ground/s01.png", x, HEIGHT-1));
 		}
 		
 		for (int y = 0; y < grid[0].length; y++) {
@@ -61,7 +61,7 @@ public class Level extends World implements CollisionListener {
 			this.setTile(WIDTH-1, y, new ForegroundTile(null, WIDTH-1, y));
 		}
 		
-		this.setTile(7, 3, new ForegroundTile("/tiles/s06.png", 7, 3));
+		this.setTile(7, 3, new ForegroundTile("/tiles/ground/s06.png", 7, 3));
 	}
 	
 	public boolean update(double elapsedTime) {

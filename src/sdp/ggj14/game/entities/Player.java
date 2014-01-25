@@ -16,9 +16,9 @@ public class Player extends Unit {
 	public Player() {
 		super(100.0, 100.0, PLAYER_SIZE, PLAYER_SIZE, 100);
 		super.sprite = new Sprite(new String[] {
-				"/player/flying/loop.png",
-				"/player/flying/loop_s03.png",
-				"/player/flying/loop_s04.png"}, 10);
+				"/player/flying/loop_s01.png",
+				"/player/flying/loop_s02.png",
+				"/player/flying/loop_s03.png"}, 10);
 	}
 	
 	@Override
