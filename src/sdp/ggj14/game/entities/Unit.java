@@ -40,7 +40,7 @@ public class Unit extends SagaBody {
 	}
 	
 	@Override
-	public void update(double elapsedTime) {
+	public void update(Level level, double elapsedTime) {
 		sprite.update(elapsedTime);
 	}
 	

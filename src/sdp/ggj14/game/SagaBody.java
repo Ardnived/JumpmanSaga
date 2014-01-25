@@ -15,7 +15,7 @@ public abstract class SagaBody extends Body {
 		this.drawHeight = drawHeight;
 	}
 	
-	public void update(double elapsedTime) {
+	public void update(Level level, double elapsedTime) {
 		// Do Nothing
 	}
 	

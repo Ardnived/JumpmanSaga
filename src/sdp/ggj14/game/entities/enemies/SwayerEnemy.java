@@ -6,18 +6,16 @@ import sdp.ggj14.game.Level;
 import sdp.ggj14.game.entities.Enemy;
 import sdp.ggj14.util.Sprite;
 
-public class FlayerEnemy extends Enemy {
-	public static final double SPEED = 50;
+public class SwayerEnemy extends Enemy {
+	public static final double SPEED = 16;
 	public static final int FLAYER_SIZE = (int) (20 * 48.0/16.0);
+	
+	private double time = 0;
 
-	public FlayerEnemy(double x, double y) {
+	public SwayerEnemy(double x, double y) {
 		super(x, y, 1);
 		super.sprite = new Sprite(new String[] {
-				"/aliens/flayer/s01.png",
-				"/aliens/flayer/s02.png",
-				"/aliens/flayer/s03.png",
-				"/aliens/flayer/s04.png",
-				"/aliens/flayer/s05.png"}, 10);
+				"/aliens/fuzz/s10.png"}, 10);
 		
 		super.setMass(Mass.Type.INFINITE);
 	}
@@ -26,9 +24,11 @@ public class FlayerEnemy extends Enemy {
 	public void update(Level level, double elapsedTime) {
 		super.update(level, elapsedTime);
 		
+		time += 1;
+		
 		double direction = level.getPlayer().getX() - this.getX();
 		direction = -1.0; // He only goes left.
-		super.getLinearVelocity().set(Math.min(5/direction * SPEED * elapsedTime, direction * elapsedTime), 0);
+		super.getLinearVelocity().set(Math.min(5/direction * SPEED * elapsedTime, direction * elapsedTime), 500*Math.sin(time/(5*Math.PI)));
 	}
-
+	
 }

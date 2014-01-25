@@ -26,7 +26,8 @@ public class Projectile extends Unit {
 	}
 	
 	@Override
-	public void update(double elapsedTime) {
+	public void update(Level level, double elapsedTime) {
+		
 	}
 	
 	@Override

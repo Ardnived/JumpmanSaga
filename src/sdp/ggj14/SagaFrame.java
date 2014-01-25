@@ -44,7 +44,7 @@ public class SagaFrame extends JPanel implements KeyListener {
 	
 	
 	enum Control {
-		UP     (KeyEvent.VK_W) 
+		UP     (KeyEvent.VK_SPACE) 
 			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(0, -1); } },
 		/*DOWN   (KeyEvent.VK_S) 
 			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(0, +1); } },*/
@@ -52,8 +52,8 @@ public class SagaFrame extends JPanel implements KeyListener {
 			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(-1, 0); } },
 		RIGHT  (KeyEvent.VK_D) 
 			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(+1, 0); } },
-		ACTION (KeyEvent.VK_SPACE) 
-			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().shoot(frame.level); } },
+		/*ACTION (KeyEvent.VK_SPACE) 
+			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().shoot(frame.level); } },*/
 		MENU   (KeyEvent.VK_ESCAPE) 
 			{ @Override public void action(SagaFrame frame) {  } };
 		

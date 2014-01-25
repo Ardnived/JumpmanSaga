@@ -19,6 +19,7 @@ import sdp.ggj14.game.entities.Enemy;
 import sdp.ggj14.game.entities.Player;
 import sdp.ggj14.game.entities.Unit;
 import sdp.ggj14.game.entities.enemies.FlayerEnemy;
+import sdp.ggj14.game.entities.enemies.SwayerEnemy;
 import sdp.ggj14.game.world.ForegroundTile;
 import sdp.ggj14.game.world.Tile;
 import sdp.ggj14.util.ImageLoader;
@@ -26,6 +27,7 @@ import sdp.ggj14.util.ImageLoader;
 public class Level extends World implements CollisionListener {
 	public final static int WIDTH = 50, HEIGHT = 11;
 	public final static int GRID_SIZE = 32;
+	public final static int SCROLL_OFFSET = 100;
 	
 	String background = "/level/landscape_pixelated.jpg";
 	double parallaxFactor = 0.2;
@@ -37,8 +39,7 @@ public class Level extends World implements CollisionListener {
 	public Level() {
 		super(new AxisAlignedBounds(WIDTH * GRID_SIZE * 2, HEIGHT * GRID_SIZE * 2));
 		
-		
-		super.setGravity(EARTH_GRAVITY.negate().multiply(5.0));
+		super.setGravity(EARTH_GRAVITY.negate().multiply(100.0));
 		
 		this.createTestLevel();
 		
@@ -52,7 +53,6 @@ public class Level extends World implements CollisionListener {
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid[0].length; y++) {
 				this.setTile(x, y, null);
-				//this.setTile(x, y, new Tile("/tiles/BACKGROUND"+variations[random.nextInt(variations.length)]+".png", x, y));
 			}
 			
 			this.setTile(x, HEIGHT-1, new ForegroundTile("/tiles/ground/s01.png", x, HEIGHT-1));
@@ -65,15 +65,14 @@ public class Level extends World implements CollisionListener {
 		
 		this.setTile(7, 3, new ForegroundTile("/tiles/ground/s06.png", 7, 3));
 		
-		super.addBody(new FlayerEnemy(300.0, 270.0));
+		super.addBody(new FlayerEnemy(1000.0, GRID_SIZE * (HEIGHT - 2) + 8));
+		super.addBody(new SwayerEnemy(1200.0, 200.0));
 	}
 	
 	public boolean update(double elapsedTime) {
-		//this.player.update(elapsedTime);
-
 		for (Body body : super.getBodies()) {
 			if (body instanceof SagaBody) {
-				((SagaBody) body).update(elapsedTime);
+				((SagaBody) body).update(this, elapsedTime);
 			}
 		}
 		
@@ -102,7 +101,7 @@ public class Level extends World implements CollisionListener {
 	}
 	
 	public int getScrollX() {
-		return Math.min(GRID_SIZE * WIDTH - Main.SCREEN_WIDTH - GRID_SIZE, Math.max((int) player.getX() - 100, GRID_SIZE));
+		return Math.min(GRID_SIZE * WIDTH - Main.SCREEN_WIDTH - GRID_SIZE, Math.max((int) player.getX() - SCROLL_OFFSET, GRID_SIZE));
 	}
 	
 	public void setTile(int x, int y, Tile tile) {

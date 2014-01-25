@@ -1,11 +1,10 @@
+*.class
 Thumbs.db
 
 *target*
 *.war
 *.ear
-*.class
 
-# eclipse specific git ignore
 *.pydevproject
 .project
 .metadata
@@ -21,9 +20,6 @@ local.properties
 .settings/
 .loadpath
 
-# External tool builders
 .externalToolBuilders/
 
-# Locally stored "Eclipse launch configurations"
 *.launch
-*.class
