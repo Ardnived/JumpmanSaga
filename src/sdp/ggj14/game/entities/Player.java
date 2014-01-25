@@ -8,6 +8,9 @@ import org.dyn4j.geometry.Vector2;
 
 public class Player extends Unit {
 	public static final int PLAYER_SIZE = 48;
+	public static final int JETPACK_THRUST = 1000;
+	public static final int HORIZONTAL_MOVE = 1000;
+	
 	public static final double COOLDOWN = 800.0;
 	
 	public int availableProjectiles = 3;
@@ -20,7 +23,12 @@ public class Player extends Unit {
 				"/player/flying/loop_s02.png",
 				"/player/flying/loop_s03.png"}, 10);
 	}
-	
+	/*
+	@Override
+	public void move(double x, double y) {
+		super.move(x*HORIZONTAL_MOVE, y*JETPACK_THRUST);
+	}
+	*/
 	@Override
 	public boolean onCollision(Level level, Body other) {
 		System.out.println("Player collided with "+other.getClass());
