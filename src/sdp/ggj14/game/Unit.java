@@ -5,11 +5,10 @@ public class Unit {
 	int x, y;
 	String sprite;
 
-	public Unit(int x, int y, int hp, String sprite) {
+	public Unit(int x, int y, int hp) {
 		this.hp = hp;
 		this.x = x;
 		this.y = y;
-		this.sprite = sprite;
 	}
 	
 	public int getX() {

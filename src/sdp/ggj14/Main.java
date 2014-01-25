@@ -10,7 +10,7 @@ public class Main {
 	
 	public Main() {
 		JFrame frame = new SagaFrame();
-		frame.pack();
+		//frame.pack();
 		frame.setVisible(true);
 	}
 

@@ -13,11 +13,11 @@ public class Level {
 	Tile[][] grid = new Tile[30][10];
 
 	public Level() {
-		
+		this.player = new Player();
 	}
 	
 	public void paint(Graphics graphics) {
-		graphics.drawImage(ImageLoader.get(player.sprite), player.getX(), player.getY(), null);
+		graphics.drawImage(ImageLoader.get(player.sprite), player.getX(), player.getY(), 48, 48, null);
 	}
 	
 	public void setTile(int x, int y, Tile tile) {
