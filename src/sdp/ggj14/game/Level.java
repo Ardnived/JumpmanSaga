@@ -71,6 +71,16 @@ public class Level extends World implements CollisionListener {
 	}
 	
 	public void paint(Graphics graphics) {
+		/*
+		for (Body body : super.getBodies()) {
+			if (body instanceof SagaBody) {
+				SagaBody sagaBody = ((SagaBody) body);
+				graphics.drawImage(sagaBody.getSprite(), (int) sagaBody.getX()*GRID_SIZE - scrollX, (int) sagaBody.getY()*GRID_SIZE, GRID_SIZE, GRID_SIZE, null);
+				
+			}
+		}
+
+		*/
 		// Draw Tiles
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid[0].length; y++) {
