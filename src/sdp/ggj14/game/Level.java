@@ -83,10 +83,13 @@ public class Level extends World implements CollisionListener {
 		for (Body body : super.getBodies()) {
 			if (body instanceof SagaBody) {
 				SagaBody sagaBody = ((SagaBody) body);
-				Image sprite = sagaBody.getSprite();
 				
-				if (sprite != null) {
-					graphics.drawImage(sagaBody.getSprite(), (int) sagaBody.getX() - sagaBody.drawWidth/2 - this.getScrollX(), (int) sagaBody.getY() - sagaBody.drawHeight/2, sagaBody.drawWidth, sagaBody.drawHeight, null);
+				if (sagaBody.intersects(this.getScrollX(), 0, Main.SCREEN_WIDTH + GRID_SIZE, Main.SCREEN_HEIGHT)) {
+					Image sprite = sagaBody.getSprite();
+					
+					if (sprite != null) {
+						graphics.drawImage(sagaBody.getSprite(), (int) sagaBody.getX() - sagaBody.drawWidth/2 - this.getScrollX(), (int) sagaBody.getY() - sagaBody.drawHeight/2, sagaBody.drawWidth, sagaBody.drawHeight, null);
+					}
 				}
 			}
 		}
