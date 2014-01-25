@@ -3,8 +3,12 @@ package sdp.ggj14.game;
 import java.awt.image.BufferedImage;
 
 import sdp.ggj14.util.ImageLoader;
+import sdp.ggj14.util.Vector2f;
 
 public class Unit {
+	public static final float VELOCITY_DECAY = 0.2f; //aka air friction
+	
+	Vector2f velocity = new Vector2f();
 	int hp;
 	int x, y;
 	String sprite;
@@ -16,12 +20,15 @@ public class Unit {
 	}
 	
 	public void update() {
+		this.x += this.velocity.x;
+		this.y += this.velocity.y;
 		
+		this.velocity.scale(VELOCITY_DECAY);
 	}
 	
 	public void move(int x, int y) {
-		this.x += x;
-		this.y += y;
+		this.velocity.x += x;
+		this.velocity.y += y;
 	}
 	
 	public int getX() {
