@@ -17,7 +17,7 @@ public class Player extends Unit {
 	private double cooldown = 0;
 
 	public Player() {
-		super(100.0, 100.0, PLAYER_SIZE, PLAYER_SIZE, 50);
+		super(100.0, 100.0, PLAYER_SIZE, PLAYER_SIZE, 100);
 		super.sprite = new Sprite(new String[] {
 				"/player/flying/loop.png",
 				"/player/flying/loop_s03.png",

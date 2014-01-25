@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
+import org.dyn4j.geometry.Mass;
 import org.dyn4j.geometry.Rectangle;
 import org.dyn4j.geometry.Vector2;
 
@@ -25,7 +26,10 @@ public class Unit extends Body {
 		
 		fixture = super.addFixture(new Rectangle(width, height), BodyFixture.DEFAULT_DENSITY, BodyFixture.DEFAULT_FRICTION, BodyFixture.DEFAULT_RESTITUTION);
 		
-		super.setMass();
+		//super.setMass();
+		//Mass test = super.getMass();
+		//System.out.println(test.getMass());
+		super.setMass(new Mass(new Vector2(0, 0), 100, 80000));
 	}
 	
 	public boolean onCollision(Level level, Body other) {
