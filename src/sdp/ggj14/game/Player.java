@@ -8,10 +8,11 @@ import org.dyn4j.geometry.Vector2;
 
 public class Player extends Unit {
 	public static final int PLAYER_SIZE = 48;
+	public static final double COOLDOWN = 800.0;
 	
 	public ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	private int maxProjectiles = 3;
-	
+	private double cooldown = 0;
 
 	public Player() {
 		super(100, 100, 50);
@@ -29,13 +30,24 @@ public class Player extends Unit {
 				"/player/idle/s10.png"}, 10);
 	}
 	
+	@Override
+	public void update(double elapsedTime) {
+		super.update(elapsedTime);
+		
+		if (cooldown > 0) {
+			cooldown -= elapsedTime;
+		}
+	}
+	
 	public void shoot(Level level) {
-		if (projectiles.size() < maxProjectiles) {
+		if (cooldown <= 0.0 && projectiles.size() < maxProjectiles) {
 			Projectile projectile = new Projectile(this.getX() + PLAYER_SIZE/2, this.getY(), 1);
 			
 			projectile.applyForce(new Vector2(30000, 0));
 			projectiles.add(projectile);
 			level.addBody(projectile);
+			
+			cooldown = COOLDOWN;
 		}
 	}
 
