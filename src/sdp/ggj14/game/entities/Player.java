@@ -12,8 +12,7 @@ public class Player extends Unit {
 	public static final int PLAYER_SIZE = 48;
 	public static final double COOLDOWN = 800.0;
 	
-	public ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
-	private int maxProjectiles = 3;
+	public int availableProjectiles = 3;
 	private double cooldown = 0;
 
 	public Player() {
@@ -40,14 +39,14 @@ public class Player extends Unit {
 	}
 	
 	public void shoot(Level level) {
-		if (cooldown <= 0.0 && projectiles.size() < maxProjectiles) {
+		if (cooldown <= 0.0 && availableProjectiles > 0) {
 			Projectile projectile = new Projectile(this.getX() + PLAYER_SIZE*3/5, this.getY(), 1);
 			
 			projectile.applyForce(new Vector2(100000, 0));
-			projectiles.add(projectile);
 			level.addBody(projectile);
 			
-			cooldown = COOLDOWN;
+			this.availableProjectiles -= 1;
+			this.cooldown = COOLDOWN;
 		}
 	}
 

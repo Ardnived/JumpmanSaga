@@ -71,31 +71,15 @@ public class Level extends World implements CollisionListener {
 	}
 	
 	public void paint(Graphics graphics) {
-		/*
 		for (Body body : super.getBodies()) {
 			if (body instanceof SagaBody) {
 				SagaBody sagaBody = ((SagaBody) body);
-				graphics.drawImage(sagaBody.getSprite(), (int) sagaBody.getX()*GRID_SIZE - scrollX, (int) sagaBody.getY()*GRID_SIZE, GRID_SIZE, GRID_SIZE, null);
-				
+				graphics.drawImage(sagaBody.getSprite(), (int) sagaBody.getX() - sagaBody.drawWidth/2 - scrollX, (int) sagaBody.getY() - sagaBody.drawHeight/2, sagaBody.drawWidth, sagaBody.drawHeight, null);
 			}
 		}
 
-		*/
-		// Draw Tiles
-		for (int x = 0; x < grid.length; x++) {
-			for (int y = 0; y < grid[0].length; y++) {
-				graphics.drawImage(grid[x][y].getSprite(), x*GRID_SIZE - scrollX, y*GRID_SIZE, GRID_SIZE, GRID_SIZE, null);
-			}
-		}
-		
-		// Draw Player
-		graphics.drawImage(player.getSprite(), (int) player.getX() - Player.PLAYER_SIZE/2, (int) player.getY() - Player.PLAYER_SIZE/2, Player.PLAYER_SIZE, Player.PLAYER_SIZE, null);
-		
-		// Draw Projectiles
-		for (int i = 0; i < player.projectiles.size(); i++) {
-			Unit projectile = player.projectiles.get(i);
-			graphics.drawImage(projectile.getSprite(), (int) projectile.getX() - 24, (int) projectile.getY() - 24, 48, 48, null);
-		}
+		// Draw Player / WHY IS THE LOOP NOT DRAWING HIM? IDK
+		graphics.drawImage(player.getSprite(), (int) player.getX() - player.drawWidth/2 - scrollX, (int) player.getY() - player.drawHeight/2, player.drawWidth, player.drawHeight, null);
 	}
 	
 	public void setTile(int x, int y, Tile tile) {

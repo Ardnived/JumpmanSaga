@@ -5,9 +5,13 @@ import java.awt.image.BufferedImage;
 import org.dyn4j.dynamics.Body;
 
 public abstract class SagaBody extends Body {
+	public int drawWidth, drawHeight;
 	
 	public SagaBody(int drawWidth, int drawHeight) {
 		super(1);
+		
+		this.drawWidth = drawWidth;
+		this.drawHeight = drawHeight;
 	}
 	
 	public abstract BufferedImage getSprite();
