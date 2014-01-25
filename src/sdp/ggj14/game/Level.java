@@ -1,22 +1,25 @@
 package sdp.ggj14.game;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
 import org.dyn4j.collision.AxisAlignedBounds;
+import org.dyn4j.collision.manifold.Manifold;
+import org.dyn4j.collision.narrowphase.Penetration;
+import org.dyn4j.dynamics.Body;
+import org.dyn4j.dynamics.BodyFixture;
+import org.dyn4j.dynamics.CollisionListener;
 import org.dyn4j.dynamics.World;
-import org.dyn4j.geometry.Vector2;
+import org.dyn4j.dynamics.contact.ContactConstraint;
 
 import sdp.ggj14.game.entities.Enemy;
 import sdp.ggj14.game.entities.Player;
 import sdp.ggj14.game.entities.Unit;
-import sdp.ggj14.game.world.BackgroundTile;
 import sdp.ggj14.game.world.ForegroundTile;
 import sdp.ggj14.game.world.Tile;
 
-public class Level extends World {
+public class Level extends World implements CollisionListener {
 	public final static int WIDTH = 30, HEIGHT = 10;
 	public final static int GRID_SIZE = 32;
 	
@@ -34,6 +37,8 @@ public class Level extends World {
 		super.addBody(this.player);
 		
 		this.createTestLevel();
+		
+		this.addListener(this);
 	}
 	
 	public void createTestLevel() {
@@ -42,7 +47,7 @@ public class Level extends World {
 		
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid[0].length; y++) {
-				this.setTile(x, y, new BackgroundTile("/tiles/BACKGROUND"+variations[random.nextInt(variations.length)]+".png"));
+				this.setTile(x, y, new Tile("/tiles/BACKGROUND"+variations[random.nextInt(variations.length)]+".png", x, y));
 			}
 			
 			this.setTile(x, 5, new ForegroundTile("/tiles/s01.png", x, 5));
@@ -84,15 +89,9 @@ public class Level extends World {
 	}
 	
 	public void setTile(int x, int y, Tile tile) {
-		if (this.grid[x][y] != null && this.grid[x][y] instanceof ForegroundTile) {
-			this.removeBody(((ForegroundTile) this.grid[x][y]).getBody());
-		}
-		
+		this.removeBody(this.grid[x][y]);
 		this.grid[x][y] = tile;
-
-		if (tile instanceof ForegroundTile) {
-			this.addBody(((ForegroundTile) tile).getBody());
-		}
+		this.addBody(tile);
 	}
 	
 	public Tile getTile(int x, int y) {
@@ -101,6 +100,41 @@ public class Level extends World {
 	
 	public Player getPlayer() {
 		return this.player;
+	}
+
+	@Override
+	public boolean collision(Body arg0, Body arg1) {
+		boolean cancel = false;
+		
+		if (arg0 instanceof Unit) {
+			cancel &= ((Unit) arg0).onCollision(this, arg1);
+		}
+		
+		if (arg1 instanceof Unit) {
+			cancel &= ((Unit) arg1).onCollision(this, arg0);
+		}
+		
+		return !cancel;
+	}
+
+	@Override
+	public boolean collision(ContactConstraint arg0) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean collision(Body arg0, BodyFixture arg1, Body arg2,
+			BodyFixture arg3, Penetration arg4) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean collision(Body arg0, BodyFixture arg1, Body arg2,
+			BodyFixture arg3, Manifold arg4) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

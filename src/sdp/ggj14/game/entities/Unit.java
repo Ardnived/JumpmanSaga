@@ -7,6 +7,7 @@ import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.geometry.Rectangle;
 import org.dyn4j.geometry.Vector2;
 
+import sdp.ggj14.game.Level;
 import sdp.ggj14.util.ImageLoader;
 import sdp.ggj14.util.Sprite;
 import sdp.ggj14.util.Vector2f;
@@ -26,6 +27,10 @@ public class Unit extends Body {
 		
 		super.setMass();
 		System.out.println(x+" -> "+this.getX());
+	}
+	
+	public boolean onCollision(Level level, Body other) {
+		return true;
 	}
 	
 	public void update(double elapsedTime) {
