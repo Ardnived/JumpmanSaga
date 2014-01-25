@@ -18,7 +18,7 @@ public class SagaFrame extends JFrame {
 	
 	@Override
 	public void paint(Graphics graphics) {
-		
+		level.paint(graphics);
 	}
 	
 }

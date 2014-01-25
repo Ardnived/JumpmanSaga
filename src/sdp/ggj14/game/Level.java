@@ -1,6 +1,9 @@
 package sdp.ggj14.game;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
+
+import sdp.ggj14.util.ImageLoader;
 
 public class Level {
 	final static int WIDTH = 30, HEIGHT = 10;
@@ -11,6 +14,10 @@ public class Level {
 
 	public Level() {
 		
+	}
+	
+	public void paint(Graphics graphics) {
+		graphics.drawImage(ImageLoader.getImage(player.sprite), player.getX(), player.getY(), null);
 	}
 	
 	public void setTile(int x, int y, Tile tile) {
