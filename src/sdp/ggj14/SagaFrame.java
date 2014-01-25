@@ -16,7 +16,7 @@ public class SagaFrame extends JPanel implements KeyListener {
 	
 	public SagaFrame() {
 		this.level = new Level();
-		this.ui = new UserInterface();
+		this.ui = new UserInterface(level);
 	}
 	
 	public void sagaUpdate(double elapsedTime) {
