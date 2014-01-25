@@ -18,6 +18,10 @@ public class Unit extends SagaBody {
 	BodyFixture fixture;
 
 	public Unit(double x, double y, int width, int height, int hp) {
+		this(x, y, width, height, hp, 100);
+	}
+
+	public Unit(double x, double y, int width, int height, int hp, int mass) {
 		super(width, height);
 		this.hp = hp;
 		
@@ -28,7 +32,7 @@ public class Unit extends SagaBody {
 		//super.setMass();
 		//Mass test = super.getMass();
 		//System.out.println(test.getMass());
-		super.setMass(new Mass(new Vector2(0, 0), 100, 80000));
+		super.setMass(new Mass(new Vector2(0, 0), mass, 80000));
 	}
 	
 	public boolean onCollision(Level level, Body other) {
