@@ -16,7 +16,17 @@ public class Player extends Unit {
 	public Player() {
 		super(100, 100, 50);
 		//super.sprite = "/player/idle/s01.png";
-		super.spriteObj = new Sprite(new String[] {"/player/idle/s01.png", "/player/idle/s02.png", "/player/idle/s03.png"}, 10);
+		super.spriteObj = new Sprite(new String[] {
+				"/player/idle/s01.png",
+				"/player/idle/s02.png",
+				"/player/idle/s03.png",
+				"/player/idle/s04.png",
+				"/player/idle/s05.png",
+				"/player/idle/s06.png",
+				"/player/idle/s07.png",
+				"/player/idle/s08.png",
+				"/player/idle/s09.png",
+				"/player/idle/s10.png"}, 10);
 	}
 	
 	public void shoot(Level level) {

@@ -8,14 +8,8 @@ import org.dyn4j.geometry.Rectangle;
 import org.dyn4j.geometry.Vector2;
 
 import sdp.ggj14.util.ImageLoader;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import sdp.ggj14.util.Sprite;
 import sdp.ggj14.util.Vector2f;
-=======
->>>>>>> 6ac6dc9b961a196e9ec3a432cccdbe247a56f136
-=======
->>>>>>> 6ac6dc9b961a196e9ec3a432cccdbe247a56f136
 
 public class Unit extends Body {
 	public static final float VELOCITY_DECAY = 0.2f; //aka air friction
@@ -39,22 +33,8 @@ public class Unit extends Body {
 		super.setMass();
 	}
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public void update(double elapsedTime) {
 		spriteObj.update(elapsedTime);
-		//this.x += this.velocity.x;
-		//this.y += this.velocity.y;
-		
-		//this.velocity.scale(VELOCITY_DECAY);
-=======
-	public void update() {
-		// TODO: Stub
->>>>>>> 6ac6dc9b961a196e9ec3a432cccdbe247a56f136
-=======
-	public void update() {
-		// TODO: Stub
->>>>>>> 6ac6dc9b961a196e9ec3a432cccdbe247a56f136
 	}
 	
 	public void move(double x, double y) {
