@@ -16,12 +16,22 @@ public class SagaFrame extends JFrame implements KeyListener {
 	public SagaFrame() {
 		super.setSize(800, 600);
 		super.addKeyListener(this);
+		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		super.setResizable(false);
 		
 		this.level = new Level();
 	}
 	
-	public void sagaUpdate(long dt){
-		System.out.println(dt);
+	public void sagaUpdate(long dt) {
+		//System.out.println(dt);
+		
+		for (Control control : Control.values()) {
+			if (control.isDown) {
+				control.action(this);
+			}
+		}
+		
+		this.level.update();
 	}
 	
 	@Override
