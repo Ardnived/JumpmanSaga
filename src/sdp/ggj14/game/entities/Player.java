@@ -55,7 +55,7 @@ public class Player extends Unit {
 	
 	@Override
 	public boolean onCollision(Level level, Body other) {
-		System.out.println("Player collided with "+other.getClass());
+		//System.out.println("Player collided with "+other.getClass());
 		return true;
 	}
 	
@@ -67,8 +67,14 @@ public class Player extends Unit {
 			cooldown -= elapsedTime;
 		}
 		
-		if (super.getForce().y > 0) {
-			
+		if (super.getForce().y < 0) {
+			this.sprite = FLYING;
+		} else if (super.getLinearVelocity().y > 60) {
+			this.sprite = FALLING;
+		} else if (super.getForce().x != 0) {
+			this.sprite = WALKING;
+		} else {
+			this.sprite = IDLE;
 		}
 	}
 	
