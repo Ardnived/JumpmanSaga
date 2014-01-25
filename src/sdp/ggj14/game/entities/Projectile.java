@@ -8,6 +8,7 @@ public class Projectile extends Unit {
 	public Projectile(double x, double y, int hp) {
 		super(x, y, 8, 8, hp);
 		super.sprite = new Sprite(new String[] {"/projectiles/player_default.png"}, 1);
+		super.setGravityScale(0);
 	}
 
 }

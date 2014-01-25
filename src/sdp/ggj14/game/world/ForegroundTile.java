@@ -13,7 +13,7 @@ public class ForegroundTile extends Tile {
 		
 		body = new Body();
 		body.addFixture(new Rectangle(Level.GRID_SIZE, Level.GRID_SIZE));
-		body.translate(Level.GRID_SIZE*x, Level.GRID_SIZE*y);
+		body.translate(Level.GRID_SIZE*x + Level.GRID_SIZE/2, Level.GRID_SIZE*y + Level.GRID_SIZE/2);
 		//body.setMass();
 	}
 	

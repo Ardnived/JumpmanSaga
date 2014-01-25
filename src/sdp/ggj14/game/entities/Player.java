@@ -43,7 +43,7 @@ public class Player extends Unit {
 		if (cooldown <= 0.0 && projectiles.size() < maxProjectiles) {
 			Projectile projectile = new Projectile(this.getX() + PLAYER_SIZE/2, this.getY(), 1);
 			
-			projectile.applyForce(new Vector2(30000, 0));
+			projectile.applyForce(new Vector2(100000, 0));
 			projectiles.add(projectile);
 			level.addBody(projectile);
 			

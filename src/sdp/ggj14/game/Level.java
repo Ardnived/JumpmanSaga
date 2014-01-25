@@ -26,9 +26,7 @@ public class Level extends World {
 	int scrollX = 0;
 
 	public Level() {
-		super(new AxisAlignedBounds(WIDTH * GRID_SIZE, HEIGHT * GRID_SIZE));
-		System.out.println(super.getBounds());
-		//super.getBounds().shiftCoordinates(new Vector2(WIDTH * GRID_SIZE / 2, HEIGHT * GRID_SIZE / 2));
+		super(new AxisAlignedBounds(WIDTH * GRID_SIZE * 2, HEIGHT * GRID_SIZE * 2));
 		
 		super.setGravity(EARTH_GRAVITY.negate());
 		
@@ -48,6 +46,10 @@ public class Level extends World {
 			}
 			
 			this.setTile(x, 5, new ForegroundTile("/tiles/s01.png", x, 5));
+		}
+		
+		for (int y = 0; y < grid[0].length; y++) {
+			this.setTile(0, y, new ForegroundTile("/tiles/s03.png", 0, y));
 		}
 		
 		this.setTile(7, 3, new ForegroundTile("/tiles/s06.png", 7, 3));
