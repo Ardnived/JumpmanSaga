@@ -7,6 +7,7 @@ import sdp.ggj14.game.Level;
 @SuppressWarnings("serial")
 public class SagaFrame extends JFrame {
 	Level level;
+	private long dt;
 	
 	public SagaFrame() {
 		super.setSize(800, 600);
@@ -14,6 +15,10 @@ public class SagaFrame extends JFrame {
 		
 		
 		this.level = new Level();
+	}
+	
+	public void sagaUpdate(long dt){
+		System.out.println(dt);
 	}
 	
 	@Override
