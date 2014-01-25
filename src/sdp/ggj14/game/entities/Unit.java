@@ -26,7 +26,6 @@ public class Unit extends Body {
 		fixture = super.addFixture(new Rectangle(width, height), BodyFixture.DEFAULT_DENSITY, BodyFixture.DEFAULT_FRICTION, BodyFixture.DEFAULT_RESTITUTION);
 		
 		super.setMass();
-		System.out.println(x+" -> "+this.getX());
 	}
 	
 	public boolean onCollision(Level level, Body other) {

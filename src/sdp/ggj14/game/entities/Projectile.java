@@ -17,6 +17,7 @@ public class Projectile extends Unit {
 	@Override
 	public boolean onCollision(Level level, Body other) {
 		level.removeBody(this);
+		level.getPlayer().projectiles.remove(this);
 		return false;
 	}
 
