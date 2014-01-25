@@ -36,10 +36,10 @@ public class Level extends World {
 	}
 	
 	public boolean update(double elapsedTime) {
-		this.player.update();
+		this.player.update(elapsedTime);
 		
 		for (Enemy enemy : enemies) {
-			enemy.update();
+			enemy.update(elapsedTime);
 		}
 		
 		return super.update(elapsedTime);

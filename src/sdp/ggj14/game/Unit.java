@@ -8,6 +8,7 @@ import org.dyn4j.geometry.Rectangle;
 import org.dyn4j.geometry.Vector2;
 
 import sdp.ggj14.util.ImageLoader;
+import sdp.ggj14.util.Sprite;
 import sdp.ggj14.util.Vector2f;
 
 public class Unit extends Body {
@@ -17,7 +18,8 @@ public class Unit extends Body {
 	//Vector2f velocity = new Vector2f();
 	int hp;
 	//int x, y;
-	String sprite;
+	//String sprite;
+	Sprite spriteObj;
 	BodyFixture fixture;
 
 	public Unit(int x, int y, int hp) {
@@ -32,7 +34,8 @@ public class Unit extends Body {
 		fixture.createMass();
 	}
 	
-	public void update() {
+	public void update(double elapsedTime) {
+		spriteObj.update(elapsedTime);
 		//this.x += this.velocity.x;
 		//this.y += this.velocity.y;
 		
@@ -57,7 +60,8 @@ public class Unit extends Body {
 	}
 	
 	public BufferedImage getSprite() {
-		return ImageLoader.get(this.sprite);
+		//return ImageLoader.get(this.sprite);
+		return spriteObj.getCurrentSprite();
 	}
 
 }

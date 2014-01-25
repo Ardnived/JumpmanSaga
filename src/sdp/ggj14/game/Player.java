@@ -2,6 +2,8 @@ package sdp.ggj14.game;
 
 import java.util.ArrayList;
 
+import sdp.ggj14.util.Sprite;
+
 public class Player extends Unit {
 	
 	private Level level;
@@ -11,7 +13,8 @@ public class Player extends Unit {
 	public Player(Level level) {
 		super(10, 50, 50);
 		this.level = level;
-		super.sprite = "/player/idle/s01.png";
+		//super.sprite = "/player/idle/s01.png";
+		super.spriteObj = new Sprite(new String[] {"/player/idle/s01.png", "/player/idle/s02.png"}, 10);
 	}
 	
 	public void shoot() {
