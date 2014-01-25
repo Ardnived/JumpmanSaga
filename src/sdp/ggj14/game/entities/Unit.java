@@ -9,17 +9,16 @@ import org.dyn4j.geometry.Rectangle;
 import org.dyn4j.geometry.Vector2;
 
 import sdp.ggj14.game.Level;
-import sdp.ggj14.util.ImageLoader;
+import sdp.ggj14.game.SagaBody;
 import sdp.ggj14.util.Sprite;
-import sdp.ggj14.util.Vector2f;
 
-public class Unit extends Body {
+public class Unit extends SagaBody {
 	int hp;
 	Sprite sprite;
 	BodyFixture fixture;
 
 	public Unit(double x, double y, int width, int height, int hp) {
-		super(1);
+		super(width, height);
 		this.hp = hp;
 		
 		super.translate(x, y);
@@ -49,18 +48,11 @@ public class Unit extends Body {
 		*/
 	}
 	
-	public double getX() {
-		return super.getWorldCenter().x;
-	}
-	
-	public double getY() {
-		return super.getWorldCenter().y;
-	}
-	
 	public int getHP() {
 		return this.hp;
 	}
 	
+	@Override
 	public BufferedImage getSprite() {
 		return sprite.getCurrentSprite();
 	}
