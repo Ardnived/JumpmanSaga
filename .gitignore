@@ -6,7 +6,6 @@ Thumbs.db
 *.ear
 
 *.pydevproject
-.project
 .metadata
 bin/**
 tmp/**
