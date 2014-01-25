@@ -4,19 +4,17 @@ import java.util.ArrayList;
 
 public class Player extends Unit {
 	
-	private Level level;
-	public ArrayList<PlayerProjectile1> projectiles = new ArrayList<PlayerProjectile1>();
+	public ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	private int maxProjectiles = 1;
 	
-	public Player(Level level) {
+	public Player() {
 		super(10, 50, 50);
-		this.level = level;
 		super.sprite = "/player/idle/s01.png";
 	}
 	
 	public void shoot() {
 		if (projectiles.size() < maxProjectiles) {
-			projectiles.add(new PlayerProjectile1((int)fixture.getShape().getCenter().x, (int)fixture.getShape().getCenter().y, 1));
+			projectiles.add(new Projectile((int)fixture.getShape().getCenter().x, (int)fixture.getShape().getCenter().y, 1));
 		}
 	}
 
