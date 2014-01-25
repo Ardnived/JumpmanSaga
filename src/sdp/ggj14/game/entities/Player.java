@@ -1,9 +1,10 @@
-package sdp.ggj14.game;
+package sdp.ggj14.game.entities;
 
 import java.util.ArrayList;
 
-
+import sdp.ggj14.game.Level;
 import sdp.ggj14.util.Sprite;
+
 import org.dyn4j.geometry.Vector2;
 
 public class Player extends Unit {
@@ -15,9 +16,8 @@ public class Player extends Unit {
 	private double cooldown = 0;
 
 	public Player() {
-		super(100, 100, 50);
-		//super.sprite = "/player/idle/s01.png";
-		super.spriteObj = new Sprite(new String[] {
+		super(100.0, 100.0, PLAYER_SIZE, PLAYER_SIZE, 50);
+		super.sprite = new Sprite(new String[] {
 				"/player/idle/s01.png",
 				"/player/idle/s02.png",
 				"/player/idle/s03.png",

@@ -7,10 +7,18 @@ import java.util.Random;
 
 import org.dyn4j.collision.AxisAlignedBounds;
 import org.dyn4j.dynamics.World;
+import org.dyn4j.geometry.Vector2;
+
+import sdp.ggj14.game.entities.Enemy;
+import sdp.ggj14.game.entities.Player;
+import sdp.ggj14.game.entities.Unit;
+import sdp.ggj14.game.world.BackgroundTile;
+import sdp.ggj14.game.world.ForegroundTile;
+import sdp.ggj14.game.world.Tile;
 
 public class Level extends World {
-	final static int WIDTH = 30, HEIGHT = 10;
-	final static int GRID_SIZE = 32;
+	public final static int WIDTH = 30, HEIGHT = 10;
+	public final static int GRID_SIZE = 32;
 	
 	Player player;
 	ArrayList<Enemy> enemies = new ArrayList<Enemy>();
@@ -19,6 +27,9 @@ public class Level extends World {
 
 	public Level() {
 		super(new AxisAlignedBounds(WIDTH * GRID_SIZE, HEIGHT * GRID_SIZE));
+		System.out.println(super.getBounds());
+		//super.getBounds().shiftCoordinates(new Vector2(WIDTH * GRID_SIZE / 2, HEIGHT * GRID_SIZE / 2));
+		
 		super.setGravity(EARTH_GRAVITY.negate());
 		
 		this.player = new Player();
@@ -33,9 +44,13 @@ public class Level extends World {
 		
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid[0].length; y++) {
-				this.setTile(x, y, new Tile("/tiles/BACKGROUND"+variations[random.nextInt(variations.length)]+".png"));
+				this.setTile(x, y, new BackgroundTile("/tiles/BACKGROUND"+variations[random.nextInt(variations.length)]+".png"));
 			}
+			
+			this.setTile(x, 5, new ForegroundTile("/tiles/s01.png", x, 5));
 		}
+		
+		this.setTile(7, 3, new ForegroundTile("/tiles/s06.png", 7, 3));
 	}
 	
 	public boolean update(double elapsedTime) {
@@ -49,27 +64,33 @@ public class Level extends World {
 	}
 	
 	public void paint(Graphics graphics) {
+		// Draw Tiles
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid[0].length; y++) {
 				graphics.drawImage(grid[x][y].getSprite(), x*GRID_SIZE - scrollX, y*GRID_SIZE, GRID_SIZE, GRID_SIZE, null);
 			}
 		}
 		
-		graphics.drawImage(player.getSprite(), (int) player.getX() - 24, (int) player.getY() - 24, 48, 48, null);
+		// Draw Player
+		graphics.drawImage(player.getSprite(), (int) player.getX() - Player.PLAYER_SIZE/2, (int) player.getY() - Player.PLAYER_SIZE/2, Player.PLAYER_SIZE, Player.PLAYER_SIZE, null);
+		
+		// Draw Projectiles
 		for (int i = 0; i < player.projectiles.size(); i++) {
 			Unit projectile = player.projectiles.get(i);
-			graphics.drawImage(projectile.getSprite(), (int)projectile.getX() - 24, (int)projectile.getY() - 24, 48, 48, null);
+			graphics.drawImage(projectile.getSprite(), (int) projectile.getX() - 24, (int) projectile.getY() - 24, 48, 48, null);
 		}
-		
-		// TEST CODE:
-		graphics.setColor(Color.RED);
-		graphics.drawRect(0, 0, WIDTH * GRID_SIZE, HEIGHT * GRID_SIZE);
-		super.getBounds();
-		// -- TEST
 	}
 	
 	public void setTile(int x, int y, Tile tile) {
+		if (this.grid[x][y] != null && this.grid[x][y] instanceof ForegroundTile) {
+			this.removeBody(((ForegroundTile) this.grid[x][y]).getBody());
+		}
+		
 		this.grid[x][y] = tile;
+
+		if (tile instanceof ForegroundTile) {
+			this.addBody(((ForegroundTile) tile).getBody());
+		}
 	}
 	
 	public Tile getTile(int x, int y) {

@@ -1,4 +1,4 @@
-package sdp.ggj14.game;
+package sdp.ggj14.game.entities;
 
 import java.awt.image.BufferedImage;
 
@@ -12,29 +12,24 @@ import sdp.ggj14.util.Sprite;
 import sdp.ggj14.util.Vector2f;
 
 public class Unit extends Body {
-	public static final float VELOCITY_DECAY = 0.2f; //aka air friction
-	public static final int WIDTH = 48, HEIGHT = 48;
-	
-	//Vector2f velocity = new Vector2f();
 	int hp;
-	//int x, y;
-	//String sprite;
-	Sprite spriteObj;
+	Sprite sprite;
 	BodyFixture fixture;
 
-	public Unit(double x, double y, int hp) {
+	public Unit(double x, double y, int width, int height, int hp) {
 		super(1);
 		this.hp = hp;
 		
 		super.translate(x, y);
 		
-		fixture = super.addFixture(new Rectangle(WIDTH, HEIGHT), BodyFixture.DEFAULT_DENSITY, BodyFixture.DEFAULT_FRICTION, BodyFixture.DEFAULT_RESTITUTION);
+		fixture = super.addFixture(new Rectangle(width, height), BodyFixture.DEFAULT_DENSITY, BodyFixture.DEFAULT_FRICTION, BodyFixture.DEFAULT_RESTITUTION);
 		
 		super.setMass();
+		System.out.println(x+" -> "+this.getX());
 	}
 	
 	public void update(double elapsedTime) {
-		spriteObj.update(elapsedTime);
+		sprite.update(elapsedTime);
 	}
 	
 	public void move(double x, double y) {
@@ -59,8 +54,7 @@ public class Unit extends Body {
 	}
 	
 	public BufferedImage getSprite() {
-		//return ImageLoader.get(this.sprite);
-		return spriteObj.getCurrentSprite();
+		return sprite.getCurrentSprite();
 	}
 
 }
