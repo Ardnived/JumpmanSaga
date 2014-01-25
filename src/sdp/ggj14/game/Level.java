@@ -11,6 +11,7 @@ public class Level {
 	Player player;
 	ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	Tile[][] grid = new Tile[30][10];
+	int scrollX = 0;
 
 	public Level() {
 		this.player = new Player();
@@ -39,7 +40,7 @@ public class Level {
 	public void paint(Graphics graphics) {
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid[0].length; y++) {
-				graphics.drawImage(grid[x][y].getSprite(), x*GRID_SIZE, y*GRID_SIZE, GRID_SIZE, GRID_SIZE, null);
+				graphics.drawImage(grid[x][y].getSprite(), x*GRID_SIZE - scrollX, y*GRID_SIZE, GRID_SIZE, GRID_SIZE, null);
 			}
 		}
 		
@@ -52,6 +53,10 @@ public class Level {
 	
 	public Tile getTile(int x, int y) {
 		return this.grid[x][y];
+	}
+	
+	public Player getPlayer() {
+		return this.player;
 	}
 
 }
