@@ -8,7 +8,7 @@ public class UserInterface {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void paint(Graphics grapics) {
+	public void paint(Graphics graphics) {
 		
 	}
 

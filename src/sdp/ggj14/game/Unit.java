@@ -19,6 +19,11 @@ public class Unit {
 		
 	}
 	
+	public void move(int x, int y) {
+		this.x += x;
+		this.y += y;
+	}
+	
 	public int getX() {
 		return this.x;
 	}

@@ -2,7 +2,7 @@ package sdp.ggj14;
 
 import javax.swing.JFrame;
 
-public class Main {
+public class Main extends JFrame {
 	
 	private boolean running = true;
 	private long desiredFPS = 60;
@@ -13,27 +13,33 @@ public class Main {
 	}
 	
 	public Main() {
-		SagaFrame frame = new SagaFrame();
-		//frame.pack();
-		frame.setVisible(true);
-		run(frame);
+		SagaFrame panel = new SagaFrame();
+		super.add(panel);
+		super.setSize(800, 600);
+		super.addKeyListener(panel);
+		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		super.setResizable(false);
+		super.setVisible(true);
+		run(panel);
 	}
 	
-	private void run(SagaFrame frame) {
+	private void run(SagaFrame saga) {
 		long updateTime;
 		long prevUpdateTime = System.nanoTime();
 		long beginLoopTime;
 		long endLoopTime;
 		long loopTime = 0;
 		float deltaTime;
-		while(running) {
+		
+		while (running) {
 			beginLoopTime = System.nanoTime();
-			frame.repaint();
 			
 			updateTime = System.nanoTime();
 			deltaTime = updateTime - prevUpdateTime;
-			frame.sagaUpdate(Math.round(deltaTime/(1000*1000)));
+			saga.sagaUpdate(Math.round(deltaTime/(1000*1000)));
 			prevUpdateTime = System.nanoTime();
+
+			saga.repaint();
 			
 			endLoopTime = System.nanoTime();
 			loopTime = endLoopTime-beginLoopTime;

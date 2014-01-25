@@ -1,25 +1,24 @@
 package sdp.ggj14;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import sdp.ggj14.game.Level;
+import sdp.ggj14.game.UserInterface;
 
 @SuppressWarnings("serial")
-public class SagaFrame extends JFrame implements KeyListener {
+public class SagaFrame extends JPanel implements KeyListener {
 	Level level;
-	private long dt;
+	UserInterface ui;
 	
 	public SagaFrame() {
-		super.setSize(800, 600);
-		super.addKeyListener(this);
-		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		super.setResizable(false);
-		
 		this.level = new Level();
+		this.ui = new UserInterface();
 	}
 	
 	public void sagaUpdate(long dt) {
@@ -35,16 +34,20 @@ public class SagaFrame extends JFrame implements KeyListener {
 	}
 	
 	@Override
-	public void paint(Graphics graphics) {
+	public void paintComponent(Graphics graphics) {
+		System.out.println("repaint");
+		super.paintComponent(graphics);
+		
 		level.paint(graphics);
+		ui.paint(graphics);
 	}
 	
 	
 	enum Control {
-		UP     (KeyEvent.VK_W) { @Override public void action(SagaFrame frame) { frame.level.getPlayer().Up(); } },
-		DOWN   (KeyEvent.VK_S) { @Override public void action(SagaFrame frame) { frame.level.getPlayer().Down(); } },
-		LEFT   (KeyEvent.VK_A) { @Override public void action(SagaFrame frame) { frame.level.getPlayer().Left(); } },
-		RIGHT  (KeyEvent.VK_D) { @Override public void action(SagaFrame frame) { frame.level.getPlayer().Right(); } },
+		UP     (KeyEvent.VK_W) { @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(0, +10); } },
+		DOWN   (KeyEvent.VK_S) { @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(0, -10); } },
+		LEFT   (KeyEvent.VK_A) { @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(-10, 0); } },
+		RIGHT  (KeyEvent.VK_D) { @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(+10, 0); } },
 		ACTION (KeyEvent.VK_SPACE) { @Override public void action(SagaFrame frame) {  } },
 		MENU   (KeyEvent.VK_ESCAPE) { @Override public void action(SagaFrame frame) {  } };
 		
