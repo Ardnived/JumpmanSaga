@@ -47,9 +47,6 @@ public class Level extends World implements CollisionListener {
 	}
 	
 	public void createTestLevel() {
-		Random random = new Random();
-		String[] variations = new String[] { "_s07", "_s08", "_s09", "" };
-		
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid[0].length; y++) {
 				this.setTile(x, y, null);

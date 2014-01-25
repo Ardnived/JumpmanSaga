@@ -1,7 +1,5 @@
 package sdp.ggj14.game.entities;
 
-import java.util.ArrayList;
-
 import sdp.ggj14.game.Level;
 import sdp.ggj14.util.Sprite;
 
