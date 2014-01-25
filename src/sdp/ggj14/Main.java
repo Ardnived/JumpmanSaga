@@ -3,6 +3,7 @@ package sdp.ggj14;
 import javax.swing.JFrame;
 
 public class Main extends JFrame {
+	public static final int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 374;
 	
 	private boolean running = true;
 	private long desiredFPS = 60;
@@ -15,7 +16,7 @@ public class Main extends JFrame {
 	public Main() {
 		SagaFrame panel = new SagaFrame();
 		super.add(panel);
-		super.setSize(800, 600);
+		super.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		super.addKeyListener(panel);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.setResizable(false);
