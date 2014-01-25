@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import sdp.ggj14.game.Level;
 import sdp.ggj14.util.Sprite;
 
+import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.Vector2;
 
 public class Player extends Unit {
@@ -18,16 +19,15 @@ public class Player extends Unit {
 	public Player() {
 		super(100.0, 100.0, PLAYER_SIZE, PLAYER_SIZE, 50);
 		super.sprite = new Sprite(new String[] {
-				"/player/idle/s01.png",
-				"/player/idle/s02.png",
-				"/player/idle/s03.png",
-				"/player/idle/s04.png",
-				"/player/idle/s05.png",
-				"/player/idle/s06.png",
-				"/player/idle/s07.png",
-				"/player/idle/s08.png",
-				"/player/idle/s09.png",
-				"/player/idle/s10.png"}, 10);
+				"/player/flying/loop.png",
+				"/player/flying/loop_s03.png",
+				"/player/flying/loop_s04.png"}, 10);
+	}
+	
+	@Override
+	public boolean onCollision(Level level, Body other) {
+		System.out.println("Player collided with "+other.getClass());
+		return true;
 	}
 	
 	@Override
@@ -41,7 +41,7 @@ public class Player extends Unit {
 	
 	public void shoot(Level level) {
 		if (cooldown <= 0.0 && projectiles.size() < maxProjectiles) {
-			Projectile projectile = new Projectile(this.getX() + PLAYER_SIZE/2, this.getY(), 1);
+			Projectile projectile = new Projectile(this.getX() + PLAYER_SIZE*3/5, this.getY(), 1);
 			
 			projectile.applyForce(new Vector2(100000, 0));
 			projectiles.add(projectile);

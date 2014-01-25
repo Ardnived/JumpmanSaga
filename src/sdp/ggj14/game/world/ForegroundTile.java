@@ -1,24 +1,15 @@
 package sdp.ggj14.game.world;
 
-import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.Rectangle;
 
 import sdp.ggj14.game.Level;
 
 public class ForegroundTile extends Tile {
-	Body body;
-
-	public ForegroundTile(String sprite, int x, int y) {
-		super(sprite);
-		
-		body = new Body();
-		body.addFixture(new Rectangle(Level.GRID_SIZE, Level.GRID_SIZE));
-		body.translate(Level.GRID_SIZE*x + Level.GRID_SIZE/2, Level.GRID_SIZE*y + Level.GRID_SIZE/2);
-		//body.setMass();
-	}
 	
-	public Body getBody() {
-		return body;
+	public ForegroundTile(String sprite, int x, int y) {
+		super(sprite, x, y);
+		
+		super.addFixture(new Rectangle(Level.GRID_SIZE, Level.GRID_SIZE));
 	}
 
 }
