@@ -18,6 +18,7 @@ import sdp.ggj14.Main;
 import sdp.ggj14.game.entities.Enemy;
 import sdp.ggj14.game.entities.Player;
 import sdp.ggj14.game.entities.Unit;
+import sdp.ggj14.game.entities.enemies.FlayerEnemy;
 import sdp.ggj14.game.world.ForegroundTile;
 import sdp.ggj14.game.world.Tile;
 import sdp.ggj14.util.ImageLoader;
@@ -36,7 +37,8 @@ public class Level extends World implements CollisionListener {
 	public Level() {
 		super(new AxisAlignedBounds(WIDTH * GRID_SIZE * 2, HEIGHT * GRID_SIZE * 2));
 		
-		super.setGravity(EARTH_GRAVITY.negate().multiply(2.0));
+		
+		super.setGravity(EARTH_GRAVITY.negate().multiply(5.0));
 		
 		this.createTestLevel();
 		
@@ -62,6 +64,8 @@ public class Level extends World implements CollisionListener {
 		}
 		
 		this.setTile(7, 3, new ForegroundTile("/tiles/ground/s06.png", 7, 3));
+		
+		super.addBody(new FlayerEnemy(300.0, 270.0));
 	}
 	
 	public boolean update(double elapsedTime) {

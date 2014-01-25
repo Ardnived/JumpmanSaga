@@ -13,9 +13,9 @@ import sdp.ggj14.game.SagaBody;
 import sdp.ggj14.util.Sprite;
 
 public class Unit extends SagaBody {
-	int hp;
-	Sprite sprite;
-	BodyFixture fixture;
+	protected int hp;
+	protected Sprite sprite;
+	protected BodyFixture fixture;
 
 	public Unit(double x, double y, int width, int height, int hp) {
 		this(x, y, width, height, hp, 100);

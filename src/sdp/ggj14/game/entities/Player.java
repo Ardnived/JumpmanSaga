@@ -23,12 +23,12 @@ public class Player extends Unit {
 				"/player/flying/loop_s02.png",
 				"/player/flying/loop_s03.png"}, 10);
 	}
-	/*
+	
 	@Override
 	public void move(double x, double y) {
 		super.move(x*HORIZONTAL_MOVE, y*JETPACK_THRUST);
 	}
-	*/
+	
 	@Override
 	public boolean onCollision(Level level, Body other) {
 		System.out.println("Player collided with "+other.getClass());
