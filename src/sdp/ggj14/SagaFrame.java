@@ -50,7 +50,7 @@ public class SagaFrame extends JPanel implements KeyListener {
 		RIGHT  (KeyEvent.VK_D) 
 			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(+4, 0); } },
 		ACTION (KeyEvent.VK_SPACE) 
-			{ @Override public void action(SagaFrame frame) {  } },
+			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().shoot(); } },
 		MENU   (KeyEvent.VK_ESCAPE) 
 			{ @Override public void action(SagaFrame frame) {  } };
 		
