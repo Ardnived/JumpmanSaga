@@ -26,7 +26,7 @@ public class Level extends World implements CollisionListener {
 	public final static int WIDTH = 50, HEIGHT = 11;
 	public final static int GRID_SIZE = 32;
 	
-	String background = "/level/landscape.jpg";
+	String background = "/level/landscape_pixelated.jpg";
 	double parallaxFactor = 0.2;
 	
 	Player player;
