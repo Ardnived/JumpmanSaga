@@ -20,7 +20,11 @@ public class Tile extends SagaBody {
 	
 	@Override
 	public BufferedImage getSprite() {
-		return ImageLoader.get(this.sprite);
+		if (this.sprite != null) {
+			return ImageLoader.get(this.sprite);
+		} else {
+			return null;
+		}
 	}
 
 }

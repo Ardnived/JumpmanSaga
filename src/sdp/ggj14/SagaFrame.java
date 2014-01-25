@@ -1,5 +1,6 @@
 package sdp.ggj14;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -15,6 +16,8 @@ public class SagaFrame extends JPanel implements KeyListener {
 	UserInterface ui;
 	
 	public SagaFrame() {
+		super.setBackground(Color.BLACK);
+		
 		this.level = new Level();
 		this.ui = new UserInterface(level);
 	}
