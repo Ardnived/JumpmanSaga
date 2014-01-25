@@ -1,5 +1,6 @@
 package sdp.ggj14.game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
@@ -18,10 +19,10 @@ public class Level extends World {
 
 	public Level() {
 		super(new AxisAlignedBounds(WIDTH * GRID_SIZE, HEIGHT * GRID_SIZE));
-		super.setGravity(EARTH_GRAVITY);
+		super.setGravity(EARTH_GRAVITY.negate());
 		
 		this.player = new Player();
-		super.addBody(player);
+		super.addBody(this.player);
 		
 		this.createTestLevel();
 	}
@@ -54,11 +55,17 @@ public class Level extends World {
 			}
 		}
 		
-		graphics.drawImage(player.getSprite(), (int) player.getCenter().x - 24, (int) player.getCenter().y - 24, 48, 48, null);
+		graphics.drawImage(player.getSprite(), (int) player.getX() - 24, (int) player.getY() - 24, 48, 48, null);
 		for (int i = 0; i < player.projectiles.size(); i++) {
 			Unit projectile = player.projectiles.get(i);
-			graphics.drawImage(projectile.getSprite(), (int)projectile.getCenter().x-24, (int)projectile.getCenter().y-24, 48, 48, null);
+			graphics.drawImage(projectile.getSprite(), (int)projectile.getX() - 24, (int)projectile.getY() - 24, 48, 48, null);
 		}
+		
+		// TEST CODE:
+		graphics.setColor(Color.RED);
+		graphics.drawRect(0, 0, WIDTH * GRID_SIZE, HEIGHT * GRID_SIZE);
+		super.getBounds();
+		// -- TEST
 	}
 	
 	public void setTile(int x, int y, Tile tile) {
