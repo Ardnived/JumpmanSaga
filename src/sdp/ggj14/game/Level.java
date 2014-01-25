@@ -21,6 +21,8 @@ public class Level extends World {
 		super.setGravity(EARTH_GRAVITY);
 		
 		this.player = new Player();
+		super.addBody(player);
+		
 		this.createTestLevel();
 	}
 	
