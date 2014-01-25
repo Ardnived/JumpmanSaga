@@ -20,7 +20,7 @@ public class Level extends World {
 		super(new AxisAlignedBounds(WIDTH * GRID_SIZE, HEIGHT * GRID_SIZE));
 		super.setGravity(EARTH_GRAVITY);
 		
-		this.player = new Player();
+		this.player = new Player(this);
 		this.createTestLevel();
 	}
 	
@@ -53,6 +53,10 @@ public class Level extends World {
 		}
 		
 		graphics.drawImage(player.getSprite(), (int) player.getCenter().x - 24, (int) player.getCenter().y - 24, 48, 48, null);
+		for (int i = 0; i < player.projectiles.size(); i++) {
+			Unit projectile = player.projectiles.get(i);
+			graphics.drawImage(projectile.getSprite(), (int)projectile.getCenter().x-24, (int)projectile.getCenter().y-24, 48, 48, null);
+		}
 	}
 	
 	public void setTile(int x, int y, Tile tile) {
