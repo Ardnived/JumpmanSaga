@@ -29,6 +29,7 @@ public class Unit extends Body {
 		fixture = super.addFixture(new Rectangle(WIDTH, HEIGHT));
 		fixture.getShape().getCenter().x = x;
 		fixture.getShape().getCenter().y = y;
+		fixture.createMass();
 	}
 	
 	public void update() {
@@ -43,6 +44,8 @@ public class Unit extends Body {
 		super.applyImpulse(new Vector2(x, y));
 		//this.velocity.x += x;
 		//this.velocity.y += y;
+		
+		//System.out.println(this.fixture.);
 	}
 	
 	public Vector2 getCenter() {

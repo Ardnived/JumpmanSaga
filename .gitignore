@@ -1,7 +1,6 @@
 Thumbs.db
 
 *target*
-*.jar
 *.war
 *.ear
 *.class

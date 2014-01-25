@@ -19,7 +19,6 @@ public class Level extends World {
 	public Level() {
 		super(new AxisAlignedBounds(WIDTH * GRID_SIZE, HEIGHT * GRID_SIZE));
 		super.setGravity(EARTH_GRAVITY);
-		//super.set
 		
 		this.player = new Player();
 		this.createTestLevel();
