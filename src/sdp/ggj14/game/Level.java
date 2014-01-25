@@ -4,7 +4,10 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Level {
+import org.dyn4j.collision.AxisAlignedBounds;
+import org.dyn4j.dynamics.World;
+
+public class Level extends World {
 	final static int WIDTH = 30, HEIGHT = 10;
 	final static int GRID_SIZE = 32;
 	
@@ -14,6 +17,10 @@ public class Level {
 	int scrollX = 0;
 
 	public Level() {
+		super(new AxisAlignedBounds(WIDTH * GRID_SIZE, HEIGHT * GRID_SIZE));
+		super.setGravity(EARTH_GRAVITY);
+		//super.set
+		
 		this.player = new Player();
 		this.createTestLevel();
 	}
@@ -29,12 +36,14 @@ public class Level {
 		}
 	}
 	
-	public void update() {
+	public boolean update(double elapsedTime) {
 		this.player.update();
 		
 		for (Enemy enemy : enemies) {
 			enemy.update();
 		}
+		
+		return super.update(elapsedTime);
 	}
 	
 	public void paint(Graphics graphics) {
@@ -44,7 +53,7 @@ public class Level {
 			}
 		}
 		
-		graphics.drawImage(player.getSprite(), player.getX(), player.getY(), 48, 48, null);
+		graphics.drawImage(player.getSprite(), (int) player.getCenter().x - 24, (int) player.getCenter().y - 24, 48, 48, null);
 	}
 	
 	public void setTile(int x, int y, Tile tile) {

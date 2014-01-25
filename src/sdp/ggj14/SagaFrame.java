@@ -1,11 +1,9 @@
 package sdp.ggj14;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import sdp.ggj14.game.Level;
@@ -21,7 +19,7 @@ public class SagaFrame extends JPanel implements KeyListener {
 		this.ui = new UserInterface();
 	}
 	
-	public void sagaUpdate(long dt) {
+	public void sagaUpdate(double elapsedTime) {
 		//System.out.println(dt);
 		
 		for (Control control : Control.values()) {
@@ -30,12 +28,11 @@ public class SagaFrame extends JPanel implements KeyListener {
 			}
 		}
 		
-		this.level.update();
+		this.level.update(elapsedTime);
 	}
 	
 	@Override
 	public void paintComponent(Graphics graphics) {
-		System.out.println("repaint");
 		super.paintComponent(graphics);
 		
 		level.paint(graphics);

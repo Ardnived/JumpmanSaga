@@ -36,7 +36,7 @@ public class Main extends JFrame {
 			
 			updateTime = System.nanoTime();
 			deltaTime = updateTime - prevUpdateTime;
-			saga.sagaUpdate(Math.round(deltaTime/(1000*1000)));
+			saga.sagaUpdate(deltaTime/(1000.0*1000.0));
 			prevUpdateTime = System.nanoTime();
 
 			saga.repaint();
