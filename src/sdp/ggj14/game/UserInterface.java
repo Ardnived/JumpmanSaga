@@ -3,6 +3,7 @@ package sdp.ggj14.game;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import sdp.ggj14.game.entities.Player;
 import sdp.ggj14.util.ImageLoader;
 
 public class UserInterface {
@@ -21,11 +22,11 @@ public class UserInterface {
 		double fuel = level.getPlayer().getFuel();
 		
 		graphics.drawImage(ImageLoader.get("/ui/airIcon.png"), 10, 8, 18, 18, null);
-		graphics.drawImage(ImageLoader.get("/ui/air.png"), 33, 13, (int)(117*(air/100)), 9, null);
+		graphics.drawImage(ImageLoader.get("/ui/air.png"), 33, 13, (int)(117*(air/Player.MAX_AIR)), 9, null);
 		graphics.drawImage(ImageLoader.get("/ui/airBar.png"), 30, 10, 123, 15, null);
 
 		graphics.drawImage(ImageLoader.get("/ui/fuelIcon.png"), 10, 28, 18, 18, null);
-		graphics.drawImage(ImageLoader.get("/ui/fuel.png"), 33, 33, (int)(117*(fuel/100)), 9, null);
+		graphics.drawImage(ImageLoader.get("/ui/fuel.png"), 33, 33, (int)(117*(fuel/Player.MAX_FUEL)), 9, null);
 		graphics.drawImage(ImageLoader.get("/ui/fuelBar.png"), 30, 30, 123, 15, null);
 		
 		if (level.getPlayer().getPowerUpTimer() > 0) {

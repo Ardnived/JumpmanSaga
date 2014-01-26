@@ -14,10 +14,12 @@ public abstract class SoundPlayer {
 				AudioData audioData = audioStream.getData();
 				ContinuousAudioDataStream loopStream = new ContinuousAudioDataStream(audioData);
 				AudioPlayer.player.start(loopStream);
+				System.out.println("Looping "+fileName);
 				return loopStream;
 			}
 			else {
 				AudioPlayer.player.start(audioStream);
+				System.out.println("Playing "+fileName);
 				return null;
 			}
 		} catch (Exception e) {
