@@ -35,6 +35,7 @@ import sdp.ggj14.game.world.ForegroundTile;
 import sdp.ggj14.game.world.Tile;
 import sdp.ggj14.util.ImageLoader;
 import sdp.ggj14.util.JSONLoader;
+import sdp.ggj14.util.Sprite;
 
 public class Level extends World implements CollisionListener {
 	//public final static int WIDTH = 50, HEIGHT = 11;
@@ -52,7 +53,8 @@ public class Level extends World implements CollisionListener {
 	ArrayList<BackgroundTile> backgroundTiles = new ArrayList<BackgroundTile>();
 	
 	// HACK IN THE CLOUDS
-	String cloud = "/level/environment/cloud.png";
+	//Sprite cloud = new Sprite(new String[] {"/level/environment/cloud.png"});
+	Sprite cloud = new Sprite(Sprite.constructPaths("/level/environment/ecloud", 3, ".png"), 10);
 	int cloudPos[] = new int[] {800};
 	int cloudTop[] = new int[] {-50};
 	int cloudWidth[] = new int[] {(900*3/4)};
@@ -202,6 +204,8 @@ public class Level extends World implements CollisionListener {
 			}
 		}
 		
+		this.cloud.update(elapsedTime);
+		
 		return super.update(elapsedTime);
 	}
 	
@@ -246,7 +250,7 @@ public class Level extends World implements CollisionListener {
 		
 		// Draw Clouds
 		for (int i = 0; i < this.cloudPos.length; i++) {
-			graphics.drawImage(ImageLoader.get(cloud), (int) (this.cloudPos[i] - this.cloudWidth[i]/2 - (this.getScrollX()*0.9)), this.cloudTop[i], this.cloudWidth[i], this.cloudHeight[i], null);
+			graphics.drawImage(cloud.getCurrentSprite(), (int) (this.cloudPos[i] - this.cloudWidth[i]/2 - (this.getScrollX()*0.9)), this.cloudTop[i], this.cloudWidth[i], this.cloudHeight[i], null);
 		}
 	}
 	
