@@ -13,6 +13,8 @@ public class Player extends Unit {
 	public static final int AIR_CONTROL = 600;
 	public static final int GROUND_CONTROL = 1000;
 	
+	public static final double BOROS_MULTIPLIER = 5.0;
+	
 	public static final double MAX_AIR = 100.0;
 	public static final double MAX_FUEL = 100.0;
 	
@@ -100,6 +102,11 @@ public class Player extends Unit {
 			flipped = true;
 		}
 		
+		if (this.getPowerUp() == PowerUp.Type.BOROS) {
+			x *= BOROS_MULTIPLIER;
+			y *= BOROS_MULTIPLIER;
+		}
+		
 		super.move(x * speedModifier, y * speedModifier);
 		
 		//System.out.println(super.getForce());
@@ -116,7 +123,13 @@ public class Player extends Unit {
 	public void update(Level level, double elapsedTime) {
 		super.update(level, elapsedTime);
 		
-		this.modifyHP(-AIR_DECAY * elapsedTime);
+		double airLoss = -AIR_DECAY * elapsedTime;
+		
+		if (this.getPowerUp() == PowerUp.Type.BOROS) {
+			airLoss *= BOROS_MULTIPLIER;
+		}
+		
+		this.modifyHP(airLoss);
 		
 		if (powerUpTimer > 0.0) {
 			powerUpTimer -= elapsedTime;
