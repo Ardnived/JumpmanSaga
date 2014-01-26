@@ -102,7 +102,7 @@ public class Player extends Unit {
 		}
 		
 		if (this.getLinearVelocity().y > 5 && 5 < this.getLinearVelocity().y) {
-			if (this.fuel > 0) {
+			if (this.fuel < 0) {
 				x = 0;
 			}
 			
