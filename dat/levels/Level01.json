@@ -14,10 +14,10 @@
 			  ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZYYYYYYY
 			  ",
 	units: [
-		{ x: 1200, y: 360, class:"enemies.FlayerEnemy" },
+		{ x: 1200, y: 360, limit: 300, class:"enemies.FlayerEnemy" },
 		{ x: 1400, y: 354, class:"enemies.SprayerEnemy" },
-		{ x: 1300, y: 100, class:"enemies.SwayerEnemy" },
-		{ x: 1500, y: 170, class:"enemies.SwayerEnemy" },
+		{ x: 1300, y: 100, limit: 40, class:"enemies.SwayerEnemy" },
+		{ x: 1500, y: 170, limit: 60, class:"enemies.SwayerEnemy" },
 		{ x: 400,  y: 100, class:"PowerUp", type:"OXIDE" },
 		{ x: 800,  y: 225, class:"PowerUp", type:"OXIDE" }
 	]

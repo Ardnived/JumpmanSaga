@@ -11,7 +11,7 @@ import sdp.ggj14.util.Sprite;
 
 public class FlayerEnemy extends Enemy {
 	public static final double SPEED = 50;
-	public static final int FLAYER_SIZE = (int) (20 * Level.SPRITE_SCALE);
+	public static final int FLAYER_SIZE = (int) (16 * Level.SPRITE_SCALE);
 	
 	public static HashMap<PowerUp.Type, Sprite> SPRITES = new HashMap<PowerUp.Type, Sprite>();
 	
@@ -41,7 +41,6 @@ public class FlayerEnemy extends Enemy {
 		
 		if (super.isPlayerActive(level.getPlayer())) {
 			double direction = level.getPlayer().getX() - this.getX();
-			direction = -1.0; // He only goes left.
 			super.getLinearVelocity().set(Math.min(5/direction * SPEED * elapsedTime, direction * elapsedTime), 0);
 		}
 	}
