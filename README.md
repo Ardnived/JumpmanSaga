@@ -1,9 +1,9 @@
 Credits
 -------------
-Scott Inglis
-Devindra Payment
-Patrick O'Brien
-
+Scott Inglis - Sr. Executive Programmer
+Devindra Payment - Code Architect
+Patrick O'Brien - Designer
+Jacob Burgess - Voice Over
 
 Special Thanks
 -------------------
