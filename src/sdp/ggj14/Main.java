@@ -4,6 +4,8 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
+import sdp.ggj14.util.PropertiesLoader;
+
 @SuppressWarnings("serial")
 public class Main extends JFrame {
 	public static final int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 700;//374;
@@ -14,6 +16,8 @@ public class Main extends JFrame {
 	
 	public static void main(String[] args) {
 		new Main();
+		
+		PropertiesLoader.get(System.getProperty("user.dir")+"/dat/settings/Game");
 	}
 	
 	public Main() {

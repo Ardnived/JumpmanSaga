@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="img"/>
 	<classpathentry kind="src" path="aud"/>
-	<classpathentry kind="src" path="lvl"/>
+	<classpathentry kind="src" path="dat"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="dyn4j-v3.1.8.jar"/>
 	<classpathentry kind="lib" path="quick-json-1.0.2.3.jar"/>

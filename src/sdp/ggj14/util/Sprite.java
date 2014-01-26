@@ -25,4 +25,8 @@ public class Sprite {
 	public BufferedImage getCurrentSprite() {
 		return ImageLoader.get(imagePaths[currentSprite]);
 	}
+	
+	public int getSpriteIndex() {
+		return this.currentSprite;
+	}
 }
