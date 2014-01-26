@@ -27,7 +27,6 @@ import sdp.ggj14.game.world.ForegroundTile;
 import sdp.ggj14.game.world.Tile;
 import sdp.ggj14.util.ImageLoader;
 import sdp.ggj14.util.JSONLoader;
-import sdp.ggj14.util.SoundPlayer;
 
 public class Level extends World implements CollisionListener {
 	//public final static int WIDTH = 50, HEIGHT = 11;
