@@ -7,6 +7,7 @@ import java.util.Map;
 import org.dyn4j.dynamics.Body;
 
 import sdp.ggj14.game.Level;
+import sdp.ggj14.game.entities.enemies.SwayerEnemy;
 import sdp.ggj14.util.SoundPlayer;
 import sdp.ggj14.util.Sprite;
 import sun.audio.AudioPlayer;
@@ -220,10 +221,17 @@ public class Player extends Unit {
 			breathingSound = null;
 			SoundPlayer.play("/effects/jm_vo_death.wav", false);
 		}
+		
+		if (mod > 0) {
+			SoundPlayer.play("/effects/jm_ui_oxygen_pickup.wav", false);
+		}
 	}
 	
 	public void modifyFuel(double mod) {
 		fuel = Math.min(Math.max(0, fuel + mod), MAX_FUEL);
+		if (mod > 0) {
+			SoundPlayer.play("/effects/jm_ui_fuel_pickup.wav", false);
+		}
 	}
 	
 	public void modifySpeed(double mod) {
@@ -250,6 +258,9 @@ public class Player extends Unit {
 	@Override
 	public boolean onCollision(Level level, Body other) {
 		if (other instanceof Enemy && gaspTimer >= 1000){
+			if (other instanceof SwayerEnemy && this.getPowerUp() == PowerUp.Type.OXIDE) {
+				return false;
+			}
 			SoundPlayer.play("/effects/jm_vo_gasp_0"+((int)(Math.random()*(5)+1))+".wav", false);
 			gaspTimer = 0.0;
 		}
