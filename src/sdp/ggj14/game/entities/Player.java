@@ -215,6 +215,11 @@ public class Player extends Unit {
 	
 	public void modifyHP(double mod) {
 		hp = Math.min(Math.max(0, hp + mod), MAX_AIR);
+		if (hp <= 0) {
+			AudioPlayer.player.stop(breathingSound);
+			breathingSound = null;
+			SoundPlayer.play("/effects/jm_vo_death.wav", false);
+		}
 	}
 	
 	public void modifyFuel(double mod) {
