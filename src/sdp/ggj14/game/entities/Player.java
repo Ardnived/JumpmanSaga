@@ -1,6 +1,7 @@
 package sdp.ggj14.game.entities;
 
 import sdp.ggj14.game.Level;
+import sdp.ggj14.game.world.Tile;
 import sdp.ggj14.util.Sprite;
 
 import org.dyn4j.dynamics.Body;
@@ -47,16 +48,19 @@ public class Player extends Unit {
 		super(100.0, 100.0, PLAYER_SIZE, PLAYER_SIZE, 100);
 		super.sprite = IDLE;
 	}
+
+	@Override
+	public boolean onCollision(Level level, Body other) {
+		if (other instanceof Tile && other.getWorldCenter().y > this.getY()) {
+			this.onGround = true;
+		}
+		
+		return true;
+	}
 	
 	@Override
 	public void move(double x, double y) {
 		super.move(x*HORIZONTAL_MOVE, y*JETPACK_THRUST);
-	}
-	
-	@Override
-	public boolean onCollision(Level level, Body other) {
-		//System.out.println("Player collided with "+other.getClass());
-		return true;
 	}
 	
 	@Override
@@ -67,11 +71,15 @@ public class Player extends Unit {
 			cooldown -= elapsedTime;
 		}
 		
-		if (super.getForce().y < 0) {
+		if (this.getLinearVelocity().y < 0) {
+			this.onGround = false;
+		}
+		
+		if (!onGround && super.getForce().y < 0) {
 			this.sprite = FLYING;
-		} else if (super.getLinearVelocity().y > 60) {
+		} else if (!onGround) {
 			this.sprite = FALLING;
-		} else if (super.getForce().x != 0) {
+		} else if (onGround && super.getForce().x != 0) {
 			this.sprite = WALKING;
 		} else {
 			this.sprite = IDLE;

@@ -19,7 +19,7 @@ public abstract class SagaBody extends Body {
 		// Do Nothing
 	}
 	
-	public abstract BufferedImage getSprite();
+	public abstract BufferedImage getSprite(Level level);
 	
 	public double getX() {
 		return super.getWorldCenter().x;

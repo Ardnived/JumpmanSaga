@@ -10,9 +10,10 @@ import sdp.ggj14.util.Sprite;
 
 
 public class PowerUp extends Unit {
-	enum Type {
+	public enum Type {
 		DIODE("artifact/s02.png"),
 		HELIX("artifact/s06.png"),
+		BOROS("new_life_form/s03.png"),
 		OXIDE("new_life_form/s08.png");
 		
 		String sprite;
@@ -27,9 +28,6 @@ public class PowerUp extends Unit {
 	public PowerUp(Type type, double x, double y) {
 		super(x, y, 48, 48, 1);
 		this.type = type;
-		
-		super.sprite = new Sprite(new String[] {
-				"/collectables/artifact_s02.png"}, 1);
 	}
 	
 	@Override
@@ -42,7 +40,7 @@ public class PowerUp extends Unit {
 	}
 	
 	@Override
-	public BufferedImage getSprite() {
+	public BufferedImage getSprite(Level level) {
 		return ImageLoader.get(type.sprite);
 	}
 

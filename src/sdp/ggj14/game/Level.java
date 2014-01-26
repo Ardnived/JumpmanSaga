@@ -3,22 +3,18 @@ package sdp.ggj14.game;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
-import java.util.Random;
-
 import org.dyn4j.collision.AxisAlignedBounds;
 import org.dyn4j.collision.manifold.Manifold;
 import org.dyn4j.collision.narrowphase.Penetration;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.dynamics.CollisionListener;
-import org.dyn4j.dynamics.Force;
 import org.dyn4j.dynamics.World;
 import org.dyn4j.dynamics.contact.ContactConstraint;
 
 import sdp.ggj14.Main;
 import sdp.ggj14.game.entities.Enemy;
 import sdp.ggj14.game.entities.Player;
-import sdp.ggj14.game.entities.PowerUp;
 import sdp.ggj14.game.entities.Unit;
 import sdp.ggj14.game.entities.enemies.FlayerEnemy;
 import sdp.ggj14.game.entities.enemies.SwayerEnemy;
@@ -96,17 +92,17 @@ public class Level extends World implements CollisionListener {
 				SagaBody sagaBody = ((SagaBody) body);
 				
 				if (sagaBody.intersects(this.getScrollX(), 0, Main.SCREEN_WIDTH + GRID_SIZE, Main.SCREEN_HEIGHT)) {
-					Image sprite = sagaBody.getSprite();
+					Image sprite = sagaBody.getSprite(this);
 					
 					if (sprite != null) {
-						graphics.drawImage(sagaBody.getSprite(), (int) sagaBody.getX() - sagaBody.drawWidth/2 - this.getScrollX(), (int) sagaBody.getY() - sagaBody.drawHeight/2, sagaBody.drawWidth, sagaBody.drawHeight, null);
+						graphics.drawImage(sprite, (int) sagaBody.getX() - sagaBody.drawWidth/2 - this.getScrollX(), (int) sagaBody.getY() - sagaBody.drawHeight/2, sagaBody.drawWidth, sagaBody.drawHeight, null);
 					}
 				}
 			}
 		}
 
 		// Draw Player / WHY IS THE LOOP NOT DRAWING HIM? IDK
-		graphics.drawImage(player.getSprite(), (int) player.getX() - player.drawWidth/2 - this.getScrollX(), (int) player.getY() - player.drawHeight/2, player.drawWidth, player.drawHeight, null);
+		graphics.drawImage(player.getSprite(this), (int) player.getX() - player.drawWidth/2 - this.getScrollX(), (int) player.getY() - player.drawHeight/2, player.drawWidth, player.drawHeight, null);
 	}
 	
 	public int getScrollX() {

@@ -17,6 +17,7 @@ public class Unit extends SagaBody {
 	protected int hp;
 	protected Sprite sprite;
 	protected BodyFixture fixture;
+	protected boolean onGround;
 
 	public Unit(double x, double y, int width, int height, int hp) {
 		this(x, y, width, height, hp, 100);
@@ -28,19 +29,9 @@ public class Unit extends SagaBody {
 		
 		super.translate(x, y);
 		
-		fixture = super.addFixture(new Rectangle(width, height), BodyFixture.DEFAULT_DENSITY, BodyFixture.DEFAULT_FRICTION, BodyFixture.DEFAULT_RESTITUTION);
+		fixture = super.addFixture(new Rectangle(width, height), BodyFixture.DEFAULT_DENSITY, 0.5, 0.0);
 		
-		//super.setMass();
-		//Mass test = super.getMass();
-		//System.out.println(test.getMass());
 		super.setMass(new Mass(new Vector2(0, 0), mass, 80000));
-		
-		/*super.applyForce(new Force(0, 10000){
-			@Override
-			public boolean isComplete(double elapsedTime) {
-				return false;
-			}
-		});*/
 	}
 	
 	public boolean onCollision(Level level, Body other) {
@@ -49,7 +40,9 @@ public class Unit extends SagaBody {
 	
 	@Override
 	public void update(Level level, double elapsedTime) {
-		move(0, 0.2);
+		if (!this.onGround) {
+			move(0, 0.3);
+		}
 		
 		sprite.update(elapsedTime);
 	}
@@ -68,7 +61,7 @@ public class Unit extends SagaBody {
 	}
 	
 	@Override
-	public BufferedImage getSprite() {
+	public BufferedImage getSprite(Level level) {
 		return sprite.getCurrentSprite();
 	}
 
