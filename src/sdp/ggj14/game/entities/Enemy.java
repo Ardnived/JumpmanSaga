@@ -3,10 +3,12 @@ package sdp.ggj14.game.entities;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
+import org.dyn4j.collision.CategoryFilter;
 import org.dyn4j.dynamics.Body;
 
 import sdp.ggj14.Main;
 import sdp.ggj14.game.Level;
+import sdp.ggj14.game.SagaBody.Category;
 import sdp.ggj14.util.Sprite;
 
 
@@ -20,6 +22,7 @@ public class Enemy extends Unit {
 		super(x, y, width, height, 1);
 		
 		this.spriteData = spriteData;
+		this.fixture.setFilter(new CategoryFilter(Category.ENEMY.ordinal(), Category.PLAYER.ordinal()));
 	}
 
 	@Override

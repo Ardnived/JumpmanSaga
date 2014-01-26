@@ -3,14 +3,10 @@ package sdp.ggj14.game.world;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
-import java.util.Random;
-
 import sdp.ggj14.game.Level;
-import sdp.ggj14.game.SagaBody;
 import sdp.ggj14.game.entities.PowerUp;
-import sdp.ggj14.util.ImageLoader;
 
-public class Tile extends SagaBody {
+public interface Tile {
 	public static class TypeSet {
 		String[] sprites;
 		Color tint;
@@ -66,28 +62,6 @@ public class Tile extends SagaBody {
 		public void setup() {}
 	}
 	
-	Tile.Type type;
-	
-	public Tile(Tile.Type type, int x, int y) {
-		super(Level.GRID_SIZE, Level.GRID_SIZE);
-		this.type = type;
-		
-		super.translate(Level.GRID_SIZE*x + Level.GRID_SIZE/2, Level.GRID_SIZE*y + Level.GRID_SIZE/2);
-	}
-	
-	@Override
-	public BufferedImage getSprite(Level level) {
-		if (this.type != null) {
-			TypeSet typeSet = this.type.data.get(level.getPlayer().getPowerUp());
-			
-			Random random = new Random();
-			String[] sprites = typeSet.sprites;
-			int index = random.nextInt(sprites.length);
-			
-			return ImageLoader.get(sprites[index]);
-		} else {
-			return null;
-		}
-	}
+	public abstract BufferedImage getSprite(Level level);
 
 }

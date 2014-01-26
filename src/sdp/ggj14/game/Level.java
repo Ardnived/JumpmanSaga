@@ -1,7 +1,6 @@
 package sdp.ggj14.game;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -15,16 +14,20 @@ import org.dyn4j.collision.narrowphase.Penetration;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.dynamics.CollisionListener;
+import org.dyn4j.dynamics.Settings;
+import org.dyn4j.dynamics.Settings.ContinuousDetectionMode;
 import org.dyn4j.dynamics.World;
 import org.dyn4j.dynamics.contact.ContactConstraint;
 import org.dyn4j.geometry.Mass;
 import org.dyn4j.geometry.Rectangle;
+import org.dyn4j.geometry.Vector2;
 
 import sdp.ggj14.Main;
 import sdp.ggj14.game.entities.Enemy;
 import sdp.ggj14.game.entities.Player;
 import sdp.ggj14.game.entities.PowerUp;
 import sdp.ggj14.game.entities.Unit;
+import sdp.ggj14.game.world.BackgroundTile;
 import sdp.ggj14.game.world.ForegroundTile;
 import sdp.ggj14.game.world.Tile;
 import sdp.ggj14.util.ImageLoader;
@@ -42,14 +45,21 @@ public class Level extends World implements CollisionListener {
 	int helmLocation;
 	
 	Player player;
-	ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	Tile[][] grid;
+	ArrayList<BackgroundTile> backgroundTiles = new ArrayList<BackgroundTile>();
 
 	@SuppressWarnings("unchecked")
 	public Level() {
 		super.setGravity(ZERO_GRAVITY);
+		
+		Settings settings = super.getSettings();
+		settings.setContinuousDetectionMode(ContinuousDetectionMode.NONE);
+		settings.setSleepLinearVelocity(0.1);
+		settings.setSleepTime(0.2);
+		settings.setPositionConstraintSolverIterations(5);
+		settings.setVelocityConstraintSolverIterations(5);
 
-		Map<String, Object> data = JSONLoader.get(System.getProperty("user.dir")+"/dat/levels/Level01.json");
+		Map<String, Object> data = JSONLoader.get(System.getProperty("user.dir")+"/dat/levels/Level02.json");
 		String[] terrain = ((String) data.get("terrain")).split(":");
 		this.grid = new Tile[terrain[0].length() + 2][terrain.length];
 		
@@ -67,7 +77,9 @@ public class Level extends World implements CollisionListener {
 	}
 	
 	public void createBounds() {
-		super.setBounds(new AxisAlignedBounds(getWidth() * GRID_SIZE * 2, getHeight() * GRID_SIZE * 2));
+		//super.setBounds(new AxisAlignedBounds(getWidth() * GRID_SIZE * 2, getHeight() * GRID_SIZE * 2));
+		//super.setBounds(new AxisAlignedBounds(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT));
+		super.setBounds(null);
 		
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid[0].length; y++) {
@@ -103,10 +115,10 @@ public class Level extends World implements CollisionListener {
 					this.setTile(x+1, y, new ForegroundTile(Tile.Type.SHIP, x+1, y));
 					break;
 				case 'A':
-					this.setTile(x+1, y, new Tile(Tile.Type.BACKGROUND, x+1, y));
+					this.setTile(x+1, y, new BackgroundTile(Tile.Type.BACKGROUND, x+1, y));
 					break;
 				case 'B':
-					this.setTile(x+1, y, new Tile(Tile.Type.WALL, x+1, y));
+					this.setTile(x+1, y, new BackgroundTile(Tile.Type.WALL, x+1, y));
 					
 					if (x+1 < shipLocation) {
 						this.shipLocation = x+1;
@@ -146,6 +158,8 @@ public class Level extends World implements CollisionListener {
 	}
 	
 	public boolean update(double elapsedTime) {
+		//super.getBounds().shiftCoordinates(new Vector2(Main.SCREEN_WIDTH/2.0 + this.getScrollX(), -Main.SCREEN_HEIGHT/2.0));
+		
 		for (Body body : super.getBodies()) {
 			if (body instanceof SagaBody) {
 				((SagaBody) body).update(this, elapsedTime);
@@ -156,8 +170,15 @@ public class Level extends World implements CollisionListener {
 	}
 	
 	public void paint(Graphics graphics) {
+		// Draw Background
 		graphics.drawImage(this.getBackground(), (int) (0 - this.getScrollX()*parallaxFactor), 0, null);
 		
+		// Draw Background Tiles
+		for (BackgroundTile tile : this.backgroundTiles) {
+			graphics.drawImage(tile.getSprite(this), (int) tile.x * GRID_SIZE - this.getScrollX(), (int) tile.y * GRID_SIZE, GRID_SIZE, GRID_SIZE, null);
+		}
+		
+		// Draw Physics Objects
 		for (Body body : super.getBodies()) {
 			if (body instanceof SagaBody) {
 				SagaBody sagaBody = ((SagaBody) body);
@@ -223,15 +244,25 @@ public class Level extends World implements CollisionListener {
 		return this.grid[0].length;
 	}
 	
-	public void setTile(int x, int y, Tile tile) {
-		if (this.grid[x][y] != null) {
-			this.removeBody(this.grid[x][y]);
+	public void setTile(int x, int y, Tile newTile) {
+		Tile oldTile = this.grid[x][y];
+		
+		if (oldTile != null) {
+			if (oldTile instanceof BackgroundTile) {
+				this.backgroundTiles.remove(oldTile);
+			} else if (oldTile instanceof ForegroundTile) {
+				this.removeBody((ForegroundTile) oldTile);
+			}
 		}
 		
-		this.grid[x][y] = tile;
-		
-		if (tile != null) {
-			this.addBody(tile);
+		this.grid[x][y] = newTile;
+
+		if (newTile != null) {
+			if (newTile instanceof BackgroundTile) {
+				this.backgroundTiles.add((BackgroundTile) newTile);
+			} else if (newTile instanceof ForegroundTile) {
+				this.addBody((ForegroundTile) newTile);
+			}
 		}
 	}
 	

@@ -2,10 +2,12 @@ package sdp.ggj14.game.entities;
 
 import java.awt.image.BufferedImage;
 
+import org.dyn4j.collision.CategoryFilter;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.Mass;
 
 import sdp.ggj14.game.Level;
+import sdp.ggj14.game.SagaBody.Category;
 import sdp.ggj14.util.ImageLoader;
 
 
@@ -32,6 +34,9 @@ public class PowerUp extends Unit {
 	public PowerUp(Type type, double x, double y) {
 		super(x, y, POWERUP_SIZE, POWERUP_SIZE, 1);
 		this.type = type;
+		
+		this.fixture.setSensor(true);
+		this.fixture.setFilter(new CategoryFilter(Category.MISC.ordinal(), Category.PLAYER.ordinal()));
 		
 		this.setMass(Mass.Type.INFINITE);
 	}

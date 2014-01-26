@@ -9,11 +9,16 @@ public abstract class SagaBody extends Body {
 	public int drawWidth, drawHeight;
 	protected boolean flipped = false;
 	
+	public enum Category { ENEMY, PLAYER, TILE, MISC }
+	
 	public SagaBody(int drawWidth, int drawHeight) {
 		super(1);
 		
 		this.drawWidth = drawWidth;
 		this.drawHeight = drawHeight;
+		
+		this.setLinearDamping(0.1);
+		this.setAngularDamping(1);
 	}
 	
 	public void update(Level level, double elapsedTime) {

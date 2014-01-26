@@ -1,9 +1,10 @@
 package sdp.ggj14.game.entities;
 
+import org.dyn4j.collision.CategoryFilter;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.Force;
+
 import sdp.ggj14.game.Level;
-import sdp.ggj14.game.entities.enemies.SprayerEnemy;
 import sdp.ggj14.util.Sprite;
 
 public class Projectile extends Unit {
@@ -16,6 +17,9 @@ public class Projectile extends Unit {
 		super(x+10, y, PROJECTILE_WIDTH, PROJECTILE_HEIGHT, hp, 1);
 		super.sprite = new Sprite(new String[] {"/projectiles/slime.png"}, 1);
 		super.setGravityScale(0);
+		
+		this.fixture.setSensor(true);
+		this.fixture.setFilter(new CategoryFilter(Category.MISC.ordinal(), Category.PLAYER.ordinal()));
 		
 		Force test = new Force(-50, 0) {
 			@Override
@@ -33,13 +37,11 @@ public class Projectile extends Unit {
 	
 	@Override
 	public boolean onCollision(Level level, Body other) {
-		if (other instanceof SprayerEnemy) {
-			return false;
-		} else if (other instanceof Player) {
+		if (other instanceof Player) {
 			((Player) other).modifyHP(-PROJECTILE_DAMAGE);
+			level.removeBody(this);
 		}
 		
-		level.removeBody(this);
 		return false;
 	}
 

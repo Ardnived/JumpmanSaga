@@ -110,7 +110,7 @@ public class Player extends Unit {
 		
 		this.modifyHP(-AIR_DECAY);
 		
-		if (powerUpTimer > 0) {
+		if (powerUpTimer > 0.0) {
 			powerUpTimer -= elapsedTime;
 			
 			if (powerUpTimer <= 0) {
@@ -144,7 +144,7 @@ public class Player extends Unit {
 	}
 	
 	public void modifyFuel(double mod) {
-		hp = Math.min(Math.max(0, fuel + mod), MAX_FUEL);
+		fuel = Math.min(Math.max(0, fuel + mod), MAX_FUEL);
 	}
 	
 	public void setPowerUp(PowerUp.Type powerUp) {
