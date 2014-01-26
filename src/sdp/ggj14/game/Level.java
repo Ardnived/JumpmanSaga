@@ -36,7 +36,7 @@ import sdp.ggj14.game.world.Tile;
 import sdp.ggj14.util.ImageLoader;
 import sdp.ggj14.util.JSONLoader;
 
-public class Level extends World implements ContactListener {
+public class Level extends World implements CollisionListener {
 	//public final static int WIDTH = 50, HEIGHT = 11;
 	public final static int GRID_SIZE = 32;
 	public final static int SCROLL_OFFSET = 200;
@@ -324,67 +324,33 @@ public class Level extends World implements ContactListener {
 	}
 
 	@Override
-	public boolean begin(ContactPoint event) {
-		boolean cancel = false;
-		
-		if (event.getBody1() instanceof Unit) {
-			cancel &= ((Unit) event.getBody1()).onCollisionStart(this, event.getBody2());
-		}
-		
-		if (event.getBody2() instanceof Unit) {
-			cancel &= ((Unit) event.getBody2()).onCollisionStart(this, event.getBody1());
-		}
-		
-		return !cancel;
-	}
-
-	@Override
-	public void end(ContactPoint event) {
-		if (event.getBody1() instanceof Unit) {
-			((Unit) event.getBody1()).onCollisionEnd(this, event.getBody2());
-		}
-		
-		if (event.getBody2() instanceof Unit) {
-			((Unit) event.getBody2()).onCollisionEnd(this, event.getBody1());
-		}
-	}
-
-	@Override
-	public boolean persist(PersistedContactPoint event) {
-		boolean cancel = false;
-		
-		if (event.getBody1() instanceof Unit) {
-			cancel &= ((Unit) event.getBody1()).onCollision(this, event.getBody2());
-		}
-		
-		if (event.getBody2() instanceof Unit) {
-			cancel &= ((Unit) event.getBody2()).onCollision(this, event.getBody1());
-		}
-		
-		return !cancel;
-	}
-
-	@Override
-	public void postSolve(SolvedContactPoint arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean preSolve(ContactPoint arg0) {
-		// TODO Auto-generated method stub
+	public boolean collision(ContactConstraint arg0) {
 		return true;
 	}
 
 	@Override
-	public void sensed(ContactPoint event) {
-		if (event.getBody1() instanceof Unit) {
-			((Unit) event.getBody1()).onCollision(this, event.getBody2());
+	public boolean collision(Body arg0, Body arg1) {
+		boolean cancel = false;
+		
+		if (arg0 instanceof Unit) {
+			cancel &= ((Unit) arg0).onCollision(this, arg1);
 		}
 		
-		if (event.getBody2() instanceof Unit) {
-			((Unit) event.getBody2()).onCollision(this, event.getBody1());
+		if (arg1 instanceof Unit) {
+			cancel &= ((Unit) arg1).onCollision(this, arg0);
 		}
+		
+		return !cancel;
+	}
+
+	@Override
+	public boolean collision(Body arg0, BodyFixture arg1, Body arg2, BodyFixture arg3, Penetration arg4) {
+		return true;
+	}
+
+	@Override
+	public boolean collision(Body arg0, BodyFixture arg1, Body arg2, BodyFixture arg3, Manifold arg4) {
+		return true;
 	}
 
 }
