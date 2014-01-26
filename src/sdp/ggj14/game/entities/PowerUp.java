@@ -17,7 +17,7 @@ public class PowerUp extends Unit {
 		DIODE(0, ""),
 		HELIX(2500, "artifact/s06.png"),
 		BOROS(2500, "new_life_form/s03.png"),
-		OXIDE(2500, "artifact/s08.png");
+		OXIDE(3000, "artifact/s08.png");
 		
 		public int duration;
 		String sprite;

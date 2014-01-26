@@ -1,6 +1,5 @@
 package sdp.ggj14.game.entities;
 
-import org.dyn4j.collision.CategoryFilter;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.Force;
 
@@ -14,7 +13,7 @@ public class Projectile extends Unit {
 	
 	public static final double PROJECTILE_DAMAGE = 10.0;
 	
-	public Projectile(double x, double y, int hp) {
+	public Projectile(double x, double y, int hp, double speed) {
 		super(x+10, y, PROJECTILE_WIDTH, PROJECTILE_HEIGHT, hp, 1);
 		super.sprite = new Sprite(new String[] {"/projectiles/slime.png"}, 1);
 		super.setGravityScale(0);
@@ -22,7 +21,7 @@ public class Projectile extends Unit {
 		this.fixture.setSensor(true);
 		//this.fixture.setFilter(new CategoryFilter(Category.MISC.ordinal(), Category.PLAYER.ordinal()));
 		
-		Force test = new Force(-50, 0) {
+		Force test = new Force(speed, 0) {
 			@Override
 			public boolean isComplete(double elapsedTime){
 				return false;

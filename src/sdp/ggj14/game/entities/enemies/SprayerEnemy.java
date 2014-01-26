@@ -12,6 +12,7 @@ import sdp.ggj14.util.Sprite;
 
 public class SprayerEnemy extends Enemy {
 	public static final double SPEED = 14;
+	public static final double HELIX_MULTIPLIER = 5;
 	public static final int SPRAYER_SIZE = (int) (20 * Level.SPRITE_SCALE);
 	public static final int COOLDOWN = 2000;
 	
@@ -44,10 +45,27 @@ public class SprayerEnemy extends Enemy {
 		super.update(level, elapsedTime);
 		
 		if (this.isPlayerActive(level.getPlayer())) {
-			cooldown -= elapsedTime;
+			if (level.getPlayer().getPowerUp() == PowerUp.Type.HELIX) {
+				cooldown -= elapsedTime * HELIX_MULTIPLIER;
+			} else {
+				cooldown -= elapsedTime;
+			}
+			
 			if (cooldown <= 0) {
 				cooldown = COOLDOWN;
-				level.addBody(new Projectile(getX()-40, getY()+12, 1));
+				
+				double speed = -50;
+				int x = 40, y = 12;
+				double direction = Math.signum(this.getX() - level.getPlayer().getX());
+				
+				if (level.getPlayer().getPowerUp() == PowerUp.Type.HELIX) {
+					speed *= HELIX_MULTIPLIER*5;
+					y += Math.random()*50 - 10;
+				} else {
+					direction = 1.0; // Only shoot left
+				}
+				
+				level.addBody(new Projectile(getX()-(x*direction), getY()+y, 1, speed*direction));
 			}
 		}
 	}
