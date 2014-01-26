@@ -40,7 +40,6 @@ public class FlayerEnemy extends Enemy {
 		super.update(level, elapsedTime);
 		if (super.isPlayerActive(level.getPlayer())) {
 			double direction = level.getPlayer().getX() - this.getX();
-			System.out.println(direction+" "+this.getX()+" "+(originalPosition-limit));
 			if ((this.getX() > originalPosition-limit && direction < 0) || (this.getX() < originalPosition && direction > 0)) {
 				super.getLinearVelocity().set(Math.min(5/direction * SPEED * elapsedTime, direction * elapsedTime), 0);
 			}
