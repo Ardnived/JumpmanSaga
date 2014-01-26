@@ -16,6 +16,8 @@ public class Player extends Unit {
 	public static final int AIR_CONTROL = 500;
 	public static final int GROUND_CONTROL = 1000;
 	
+	public static final double MAX_AIR = 100.0;
+	
 	public static final double AIR_DECAY = 0.01;
 	public static final double FUEL_DECAY = 0.5;
 
@@ -53,7 +55,7 @@ public class Player extends Unit {
 	private Map<PowerUp.Type, Sprite> spriteSet;
 
 	public Player() {
-		super(100.0, 100.0, PLAYER_SIZE, PLAYER_SIZE, 100);
+		super(100.0, 100.0, PLAYER_SIZE, PLAYER_SIZE, MAX_AIR);
 		this.spriteSet = IDLE;
 	}
 
@@ -62,14 +64,6 @@ public class Player extends Unit {
 		if (other instanceof Tile && other.getWorldCenter().y > this.getY()) {
 			this.onGround = true;
 		}
-		
-		if (other instanceof Enemy) {
-			hp--;
-		} else if (other instanceof Projectile) {
-			hp -= 15;
-		}
-		
-		if (hp < 0) hp = 0;
 		
 		return true;
 	}
@@ -139,6 +133,10 @@ public class Player extends Unit {
 	@Override
 	public BufferedImage getSprite(Level level) {
 		return this.spriteSet.get(this.powerUp).getCurrentSprite();
+	}
+	
+	public void modifyHP(double mod) {
+		hp = Math.min(Math.max(0, hp + mod), MAX_AIR);
 	}
 	
 	public void setPowerUp(PowerUp.Type powerUp) {

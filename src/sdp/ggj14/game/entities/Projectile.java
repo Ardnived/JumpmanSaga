@@ -10,6 +10,8 @@ public class Projectile extends Unit {
 	public static final int PROJECTILE_WIDTH = 21;
 	public static final int PROJECTILE_HEIGHT = 12;
 	
+	public static final double PROJECTILE_DAMAGE = 10.0;
+	
 	public Projectile(double x, double y, int hp) {
 		super(x+10, y, PROJECTILE_WIDTH, PROJECTILE_HEIGHT, hp, 1);
 		super.sprite = new Sprite(new String[] {"/projectiles/slime.png"}, 1);
@@ -33,6 +35,8 @@ public class Projectile extends Unit {
 	public boolean onCollision(Level level, Body other) {
 		if (other instanceof SprayerEnemy) {
 			return false;
+		} else if (other instanceof Player) {
+			((Player) other).modifyHP(-PROJECTILE_DAMAGE);
 		}
 		
 		level.removeBody(this);

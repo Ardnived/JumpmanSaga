@@ -2,10 +2,12 @@ package sdp.ggj14.game.entities.enemies;
 
 import java.util.HashMap;
 
+import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.Mass;
 
 import sdp.ggj14.game.Level;
 import sdp.ggj14.game.entities.Enemy;
+import sdp.ggj14.game.entities.Player;
 import sdp.ggj14.game.entities.PowerUp;
 import sdp.ggj14.util.Sprite;
 
@@ -40,6 +42,18 @@ public class SwayerEnemy extends Enemy {
 			double direction = level.getPlayer().getX() - this.getX();
 			direction = -1.0; // He only goes left.
 			super.getLinearVelocity().set(Math.min(5/direction * SPEED * elapsedTime, direction * elapsedTime), 500*Math.sin(time/(5*Math.PI)));
+		}
+	}
+
+	@Override
+	public boolean onCollision(Level level, Body other) {
+		if (other instanceof Player && level.getPlayer().getPowerUp() == PowerUp.Type.OXIDE) {
+			((Player) other).modifyHP(+10);
+			level.removeBody(this);
+			
+			return false;
+		} else {
+			return super.onCollision(level, other);
 		}
 	}
 	

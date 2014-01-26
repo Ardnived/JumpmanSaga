@@ -28,6 +28,7 @@ public class SprayerEnemy extends Enemy {
 
 	public SprayerEnemy(double x, double y) {
 		super(x, y, SPRAYER_SIZE, SPRAYER_SIZE, SPRITES);
+		super.contactDamage = 0.4;
 		
 		super.setMass(Mass.Type.INFINITE);
 	}

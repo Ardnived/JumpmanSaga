@@ -24,6 +24,7 @@ public class FlayerEnemy extends Enemy {
 
 	public FlayerEnemy(double x, double y) {
 		super(x, y, FLAYER_SIZE, FLAYER_SIZE, SPRITES);
+		super.contactDamage = 2;
 		
 		super.setMass(Mass.Type.INFINITE);
 	}
