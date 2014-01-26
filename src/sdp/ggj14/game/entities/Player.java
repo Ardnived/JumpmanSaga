@@ -62,7 +62,7 @@ public class Player extends Unit {
 	}
 	
 	private PowerUp.Type powerUp = PowerUp.Type.DIODE;
-	private double powerUpTimer = 0;
+	private double powerUpTimer = 0.0;
 	
 	private double fuel = 100.0;
 	private Map<PowerUp.Type, Sprite> spriteSet;
@@ -111,6 +111,11 @@ public class Player extends Unit {
 		
 		if (powerUpTimer > 0) {
 			powerUpTimer -= elapsedTime;
+			
+			if (powerUpTimer <= 0) {
+				this.powerUp = PowerUp.Type.DIODE;
+				this.powerUpTimer = 0.0;
+			}
 		}
 		
 		if (this.getLinearVelocity().y < 0) {
@@ -133,8 +138,17 @@ public class Player extends Unit {
 		return this.spriteSet.get(this.powerUp).getCurrentSprite();
 	}
 	
+	public void setPowerUp(PowerUp.Type powerUp) {
+		this.powerUp = powerUp;
+		this.powerUpTimer = powerUp.duration;
+	}
+	
 	public PowerUp.Type getPowerUp() {
 		return powerUp;
+	}
+	
+	public double getPowerUpTimer() {
+		return powerUpTimer;
 	}
 	
 	public double getFuel() {

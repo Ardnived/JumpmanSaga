@@ -10,15 +10,17 @@ import sdp.ggj14.util.ImageLoader;
 
 public class PowerUp extends Unit {
 	public enum Type {
-		DIODE("artifact/s02.png"),
-		HELIX("artifact/s06.png"),
-		BOROS("new_life_form/s03.png"),
-		OXIDE("new_life_form/s08.png");
+		DIODE(10000, "artifact/s02.png"),
+		HELIX(10000, "artifact/s06.png"),
+		BOROS(10000, "new_life_form/s03.png"),
+		OXIDE(10000, "new_life_form/s08.png");
 		
+		public int duration;
 		String sprite;
 		
-		Type(String sprite) {
+		Type(int duration, String sprite) {
 			this.sprite = "/items/"+sprite;
+			this.duration = duration;
 		}
 	};
 	
@@ -32,6 +34,7 @@ public class PowerUp extends Unit {
 	@Override
 	public boolean onCollision(Level level, Body other) {
 		if (other == level.getPlayer()) {
+			level.getPlayer().setPowerUp(this.type);
 			level.removeBody(this);
 		}
 		

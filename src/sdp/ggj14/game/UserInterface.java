@@ -25,6 +25,8 @@ public class UserInterface {
 
 		graphics.drawImage(ImageLoader.get("/ui/fuel.png"), 33, 33, (int)(117*(fuel/100)), 9, null);
 		graphics.drawImage(ImageLoader.get("/ui/bar.png"), 30, 30, 123, 15, null);
+		
+		graphics.drawString("Powerup Timer: "+Math.round(level.getPlayer().getPowerUpTimer()), 10, 80);
 	}
 
 }
