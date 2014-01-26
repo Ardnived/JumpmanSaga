@@ -164,14 +164,19 @@ public class Level extends World implements CollisionListener {
 					Image sprite = sagaBody.getSprite(this);
 					
 					if (sprite != null) {
-						graphics.drawImage(sprite, (int) sagaBody.getX() - sagaBody.drawWidth/2 - this.getScrollX(), (int) sagaBody.getY() - sagaBody.drawHeight/2, sagaBody.drawWidth, sagaBody.drawHeight, null);
+						int x = (int) sagaBody.getX() - sagaBody.drawWidth/2 - this.getScrollX();
+						int y = (int) sagaBody.getY() - sagaBody.drawHeight/2;
+						
+						if (body instanceof Unit) {
+							x -= Unit.COLLISION_MARGIN/2;
+							y -= Unit.COLLISION_MARGIN/2;
+						}
+						
+						graphics.drawImage(sprite, x, y, sagaBody.drawWidth, sagaBody.drawHeight, null);
 					}
 				}
 			}
 		}
-
-		// Draw Player / WHY IS THE LOOP NOT DRAWING HIM? IDK
-		graphics.drawImage(player.getSprite(this), (int) player.getX() - player.drawWidth/2 - this.getScrollX(), (int) player.getY() - player.drawHeight/2, player.drawWidth, player.drawHeight, null);
 	}
 	
 	public BufferedImage getBackground() {

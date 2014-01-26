@@ -13,6 +13,8 @@ import sdp.ggj14.game.SagaBody;
 import sdp.ggj14.util.Sprite;
 
 public class Unit extends SagaBody {
+	public static final int COLLISION_MARGIN = 10;
+	
 	protected double hp;
 	protected Sprite sprite;
 	protected BodyFixture fixture;
@@ -28,7 +30,7 @@ public class Unit extends SagaBody {
 		
 		super.translate(x, y);
 		
-		fixture = super.addFixture(new Rectangle(width, height), BodyFixture.DEFAULT_DENSITY, 0.5, 0.0);
+		fixture = super.addFixture(new Rectangle(width - COLLISION_MARGIN, height - COLLISION_MARGIN), BodyFixture.DEFAULT_DENSITY, 0.5, 0.0);
 		
 		super.setMass(new Mass(new Vector2(0, 0), mass, 80000));
 	}
@@ -39,9 +41,9 @@ public class Unit extends SagaBody {
 	
 	@Override
 	public void update(Level level, double elapsedTime) {
-		if (!this.onGround) {
+		//if (!this.onGround) {
 			move(0, 500);
-		}
+		//}
 		
 		if (sprite != null) {
 			sprite.update(elapsedTime);	
