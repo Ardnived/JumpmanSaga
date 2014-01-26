@@ -29,36 +29,36 @@ public class Player extends Unit {
 	
 	{
 		IDLE.put(PowerUp.Type.DIODE, new Sprite(Sprite.constructPaths("/player/idle/s", 10, ".png"), 10));
-		IDLE.put(PowerUp.Type.OXIDE, new Sprite(Sprite.constructPaths("/player/idle/s", 10, ".png"), 10));
-		IDLE.put(PowerUp.Type.HELIX, new Sprite(Sprite.constructPaths("/player/idle/s", 10, ".png"), 10));
-		IDLE.put(PowerUp.Type.BOROS, new Sprite(Sprite.constructPaths("/player/idle/s", 10, ".png"), 10));
+		IDLE.put(PowerUp.Type.OXIDE, new Sprite(Sprite.constructPaths("/player/idle/blue_s", 10, ".png"), 10));
+		IDLE.put(PowerUp.Type.HELIX, new Sprite(Sprite.constructPaths("/player/idle/green_s", 10, ".png"), 10));
+		IDLE.put(PowerUp.Type.BOROS, new Sprite(Sprite.constructPaths("/player/idle/purple_s", 10, ".png"), 10));
 
 		FLYING.put(PowerUp.Type.DIODE, new Sprite(Sprite.constructPaths("/player/flying/loop_s", 3, ".png"), 10));
 		FLYING.put(PowerUp.Type.OXIDE, new Sprite(Sprite.constructPaths("/player/flying/blue_loop_s", 3, ".png"), 10));
 		FLYING.put(PowerUp.Type.HELIX, new Sprite(Sprite.constructPaths("/player/flying/green_loop_s", 3, ".png"), 10));
-		FLYING.put(PowerUp.Type.BOROS, new Sprite(Sprite.constructPaths("/player/flying/loop_s", 3, ".png"), 10));
+		FLYING.put(PowerUp.Type.BOROS, new Sprite(Sprite.constructPaths("/player/flying/purple_loop_s", 3, ".png"), 10));
 		
 		/*
 		FALLING.put(PowerUp.Type.DIODE, new Sprite(new String[] {"/player/flying/no_fuel.png"}, 10));
-		FALLING.put(PowerUp.Type.OXIDE, new Sprite(new String[] {"/player/flying/no_fuel.png"}, 10));
-		FALLING.put(PowerUp.Type.HELIX, new Sprite(new String[] {"/player/flying/no_fuel.png"}, 10));
-		FALLING.put(PowerUp.Type.BOROS, new Sprite(new String[] {"/player/flying/no_fuel.png"}, 10));
+		FALLING.put(PowerUp.Type.OXIDE, new Sprite(new String[] {"/player/flying/blue_no_fuel.png"}, 10));
+		FALLING.put(PowerUp.Type.HELIX, new Sprite(new String[] {"/player/flying/green_no_fuel.png"}, 10));
+		FALLING.put(PowerUp.Type.BOROS, new Sprite(new String[] {"/player/flying/purple_no_fuel.png"}, 10));
 		*/
 
 		FALLING.put(PowerUp.Type.DIODE, new Sprite(new String[] {"/player/fall/s01.png"}, 10));
-		FALLING.put(PowerUp.Type.OXIDE, new Sprite(new String[] {"/player/fall/s01.png"}, 10));
-		FALLING.put(PowerUp.Type.HELIX, new Sprite(new String[] {"/player/fall/s01.png"}, 10));
-		FALLING.put(PowerUp.Type.BOROS, new Sprite(new String[] {"/player/fall/s01.png"}, 10));
+		FALLING.put(PowerUp.Type.OXIDE, new Sprite(new String[] {"/player/fall/blue_s01.png"}, 10));
+		FALLING.put(PowerUp.Type.HELIX, new Sprite(new String[] {"/player/fall/green_s01.png"}, 10));
+		FALLING.put(PowerUp.Type.BOROS, new Sprite(new String[] {"/player/fall/purple_s01.png"}, 10));
 		
 		WALKING.put(PowerUp.Type.DIODE, new Sprite(Sprite.constructPaths("/player/walking/s", 8, ".png"), 10));
-		WALKING.put(PowerUp.Type.OXIDE, new Sprite(Sprite.constructPaths("/player/walking/s", 8, ".png"), 10));
-		WALKING.put(PowerUp.Type.HELIX, new Sprite(Sprite.constructPaths("/player/walking/s", 8, ".png"), 10));
-		WALKING.put(PowerUp.Type.BOROS, new Sprite(Sprite.constructPaths("/player/walking/s", 8, ".png"), 10));
+		WALKING.put(PowerUp.Type.OXIDE, new Sprite(Sprite.constructPaths("/player/walking/blue_s", 8, ".png"), 10));
+		WALKING.put(PowerUp.Type.HELIX, new Sprite(Sprite.constructPaths("/player/walking/green_s", 8, ".png"), 10));
+		WALKING.put(PowerUp.Type.BOROS, new Sprite(Sprite.constructPaths("/player/walking/purple_s", 8, ".png"), 10));
 
 		JUMPING.put(PowerUp.Type.DIODE, new Sprite(new String[] {"/player/jump/s01.png"}, 10));
-		JUMPING.put(PowerUp.Type.OXIDE, new Sprite(new String[] {"/player/jump/s01.png"}, 10));
-		JUMPING.put(PowerUp.Type.HELIX, new Sprite(new String[] {"/player/jump/s01.png"}, 10));
-		JUMPING.put(PowerUp.Type.BOROS, new Sprite(new String[] {"/player/jump/s01.png"}, 10));
+		JUMPING.put(PowerUp.Type.OXIDE, new Sprite(new String[] {"/player/jump/blue_s01.png"}, 10));
+		JUMPING.put(PowerUp.Type.HELIX, new Sprite(new String[] {"/player/jump/green_s01.png"}, 10));
+		JUMPING.put(PowerUp.Type.BOROS, new Sprite(new String[] {"/player/jump/purple_s01.png"}, 10));
 	}
 	
 	private int fallingCounter = 0;

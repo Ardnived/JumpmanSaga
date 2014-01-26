@@ -118,7 +118,7 @@ public class Level extends World implements ContactListener {
 					this.setTile(x+1, y, new ForegroundTile(Tile.Type.SHIP, x+1, y));
 					break;
 				case 'A':
-					this.setTile(x+1, y, new BackgroundTile(Tile.Type.BACKGROUND, x+1, y));
+					this.setTile(x+1, y, new BackgroundTile(Tile.Type.CAVERN, x+1, y));
 					break;
 				case 'B':
 					this.setTile(x+1, y, new BackgroundTile(Tile.Type.WALL, x+1, y));
