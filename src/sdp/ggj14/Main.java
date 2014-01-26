@@ -1,9 +1,12 @@
 package sdp.ggj14;
 
+import java.awt.event.KeyListener;
+
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class Main extends JFrame {
-	public static final int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 800;//374;
+	public static final int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 700;//374;
 	
 	private boolean running = true;
 	private long desiredFPS = 60;
@@ -16,11 +19,13 @@ public class Main extends JFrame {
 	public Main() {
 		SagaFrame panel = new SagaFrame();
 		super.add(panel);
+		super.addKeyListener((KeyListener) panel);
+		
 		super.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-		super.addKeyListener(panel);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.setResizable(false);
 		super.setVisible(true);
+		
 		run(panel);
 	}
 	

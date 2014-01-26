@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
-import org.dyn4j.dynamics.Force;
 import org.dyn4j.geometry.Mass;
 import org.dyn4j.geometry.Rectangle;
 import org.dyn4j.geometry.Vector2;
@@ -14,16 +13,16 @@ import sdp.ggj14.game.SagaBody;
 import sdp.ggj14.util.Sprite;
 
 public class Unit extends SagaBody {
-	protected int hp;
+	protected double hp;
 	protected Sprite sprite;
 	protected BodyFixture fixture;
 	protected boolean onGround;
 
-	public Unit(double x, double y, int width, int height, int hp) {
+	public Unit(double x, double y, int width, int height, double hp) {
 		this(x, y, width, height, hp, 100);
 	}
 
-	public Unit(double x, double y, int width, int height, int hp, int mass) {
+	public Unit(double x, double y, int width, int height, double hp, int mass) {
 		super(width, height);
 		this.hp = hp;
 		
@@ -58,7 +57,7 @@ public class Unit extends SagaBody {
 		*/
 	}
 	
-	public int getHP() {
+	public double getHP() {
 		return this.hp;
 	}
 	

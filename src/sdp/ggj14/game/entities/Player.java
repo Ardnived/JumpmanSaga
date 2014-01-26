@@ -11,7 +11,8 @@ public class Player extends Unit {
 	public static final int JETPACK_THRUST = 1000;
 	public static final int HORIZONTAL_MOVE = 1000;
 	
-	public static final double COOLDOWN = 800.0;
+	public static final double AIR_DECAY = 0.01;
+	public static final double FUEL_DECAY = 0.5;
 
 	private static final Sprite IDLE = new Sprite(new String[] {
 		"/player/idle/s01.png",
@@ -42,6 +43,8 @@ public class Player extends Unit {
 	
 	private PowerUp.Type powerUp = PowerUp.Type.DIODE;
 	private double powerUpTimer = 0;
+	
+	private double fuel = 100.0;
 
 	public Player() {
 		super(100.0, 100.0, PLAYER_SIZE, PLAYER_SIZE, 100);
@@ -64,12 +67,18 @@ public class Player extends Unit {
 	
 	@Override
 	public void move(double x, double y) {
+		if (y < 0) {
+			this.fuel -= FUEL_DECAY;
+		}
+		
 		super.move(x*HORIZONTAL_MOVE, y*JETPACK_THRUST);
 	}
 	
 	@Override
 	public void update(Level level, double elapsedTime) {
 		super.update(level, elapsedTime);
+		
+		this.hp -= AIR_DECAY;
 		
 		if (powerUpTimer > 0) {
 			powerUpTimer -= elapsedTime;
@@ -92,6 +101,10 @@ public class Player extends Unit {
 	
 	public PowerUp.Type getPowerUp() {
 		return powerUp;
+	}
+	
+	public double getFuel() {
+		return fuel;
 	}
 
 }

@@ -7,7 +7,6 @@ import sdp.ggj14.util.ImageLoader;
 
 public class UserInterface {
 	
-	public double air = 100;
 	private Level level;
 	
 	public UserInterface(Level level) {
@@ -18,10 +17,14 @@ public class UserInterface {
 		graphics.setColor(Color.WHITE);
 		//graphics.drawString("Jumpman Saga v0.1", 15, 15);
 		
-		air = level.getPlayer().getHP();
+		double air = level.getPlayer().getHP();
+		double fuel = level.getPlayer().getFuel();
 		
-		graphics.drawImage(ImageLoader.get("/ui/airbar.png"), 13, 13, (int)(117*(air/100)), 9, null);
-		graphics.drawImage(ImageLoader.get("/ui/airbarcontainer.png"), 10, 10, 123, 15, null);
+		graphics.drawImage(ImageLoader.get("/ui/air.png"), 13, 13, (int)(117*(air/100)), 9, null);
+		graphics.drawImage(ImageLoader.get("/ui/bar.png"), 10, 10, 123, 15, null);
+
+		graphics.drawImage(ImageLoader.get("/ui/fuel.png"), 33, 33, (int)(117*(fuel/100)), 9, null);
+		graphics.drawImage(ImageLoader.get("/ui/bar.png"), 30, 30, 123, 15, null);
 	}
 
 }

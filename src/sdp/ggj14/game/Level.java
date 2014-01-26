@@ -23,7 +23,6 @@ import sdp.ggj14.game.entities.Enemy;
 import sdp.ggj14.game.entities.Player;
 import sdp.ggj14.game.entities.PowerUp;
 import sdp.ggj14.game.entities.Unit;
-import sdp.ggj14.game.entities.enemies.*;
 import sdp.ggj14.game.world.ForegroundTile;
 import sdp.ggj14.game.world.Tile;
 import sdp.ggj14.util.ImageLoader;
@@ -44,11 +43,10 @@ public class Level extends World implements CollisionListener {
 	@SuppressWarnings("unchecked")
 	public Level() {
 		super.setGravity(ZERO_GRAVITY);
-		
 
 		Map<String, Object> data = JSONLoader.get(System.getProperty("user.dir")+"/lvl/"+"/levels/Level01.json");
 		String[] terrain = ((String) data.get("terrain")).split(":");
-		this.grid = new Tile[terrain[0].length()][terrain.length];
+		this.grid = new Tile[terrain[0].length() + 2][terrain.length];
 		
 		this.createBounds();
 		this.loadTiles(terrain);
@@ -64,8 +62,6 @@ public class Level extends World implements CollisionListener {
 	
 	public void createBounds() {
 		super.setBounds(new AxisAlignedBounds(getWidth() * GRID_SIZE * 2, getHeight() * GRID_SIZE * 2));
-		
-		System.out.println(getWidth()+","+getHeight());
 		
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid[0].length; y++) {
@@ -95,11 +91,16 @@ public class Level extends World implements CollisionListener {
 			for (int x = 0; x < symbols.length; x++) {
 				switch (symbols[x]) {
 				case 'Z':
-					System.out.println(x+", "+y);
-					this.setTile(x, y, new ForegroundTile(Tile.Type.DIRT, x, y));
+					this.setTile(x+1, y, new ForegroundTile(Tile.Type.DIRT, x+1, y));
+					break;
+				case 'Y':
+					this.setTile(x+1, y, new ForegroundTile(Tile.Type.SHIP, x+1, y));
 					break;
 				case 'A':
-					this.setTile(x, y, new Tile(Tile.Type.BACKGROUND, x, y));
+					this.setTile(x+1, y, new Tile(Tile.Type.BACKGROUND, x+1, y));
+					break;
+				case 'B':
+					this.setTile(x+1, y, new Tile(Tile.Type.WALL, x+1, y));
 					break;
 				default:
 					// Do Nothing
@@ -132,22 +133,6 @@ public class Level extends World implements CollisionListener {
 			System.out.println("Failed to load unit.");
 			e.printStackTrace();
 		}
-	}
-	
-	public void createTestLevel() {
-		for (int x = 0; x < grid.length; x++) {
-			for (int y = 0; y < grid[0].length; y++) {
-				this.setTile(x, y, null);
-			}
-			
-			this.setTile(x, getHeight()-1, new ForegroundTile(Tile.Type.DIRT, x, getHeight()-1));
-		}
-		
-		//super.addBody(new PowerUp(PowerUp.Type.AIR, x, y));
-		
-		super.addBody(new FlayerEnemy(1000.0, GRID_SIZE * (getHeight() - 2) + 8));
-		super.addBody(new SwayerEnemy(1200.0, 200.0));
-		super.addBody(new SprayerEnemy(600.0,GRID_SIZE * (getHeight() - 2) + 8));
 	}
 	
 	public boolean update(double elapsedTime) {
