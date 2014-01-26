@@ -11,6 +11,7 @@ import org.dyn4j.collision.narrowphase.Penetration;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.dynamics.CollisionListener;
+import org.dyn4j.dynamics.Force;
 import org.dyn4j.dynamics.World;
 import org.dyn4j.dynamics.contact.ContactConstraint;
 
@@ -40,7 +41,7 @@ public class Level extends World implements CollisionListener {
 	public Level() {
 		super(new AxisAlignedBounds(WIDTH * GRID_SIZE * 2, HEIGHT * GRID_SIZE * 2));
 		
-		super.setGravity(EARTH_GRAVITY.negate().multiply(100.0));
+		super.setGravity(ZERO_GRAVITY);
 		
 		this.createTestLevel();
 		

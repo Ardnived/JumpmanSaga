@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
+import org.dyn4j.dynamics.Force;
 import org.dyn4j.geometry.Mass;
 import org.dyn4j.geometry.Rectangle;
 import org.dyn4j.geometry.Vector2;
@@ -33,6 +34,13 @@ public class Unit extends SagaBody {
 		//Mass test = super.getMass();
 		//System.out.println(test.getMass());
 		super.setMass(new Mass(new Vector2(0, 0), mass, 80000));
+		
+		/*super.applyForce(new Force(0, 10000){
+			@Override
+			public boolean isComplete(double elapsedTime) {
+				return false;
+			}
+		});*/
 	}
 	
 	public boolean onCollision(Level level, Body other) {
@@ -41,6 +49,8 @@ public class Unit extends SagaBody {
 	
 	@Override
 	public void update(Level level, double elapsedTime) {
+		move(0, 0.2);
+		
 		sprite.update(elapsedTime);
 	}
 	
