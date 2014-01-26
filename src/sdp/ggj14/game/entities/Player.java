@@ -40,7 +40,7 @@ public class Player extends Unit {
 		"/player/walking/s07.png",
 		"/player/walking/s08.png"}, 10);
 	
-	private PowerUp.Type powerUp = PowerUp.Type.OXIDE;
+	private PowerUp.Type powerUp = PowerUp.Type.DIODE;
 	private double powerUpTimer = 0;
 
 	public Player() {

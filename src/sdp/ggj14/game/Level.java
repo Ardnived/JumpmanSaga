@@ -13,6 +13,8 @@ import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.dynamics.CollisionListener;
 import org.dyn4j.dynamics.World;
 import org.dyn4j.dynamics.contact.ContactConstraint;
+import org.dyn4j.geometry.Mass;
+import org.dyn4j.geometry.Rectangle;
 
 import sdp.ggj14.Main;
 import sdp.ggj14.game.entities.Enemy;
@@ -65,6 +67,12 @@ public class Level extends World implements CollisionListener {
 			this.setTile(0, y, new ForegroundTile(null, 0, y));
 			this.setTile(WIDTH-1, y, new ForegroundTile(null, WIDTH-1, y));
 		}
+		
+		Rectangle roofRect = new Rectangle(1000.0, 10.0);
+		Body roof = new Body();
+		roof.addFixture(new BodyFixture(roofRect));
+		roof.setMass(Mass.Type.INFINITE);
+		this.addBody(roof);
 		
 		//super.addBody(new PowerUp(PowerUp.Type.AIR, x, y));
 		
