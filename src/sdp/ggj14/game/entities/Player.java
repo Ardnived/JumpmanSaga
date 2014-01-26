@@ -54,6 +54,11 @@ public class Player extends Unit {
 			this.onGround = true;
 		}
 		
+		if (other instanceof Enemy || other instanceof Projectile) {
+			hp--;
+			if (hp < 0) hp = 0;
+		}
+		
 		return true;
 	}
 	
