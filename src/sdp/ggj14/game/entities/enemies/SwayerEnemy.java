@@ -40,7 +40,11 @@ public class SwayerEnemy extends Enemy {
 			time += 1 + Math.random();
 			
 			double direction = level.getPlayer().getX() - this.getX();
-			super.getLinearVelocity().set(Math.min(5/direction * SPEED * elapsedTime, direction * elapsedTime), 500*Math.sin(time/(8*Math.PI)));
+			if ((this.getX() > originalPosition-limit && direction < 0) || (this.getX() < originalPosition && direction > 0)) {
+				super.getLinearVelocity().set(Math.min(5/direction * SPEED * elapsedTime, direction * elapsedTime), 500*Math.sin(time/(8*Math.PI)));
+			} else {
+				super.getLinearVelocity().set(0, super.getLinearVelocity().y);
+			}
 		}
 	}
 
