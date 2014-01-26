@@ -24,7 +24,7 @@ public class SwayerEnemy extends Enemy {
 		SPRITES.put(PowerUp.Type.BOROS, new Sprite(new String[] {"/aliens/fuzz/s10.png"}, 5));
 	}
 	
-	private double time = 0;
+	private double time = Math.random();
 
 	public SwayerEnemy(double x, double y) {
 		super(x, y, SWAYER_SIZE, SWAYER_SIZE, SPRITES);
@@ -37,11 +37,11 @@ public class SwayerEnemy extends Enemy {
 		super.update(level, elapsedTime);
 		
 		if (super.isPlayerActive(level.getPlayer())) {
-			time += 1;
+			time += 1 + Math.random();
 			
 			double direction = level.getPlayer().getX() - this.getX();
 			direction = -1.0; // He only goes left.
-			super.getLinearVelocity().set(Math.min(5/direction * SPEED * elapsedTime, direction * elapsedTime), 500*Math.sin(time/(5*Math.PI)));
+			super.getLinearVelocity().set(Math.min(5/direction * SPEED * elapsedTime, direction * elapsedTime), 500*Math.sin(time/(8*Math.PI)));
 		}
 	}
 
