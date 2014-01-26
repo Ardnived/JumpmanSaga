@@ -40,7 +40,7 @@ public class Unit extends SagaBody {
 	@Override
 	public void update(Level level, double elapsedTime) {
 		if (!this.onGround) {
-			move(0, 0.3);
+			move(0, 500);
 		}
 		
 		if (sprite != null) {

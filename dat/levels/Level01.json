@@ -20,7 +20,7 @@
 		{ x: 800,  y: 360, class:"enemies.FlayerEnemy" },
 		{ x: 1000, y: 360, class:"enemies.FlayerEnemy" },
 		{ x: 1200, y: 360, class:"enemies.FlayerEnemy" },
-		{ x: 1400, y: 360, class:"enemies.FlayerEnemy" },
+		{ x: 1400, y: 360, class:"enemies.SprayerEnemy" },
 		{ x: 350,  y: 255, class:"enemies.SwayerEnemy" },
 		{ x: 475,  y: 95,  class:"enemies.SwayerEnemy" },
 		{ x: 600,  y: 290, class:"enemies.SwayerEnemy" },

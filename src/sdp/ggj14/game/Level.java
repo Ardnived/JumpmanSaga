@@ -47,7 +47,7 @@ public class Level extends World implements CollisionListener {
 	public Level() {
 		super.setGravity(ZERO_GRAVITY);
 
-		Map<String, Object> data = JSONLoader.get(System.getProperty("user.dir")+"/dat/"+"/levels/Level01.json");
+		Map<String, Object> data = JSONLoader.get(System.getProperty("user.dir")+"/dat/levels/Level01.json");
 		String[] terrain = ((String) data.get("terrain")).split(":");
 		this.grid = new Tile[terrain[0].length() + 2][terrain.length];
 		

@@ -13,7 +13,8 @@ import org.dyn4j.dynamics.Body;
 public class Player extends Unit {
 	public static final int PLAYER_SIZE = 48;
 	public static final int JETPACK_THRUST = 1000;
-	public static final int HORIZONTAL_MOVE = 1000;
+	public static final int AIR_CONTROL = 500;
+	public static final int GROUND_CONTROL = 1000;
 	
 	public static final double AIR_DECAY = 0.01;
 	public static final double FUEL_DECAY = 0.5;
@@ -78,10 +79,13 @@ public class Player extends Unit {
 			this.onGround = true;
 		}
 		
-		if (other instanceof Enemy || other instanceof Projectile) {
+		if (other instanceof Enemy) {
 			hp--;
-			if (hp < 0) hp = 0;
+		} else if (other instanceof Projectile) {
+			hp -= 15;
 		}
+		
+		if (hp < 0) hp = 0;
 		
 		return true;
 	}
@@ -91,12 +95,23 @@ public class Player extends Unit {
 		if (y < 0) {
 			if (this.fuel > 0) {
 				this.fuel -= FUEL_DECAY;
+				y *= JETPACK_THRUST;
 			} else {
 				y = 0;
 			}
 		}
 		
-		super.move(x*HORIZONTAL_MOVE, y*JETPACK_THRUST);
+		if (this.getLinearVelocity().y > 5 && 5 < this.getLinearVelocity().y) {
+			if (this.fuel > 0) {
+				x = 0;
+			}
+			
+			x *= AIR_CONTROL;
+		} else {
+			x *= GROUND_CONTROL;
+		}
+		
+		super.move(x, y);
 	}
 	
 	public void jump() {
@@ -125,7 +140,11 @@ public class Player extends Unit {
 		if (super.getForce().y < 0) {
 			this.spriteSet = FLYING;
 		} else if (super.getLinearVelocity().y > 0) {
-			this.spriteSet = FALLING;
+			if (super.getForce().x != 0 && this.fuel > 0) {
+				this.spriteSet = FLYING;
+			} else {
+				this.spriteSet = FALLING;
+			}
 		} else if (super.getForce().x != 0) {
 			this.spriteSet = WALKING;
 		} else {
