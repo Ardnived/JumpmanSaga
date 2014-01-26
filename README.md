@@ -1,3 +1,10 @@
+Controls
+-----------
+W - Jump
+A,S - Left, Right
+SPACEBAR - Jump-pack
+
+
 Credits
 -------------
 Scott Inglis - Sr. Executive Programmer
