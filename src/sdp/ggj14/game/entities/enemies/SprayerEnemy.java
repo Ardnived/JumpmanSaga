@@ -65,7 +65,7 @@ public class SprayerEnemy extends Enemy {
 					direction = 1.0; // Only shoot left
 				}
 				
-				level.addBody(new Projectile(getX()-(x*direction), getY()+y, 1, speed*direction));
+				level.addBody(new Projectile(getX()-(x*direction), getY()+y, 1, speed*direction, false));
 			}
 		}
 	}

@@ -13,21 +13,38 @@ public class Projectile extends Unit {
 	
 	public static final double PROJECTILE_DAMAGE = 10.0;
 	
-	public Projectile(double x, double y, int hp, double speed) {
-		super(x+10, y, PROJECTILE_WIDTH, PROJECTILE_HEIGHT, hp, 1);
-		super.sprite = new Sprite(new String[] {"/projectiles/slime.png"}, 1);
+	public Projectile(double x, double y, int hp, double speed, boolean up) {
+		super(x+10, y, up ? PROJECTILE_HEIGHT : PROJECTILE_WIDTH, up ? PROJECTILE_WIDTH : PROJECTILE_HEIGHT, hp, 1);
+		
+		String path;
+		
+		if (up) {
+			path = "/projectiles/slime_up.png";
+		} else {
+			path = "/projectiles/slime.png";
+		}
+		
+		super.sprite = new Sprite(new String[] {path}, 1);
 		super.setGravityScale(0);
 		
 		this.fixture.setSensor(true);
 		//this.fixture.setFilter(new CategoryFilter(Category.MISC.ordinal(), Category.PLAYER.ordinal()));
 		
-		Force test = new Force(speed, 0) {
+		double dx = 0, dy = 0;
+		
+		if (up) {
+			dy = speed;
+		} else {
+			dx = speed;
+		}
+		
+		Force move = new Force(dx, dy) {
 			@Override
 			public boolean isComplete(double elapsedTime){
 				return false;
 			}
 		};
-		this.applyForce(test);
+		this.applyForce(move);
 	}
 	
 	@Override
