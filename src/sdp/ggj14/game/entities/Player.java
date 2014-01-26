@@ -25,41 +25,25 @@ public class Player extends Unit {
 	private static Map<PowerUp.Type, Sprite> WALKING = new HashMap<PowerUp.Type, Sprite>();
 	
 	{
-		IDLE.put(PowerUp.Type.DIODE, new Sprite(constructPaths("/player/idle/s", 10, ".png"), 10));
-		IDLE.put(PowerUp.Type.OXIDE, new Sprite(constructPaths("/player/idle/s", 10, ".png"), 10));
-		IDLE.put(PowerUp.Type.HELIX, new Sprite(constructPaths("/player/idle/s", 10, ".png"), 10));
-		IDLE.put(PowerUp.Type.BOROS, new Sprite(constructPaths("/player/idle/s", 10, ".png"), 10));
+		IDLE.put(PowerUp.Type.DIODE, new Sprite(Sprite.constructPaths("/player/idle/s", 10, ".png"), 10));
+		IDLE.put(PowerUp.Type.OXIDE, new Sprite(Sprite.constructPaths("/player/idle/s", 10, ".png"), 10));
+		IDLE.put(PowerUp.Type.HELIX, new Sprite(Sprite.constructPaths("/player/idle/s", 10, ".png"), 10));
+		IDLE.put(PowerUp.Type.BOROS, new Sprite(Sprite.constructPaths("/player/idle/s", 10, ".png"), 10));
 
-		FLYING.put(PowerUp.Type.DIODE, new Sprite(constructPaths("/player/flying/loop_s", 3, ".png"), 10));
-		FLYING.put(PowerUp.Type.OXIDE, new Sprite(constructPaths("/player/flyingBlue/loop_s", 3, ".png"), 10));
-		FLYING.put(PowerUp.Type.HELIX, new Sprite(constructPaths("/player/flyingGreen/loop_s", 3, ".png"), 10));
-		FLYING.put(PowerUp.Type.BOROS, new Sprite(constructPaths("/player/flying/loop_s", 3, ".png"), 10));
+		FLYING.put(PowerUp.Type.DIODE, new Sprite(Sprite.constructPaths("/player/flying/loop_s", 3, ".png"), 10));
+		FLYING.put(PowerUp.Type.OXIDE, new Sprite(Sprite.constructPaths("/player/flyingBlue/loop_s", 3, ".png"), 10));
+		FLYING.put(PowerUp.Type.HELIX, new Sprite(Sprite.constructPaths("/player/flyingGreen/loop_s", 3, ".png"), 10));
+		FLYING.put(PowerUp.Type.BOROS, new Sprite(Sprite.constructPaths("/player/flying/loop_s", 3, ".png"), 10));
 
 		FALLING.put(PowerUp.Type.DIODE, new Sprite(new String[] {"/player/flying/no_fuel.png"}, 10));
 		FALLING.put(PowerUp.Type.OXIDE, new Sprite(new String[] {"/player/flying/no_fuel.png"}, 10));
 		FALLING.put(PowerUp.Type.HELIX, new Sprite(new String[] {"/player/flying/no_fuel.png"}, 10));
 		FALLING.put(PowerUp.Type.BOROS, new Sprite(new String[] {"/player/flying/no_fuel.png"}, 10));
 
-		WALKING.put(PowerUp.Type.DIODE, new Sprite(constructPaths("/player/walking/s", 8, ".png"), 10));
-		WALKING.put(PowerUp.Type.OXIDE, new Sprite(constructPaths("/player/walking/s", 8, ".png"), 10));
-		WALKING.put(PowerUp.Type.HELIX, new Sprite(constructPaths("/player/walking/s", 8, ".png"), 10));
-		WALKING.put(PowerUp.Type.BOROS, new Sprite(constructPaths("/player/walking/s", 8, ".png"), 10));
-	}
-	
-	private static String[] constructPaths(String prefix, int length, String suffix) {
-		String[] paths = new String[length];
-		for (int i = 0; i < length; i++) {
-			String key;
-			if (i < 10) {
-				key = "0"+(i+1);
-			} else {
-				key = String.valueOf(i+1);
-			}
-			
-			paths[i] = prefix+key+suffix;
-		}
-		
-		return paths;
+		WALKING.put(PowerUp.Type.DIODE, new Sprite(Sprite.constructPaths("/player/walking/s", 8, ".png"), 10));
+		WALKING.put(PowerUp.Type.OXIDE, new Sprite(Sprite.constructPaths("/player/walking/s", 8, ".png"), 10));
+		WALKING.put(PowerUp.Type.HELIX, new Sprite(Sprite.constructPaths("/player/walking/s", 8, ".png"), 10));
+		WALKING.put(PowerUp.Type.BOROS, new Sprite(Sprite.constructPaths("/player/walking/s", 8, ".png"), 10));
 	}
 	
 	private PowerUp.Type powerUp = PowerUp.Type.DIODE;

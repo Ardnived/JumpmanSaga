@@ -3,6 +3,22 @@ package sdp.ggj14.util;
 import java.awt.image.BufferedImage;
 
 public class Sprite {
+	public static String[] constructPaths(String prefix, int length, String suffix) {
+		String[] paths = new String[length];
+		for (int i = 0; i < length; i++) {
+			String key;
+			if (i < 10) {
+				key = "0"+(i+1);
+			} else {
+				key = String.valueOf(i+1);
+			}
+			
+			paths[i] = prefix+key+suffix;
+		}
+		
+		return paths;
+	}
+	
 	private String[] imagePaths;
 	private int currentSprite;
 	private double timePassed = 0;

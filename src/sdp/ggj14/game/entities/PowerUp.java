@@ -9,11 +9,13 @@ import sdp.ggj14.util.ImageLoader;
 
 
 public class PowerUp extends Unit {
+	public static final int POWERUP_SIZE = (int) (10 * Level.SPRITE_SCALE);
+	
 	public enum Type {
 		DIODE(10000, "artifact/s02.png"),
 		HELIX(10000, "artifact/s06.png"),
 		BOROS(10000, "new_life_form/s03.png"),
-		OXIDE(10000, "new_life_form/s08.png");
+		OXIDE(10000, "artifact/s08.png");
 		
 		public int duration;
 		String sprite;
@@ -27,7 +29,7 @@ public class PowerUp extends Unit {
 	Type type;
 	
 	public PowerUp(Type type, double x, double y) {
-		super(x, y, 48, 48, 1);
+		super(x, y, POWERUP_SIZE, POWERUP_SIZE, 1);
 		this.type = type;
 	}
 	

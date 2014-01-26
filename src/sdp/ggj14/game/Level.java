@@ -32,6 +32,7 @@ public class Level extends World implements CollisionListener {
 	//public final static int WIDTH = 50, HEIGHT = 11;
 	public final static int GRID_SIZE = 32;
 	public final static int SCROLL_OFFSET = 200;
+	public final static double SPRITE_SCALE = 48.0 / 16.0;
 	
 	double parallaxFactor = 0.15;
 	
