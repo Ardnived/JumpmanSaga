@@ -7,7 +7,7 @@ public class Sprite {
 		String[] paths = new String[length];
 		for (int i = 0; i < length; i++) {
 			String key;
-			if (i < 10) {
+			if (i < 9) {
 				key = "0"+(i+1);
 			} else {
 				key = String.valueOf(i+1);

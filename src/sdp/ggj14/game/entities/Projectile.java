@@ -5,6 +5,7 @@ import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.Force;
 
 import sdp.ggj14.game.Level;
+import sdp.ggj14.game.world.Tile;
 import sdp.ggj14.util.Sprite;
 
 public class Projectile extends Unit {
@@ -19,7 +20,7 @@ public class Projectile extends Unit {
 		super.setGravityScale(0);
 		
 		this.fixture.setSensor(true);
-		this.fixture.setFilter(new CategoryFilter(Category.MISC.ordinal(), Category.PLAYER.ordinal()));
+		//this.fixture.setFilter(new CategoryFilter(Category.MISC.ordinal(), Category.PLAYER.ordinal()));
 		
 		Force test = new Force(-50, 0) {
 			@Override
@@ -39,6 +40,9 @@ public class Projectile extends Unit {
 	public boolean onCollision(Level level, Body other) {
 		if (other instanceof Player) {
 			((Player) other).modifyHP(-PROJECTILE_DAMAGE);
+		}
+		
+		if (other instanceof Player || other instanceof Tile) {
 			level.removeBody(this);
 		}
 		
