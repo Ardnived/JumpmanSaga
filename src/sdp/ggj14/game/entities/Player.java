@@ -59,6 +59,8 @@ public class Player extends Unit {
 		JUMPING.put(PowerUp.Type.BOROS, new Sprite(new String[] {"/player/jump/s01.png"}, 10));
 	}
 	
+	private int fallingCounter = 0;
+	
 	private PowerUp.Type powerUp = PowerUp.Type.DIODE;
 	private double powerUpTimer = 0.0;
 	
@@ -118,19 +120,25 @@ public class Player extends Unit {
 				this.powerUpTimer = 0.0;
 			}
 		}
-		
 		if (super.getForce().y < 0) {
 			this.spriteSet = FLYING;
+			fallingCounter=0;
 		} else if (super.getLinearVelocity().y > 0) {
-			if (super.getForce().x != 0 && this.fuel > 0) {
+			if (super.getForce().y < 0 && this.fuel > 0) {
 				this.spriteSet = FLYING;
+				fallingCounter=0;
 			} else {
-				this.spriteSet = FALLING;
+				fallingCounter++;
+				if (fallingCounter > 10) {
+					this.spriteSet = FALLING;
+				}
 			}
 		} else if (super.getForce().x != 0) {
 			this.spriteSet = WALKING;
+			fallingCounter=0;
 		} else {
 			this.spriteSet = IDLE;
+			fallingCounter=0;
 		}
 	}
 	
