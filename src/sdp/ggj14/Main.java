@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 import sdp.ggj14.util.ImageLoader;
 import sdp.ggj14.util.PropertiesLoader;
+import sdp.ggj14.util.SoundPlayer;
 
 @SuppressWarnings("serial")
 public class Main extends JFrame {

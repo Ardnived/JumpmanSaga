@@ -21,10 +21,11 @@ public class SagaFrame extends JPanel implements KeyListener {
 	
 	public SagaFrame() {
 		super.setBackground(Color.BLACK);
+		SoundPlayer.play("/music/songLooping.wav", false);
 	}
 	
 	private void startGame() {
-		SoundPlayer.play("effects/beep.wav", false);
+		
 		
 		for (Control control : Control.values()) {
 			control.isDown = false;
