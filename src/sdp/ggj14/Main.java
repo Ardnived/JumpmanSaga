@@ -3,7 +3,7 @@ package sdp.ggj14;
 import javax.swing.JFrame;
 
 public class Main extends JFrame {
-	public static final int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 374;
+	public static final int SCREEN_WIDTH = 1280, SCREEN_HEIGHT = 800;//374;
 	
 	private boolean running = true;
 	private long desiredFPS = 60;

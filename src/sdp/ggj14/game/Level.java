@@ -3,7 +3,9 @@ package sdp.ggj14.game;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.dyn4j.collision.AxisAlignedBounds;
 import org.dyn4j.collision.manifold.Manifold;
@@ -19,17 +21,17 @@ import org.dyn4j.geometry.Rectangle;
 import sdp.ggj14.Main;
 import sdp.ggj14.game.entities.Enemy;
 import sdp.ggj14.game.entities.Player;
+import sdp.ggj14.game.entities.PowerUp;
 import sdp.ggj14.game.entities.Unit;
-import sdp.ggj14.game.entities.enemies.FlayerEnemy;
-import sdp.ggj14.game.entities.enemies.SwayerEnemy;
-import sdp.ggj14.game.entities.enemies.SprayerEnemy;
+import sdp.ggj14.game.entities.enemies.*;
 import sdp.ggj14.game.world.ForegroundTile;
 import sdp.ggj14.game.world.Tile;
 import sdp.ggj14.util.ImageLoader;
+import sdp.ggj14.util.JSONLoader;
 import sdp.ggj14.util.SoundPlayer;
 
 public class Level extends World implements CollisionListener {
-	public final static int WIDTH = 50, HEIGHT = 11;
+	//public final static int WIDTH = 50, HEIGHT = 11;
 	public final static int GRID_SIZE = 32;
 	public final static int SCROLL_OFFSET = 100;
 	
@@ -37,14 +39,20 @@ public class Level extends World implements CollisionListener {
 	
 	Player player;
 	ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-	Tile[][] grid = new Tile[WIDTH][HEIGHT];
+	Tile[][] grid;
 
+	@SuppressWarnings("unchecked")
 	public Level() {
-		super(new AxisAlignedBounds(WIDTH * GRID_SIZE * 2, HEIGHT * GRID_SIZE * 2));
-		
 		super.setGravity(ZERO_GRAVITY);
 		
-		this.createTestLevel();
+
+		Map<String, Object> data = JSONLoader.get(System.getProperty("user.dir")+"/lvl/"+"/levels/Level01.json");
+		String[] terrain = ((String) data.get("terrain")).split(":");
+		this.grid = new Tile[terrain[0].length()][terrain.length];
+		
+		this.createBounds();
+		this.loadTiles(terrain);
+		this.loadUnits((ArrayList<Map<String, String>>) data.get("units"));
 		
 		this.player = new Player();
 		super.addBody(this.player);
@@ -54,31 +62,92 @@ public class Level extends World implements CollisionListener {
 		SoundPlayer.playSound("/aud/effects/FingerprintSuccess.wav");
 	}
 	
+	public void createBounds() {
+		super.setBounds(new AxisAlignedBounds(getWidth() * GRID_SIZE * 2, getHeight() * GRID_SIZE * 2));
+		
+		System.out.println(getWidth()+","+getHeight());
+		
+		for (int x = 0; x < grid.length; x++) {
+			for (int y = 0; y < grid[0].length; y++) {
+				this.setTile(x, y, null);
+			}
+			
+			this.setTile(x, getHeight()-1, new ForegroundTile(Tile.Type.DIRT, x, getHeight()-1));
+		}
+
+		for (int y = 0; y < grid[0].length; y++) {
+			this.setTile(0, y, new ForegroundTile(null, 0, y));
+			this.setTile(getWidth()-1, y, new ForegroundTile(null, getWidth()-1, y));
+		}
+
+		Rectangle roofRect = new Rectangle(1000.0, 10.0);
+		Body roof = new Body();
+		roof.addFixture(new BodyFixture(roofRect));
+		roof.setMass(Mass.Type.INFINITE);
+		this.addBody(roof);
+	}
+	
+	public void loadTiles(String[] terrain) {
+		for (int y = 0; y < terrain.length; y++) {
+			terrain[y] = terrain[y].trim();
+
+			char[] symbols = terrain[y].toCharArray();
+			for (int x = 0; x < symbols.length; x++) {
+				switch (symbols[x]) {
+				case 'Z':
+					System.out.println(x+", "+y);
+					this.setTile(x, y, new ForegroundTile(Tile.Type.DIRT, x, y));
+					break;
+				case 'A':
+					this.setTile(x, y, new Tile(Tile.Type.BACKGROUND, x, y));
+					break;
+				default:
+					// Do Nothing
+				}
+			}
+		}
+	}
+	
+	public void loadUnits(ArrayList<Map<String, String>> units) {
+		try {
+			for (Map<String, String> unitData : units) {
+				String className = unitData.get("class");
+				double x = Double.parseDouble(unitData.get("x"));
+				double y = Double.parseDouble(unitData.get("y"));
+				Unit unit;
+				
+				switch (className) {
+				case "PowerUp":
+					unit = new PowerUp(PowerUp.Type.valueOf(unitData.get("type")), x, y);
+					break;
+				default:
+					Class<?> cls = Class.forName("sdp.ggj14.game.entities."+className);
+					unit = (Unit) cls.getDeclaredConstructor(new Class[] { double.class, double.class }).newInstance(x, y);;
+					break;
+				}
+				
+				this.addBody(unit);
+			}
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			System.out.println("Failed to load unit.");
+			e.printStackTrace();
+		}
+	}
+	
 	public void createTestLevel() {
 		for (int x = 0; x < grid.length; x++) {
 			for (int y = 0; y < grid[0].length; y++) {
 				this.setTile(x, y, null);
 			}
 			
-			this.setTile(x, HEIGHT-1, new ForegroundTile(Tile.Type.DIRT, x, HEIGHT-1));
+			this.setTile(x, getHeight()-1, new ForegroundTile(Tile.Type.DIRT, x, getHeight()-1));
 		}
-		
-		for (int y = 0; y < grid[0].length; y++) {
-			this.setTile(0, y, new ForegroundTile(null, 0, y));
-			this.setTile(WIDTH-1, y, new ForegroundTile(null, WIDTH-1, y));
-		}
-		
-		Rectangle roofRect = new Rectangle(1000.0, 10.0);
-		Body roof = new Body();
-		roof.addFixture(new BodyFixture(roofRect));
-		roof.setMass(Mass.Type.INFINITE);
-		this.addBody(roof);
 		
 		//super.addBody(new PowerUp(PowerUp.Type.AIR, x, y));
 		
-		super.addBody(new FlayerEnemy(1000.0, GRID_SIZE * (HEIGHT - 2) + 8));
+		super.addBody(new FlayerEnemy(1000.0, GRID_SIZE * (getHeight() - 2) + 8));
 		super.addBody(new SwayerEnemy(1200.0, 200.0));
-		super.addBody(new SprayerEnemy(600.0,GRID_SIZE * (HEIGHT - 2) + 8));
+		super.addBody(new SprayerEnemy(600.0,GRID_SIZE * (getHeight() - 2) + 8));
 	}
 	
 	public boolean update(double elapsedTime) {
@@ -136,7 +205,15 @@ public class Level extends World implements CollisionListener {
 	}
 	
 	public int getScrollX() {
-		return Math.min(GRID_SIZE * WIDTH - Main.SCREEN_WIDTH - GRID_SIZE, Math.max((int) player.getX() - SCROLL_OFFSET, GRID_SIZE));
+		return Math.min(GRID_SIZE * getWidth() - Main.SCREEN_WIDTH - GRID_SIZE, Math.max((int) player.getX() - SCROLL_OFFSET, GRID_SIZE));
+	}
+	
+	public int getWidth() {
+		return this.grid.length;
+	}
+	
+	public int getHeight() {
+		return this.grid[0].length;
 	}
 	
 	public void setTile(int x, int y, Tile tile) {

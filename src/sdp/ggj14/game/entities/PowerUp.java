@@ -18,7 +18,7 @@ public class PowerUp extends Unit {
 		String sprite;
 		
 		Type(String sprite) {
-			this.sprite = "/collectables/"+sprite;
+			this.sprite = "/items/"+sprite;
 		}
 	};
 	

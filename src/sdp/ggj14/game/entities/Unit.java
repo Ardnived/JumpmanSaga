@@ -44,7 +44,9 @@ public class Unit extends SagaBody {
 			move(0, 0.3);
 		}
 		
-		sprite.update(elapsedTime);
+		if (sprite != null) {
+			sprite.update(elapsedTime);	
+		}
 	}
 	
 	public void move(double x, double y) {

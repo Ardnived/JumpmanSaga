@@ -1,0 +1,39 @@
+{
+	width: 67,
+	height: 13,
+	terrain: "___________________________________________________________________:
+			  ___________________________________________________________________:
+			  ___________________________________________________________________:
+			  ___________________________________________________________________:
+			  ___________________________________________________________________:
+			  ___________________________________________________________________:
+			  ___________________________________________________________________:
+			  ___________________________________________________________________:
+			  __________________________________ZZZZ_____________________________:
+			  __________________________________AAAAZ____________________Z_______:
+			  __________Z_______________________AAAAA____________________Z_______:
+			  _________ZZZ______________________AAAAA___________________ZZ_______:
+			  ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+			  ",
+	units: [
+		{ x: 200,  y: 340, class:"enemies.FlayerEnemy" },
+		{ x: 400,  y: 340, class:"enemies.FlayerEnemy" },
+		{ x: 600,  y: 340, class:"enemies.FlayerEnemy" },
+		{ x: 800,  y: 340, class:"enemies.FlayerEnemy" },
+		{ x: 1000, y: 340, class:"enemies.FlayerEnemy" },
+		{ x: 1200, y: 340, class:"enemies.FlayerEnemy" },
+		{ x: 1400, y: 340, class:"enemies.FlayerEnemy" },
+		{ x: 350,  y: 255, class:"enemies.SwayerEnemy" },
+		{ x: 475,  y: 95,  class:"enemies.SwayerEnemy" },
+		{ x: 600,  y: 290, class:"enemies.SwayerEnemy" },
+		{ x: 900,  y: 230, class:"enemies.SwayerEnemy" },
+		{ x: 955,  y: 50,  class:"enemies.SwayerEnemy" },
+		{ x: 1100, y: 255, class:"enemies.SwayerEnemy" },
+		{ x: 1275, y: 180, class:"enemies.SwayerEnemy" },
+		{ x: 1300, y: 100, class:"enemies.SwayerEnemy" },
+		{ x: 1350, y: 220, class:"enemies.SwayerEnemy" },
+		{ x: 1500, y: 170, class:"enemies.SwayerEnemy" },
+		{ x: 400,  y: 100, class:"PowerUp", type:"OXIDE" },
+		{ x: 800,  y: 225, class:"PowerUp", type:"OXIDE" }
+	]
+}
