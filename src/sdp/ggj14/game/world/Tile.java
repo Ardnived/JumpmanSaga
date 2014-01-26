@@ -3,6 +3,7 @@ package sdp.ggj14.game.world;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
+import java.util.Random;
 
 import sdp.ggj14.game.Level;
 import sdp.ggj14.game.SagaBody;
@@ -20,12 +21,12 @@ public class Tile extends SagaBody {
 		}
 	}
 	
-	enum Type {
+	public static enum Type {
 		DIRT() { @Override public void setup() {
 			this.data.put(PowerUp.Type.DIODE, new TypeSet(new String[] {"/tiles/ground/s01.png", "/tiles/ground/s02.png"}, Color.WHITE));
-			this.data.put(PowerUp.Type.OXIDE, new TypeSet(new String[] {"/tiles/ground/s05.png", "/tiles/ground/s06s.png"}, Color.WHITE));
-			this.data.put(PowerUp.Type.HELIX, new TypeSet(new String[] {"/tiles/ground/s04s.png"}, Color.WHITE));
-			this.data.put(PowerUp.Type.BOROS, new TypeSet(new String[] {"/tiles/ground/s08s.png"}, Color.WHITE));
+			this.data.put(PowerUp.Type.OXIDE, new TypeSet(new String[] {"/tiles/ground/s05.png", "/tiles/ground/s06.png"}, Color.WHITE));
+			this.data.put(PowerUp.Type.HELIX, new TypeSet(new String[] {"/tiles/ground/s04.png"}, Color.WHITE));
+			this.data.put(PowerUp.Type.BOROS, new TypeSet(new String[] {"/tiles/ground/s08.png"}, Color.WHITE));
 		} },
 		BACKGROUND() { @Override public void setup() {
 			this.data.put(PowerUp.Type.DIODE, new TypeSet(new String[] {"/tiles/background/s03.png"}, Color.WHITE));
@@ -54,22 +55,32 @@ public class Tile extends SagaBody {
 		
 		public HashMap<PowerUp.Type, TypeSet> data = new HashMap<PowerUp.Type, TypeSet>();
 		
+		Type() {
+			setup();
+		}
+		
 		public void setup() {}
 	}
 	
-	String sprite;
+	Tile.Type type;
 	
-	public Tile(String sprite, int x, int y) {
+	public Tile(Tile.Type type, int x, int y) {
 		super(Level.GRID_SIZE, Level.GRID_SIZE);
-		this.sprite = sprite;
+		this.type = type;
 		
 		super.translate(Level.GRID_SIZE*x + Level.GRID_SIZE/2, Level.GRID_SIZE*y + Level.GRID_SIZE/2);
 	}
 	
 	@Override
 	public BufferedImage getSprite(Level level) {
-		if (this.sprite != null) {
-			return ImageLoader.get(this.sprite);
+		if (this.type != null) {
+			TypeSet typeSet = this.type.data.get(level.getPlayer().getPowerUp());
+			
+			Random random = new Random();
+			String[] sprites = typeSet.sprites;
+			int index = random.nextInt(sprites.length);
+			
+			return ImageLoader.get(sprites[index]);
 		} else {
 			return null;
 		}

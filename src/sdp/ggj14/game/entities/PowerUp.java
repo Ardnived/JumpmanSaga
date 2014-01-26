@@ -6,7 +6,6 @@ import org.dyn4j.dynamics.Body;
 
 import sdp.ggj14.game.Level;
 import sdp.ggj14.util.ImageLoader;
-import sdp.ggj14.util.Sprite;
 
 
 public class PowerUp extends Unit {

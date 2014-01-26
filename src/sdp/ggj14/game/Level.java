@@ -2,7 +2,9 @@ package sdp.ggj14.game;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
 import org.dyn4j.collision.AxisAlignedBounds;
 import org.dyn4j.collision.manifold.Manifold;
 import org.dyn4j.collision.narrowphase.Penetration;
@@ -29,7 +31,6 @@ public class Level extends World implements CollisionListener {
 	public final static int GRID_SIZE = 32;
 	public final static int SCROLL_OFFSET = 100;
 	
-	String background = "/level/landscape_pixelated.jpg";
 	double parallaxFactor = 0.2;
 	
 	Player player;
@@ -57,15 +58,13 @@ public class Level extends World implements CollisionListener {
 				this.setTile(x, y, null);
 			}
 			
-			this.setTile(x, HEIGHT-1, new ForegroundTile("/tiles/ground/s01.png", x, HEIGHT-1));
+			this.setTile(x, HEIGHT-1, new ForegroundTile(Tile.Type.DIRT, x, HEIGHT-1));
 		}
 		
 		for (int y = 0; y < grid[0].length; y++) {
 			this.setTile(0, y, new ForegroundTile(null, 0, y));
 			this.setTile(WIDTH-1, y, new ForegroundTile(null, WIDTH-1, y));
 		}
-		
-		this.setTile(7, 3, new ForegroundTile("/tiles/ground/s06.png", 7, 3));
 		
 		//super.addBody(new PowerUp(PowerUp.Type.AIR, x, y));
 		
@@ -85,7 +84,7 @@ public class Level extends World implements CollisionListener {
 	}
 	
 	public void paint(Graphics graphics) {
-		graphics.drawImage(ImageLoader.get(background), (int) (0 - this.getScrollX()*parallaxFactor), 0, null);
+		graphics.drawImage(this.getBackground(), (int) (0 - this.getScrollX()*parallaxFactor), 0, null);
 		
 		for (Body body : super.getBodies()) {
 			if (body instanceof SagaBody) {
@@ -103,6 +102,29 @@ public class Level extends World implements CollisionListener {
 
 		// Draw Player / WHY IS THE LOOP NOT DRAWING HIM? IDK
 		graphics.drawImage(player.getSprite(this), (int) player.getX() - player.drawWidth/2 - this.getScrollX(), (int) player.getY() - player.drawHeight/2, player.drawWidth, player.drawHeight, null);
+	}
+	
+	public BufferedImage getBackground() {
+		String fileName;
+		
+		switch(this.getPlayer().getPowerUp()) {
+		case DIODE:
+			fileName = "landscape_pixelated";
+			break;
+		case OXIDE:
+			fileName = "sky_pixelated";
+			break;
+		case HELIX:
+			fileName = "landscape_pixelated";
+			break;
+		case BOROS:
+			fileName = "industry_pixelated";
+			break;
+		default:
+			fileName = "landscape_pixelated";
+		}
+		
+		return ImageLoader.get("/level/"+fileName+".jpg");
 	}
 	
 	public int getScrollX() {

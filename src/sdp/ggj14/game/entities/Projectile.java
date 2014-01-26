@@ -1,11 +1,7 @@
 package sdp.ggj14.game.entities;
 
-import javax.print.attribute.standard.MediaSize.Other;
-
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.Force;
-import org.dyn4j.geometry.Vector2;
-
 import sdp.ggj14.game.Level;
 import sdp.ggj14.game.entities.enemies.SprayerEnemy;
 import sdp.ggj14.util.Sprite;
@@ -38,8 +34,8 @@ public class Projectile extends Unit {
 		if (other instanceof SprayerEnemy) {
 			return false;
 		}
+		
 		level.removeBody(this);
-		level.getPlayer().availableProjectiles += 1;
 		return false;
 	}
 
