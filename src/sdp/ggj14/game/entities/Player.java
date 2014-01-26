@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.dyn4j.dynamics.Body;
+
 import sdp.ggj14.game.Level;
 import sdp.ggj14.util.SoundPlayer;
 import sdp.ggj14.util.Sprite;
@@ -71,6 +73,7 @@ public class Player extends Unit {
 	
 	private PowerUp.Type powerUp = PowerUp.Type.DIODE;
 	private double powerUpTimer = 0.0;
+	private double gaspTimer = 0.0;
 	
 	private double speedModifier = 1.0;
 	private double fuel = MAX_FUEL;
@@ -133,6 +136,7 @@ public class Player extends Unit {
 	@Override
 	public void update(Level level, double elapsedTime) {
 		super.update(level, elapsedTime);
+		gaspTimer += elapsedTime;
 		
 		this.speedModifier = Math.min(1.0, speedModifier + 0.03);
 		
@@ -211,6 +215,11 @@ public class Player extends Unit {
 	
 	public void modifyHP(double mod) {
 		hp = Math.min(Math.max(0, hp + mod), MAX_AIR);
+		if (hp <= 0) {
+			AudioPlayer.player.stop(breathingSound);
+			breathingSound = null;
+			SoundPlayer.play("/effects/jm_vo_death.wav", false);
+		}
 	}
 	
 	public void modifyFuel(double mod) {
@@ -236,6 +245,15 @@ public class Player extends Unit {
 	
 	public double getFuel() {
 		return fuel;
+	}
+	
+	@Override
+	public boolean onCollision(Level level, Body other) {
+		if (other instanceof Enemy && gaspTimer >= 1000){
+			SoundPlayer.play("/effects/jm_vo_gasp_0"+((int)(Math.random()*(5)+1))+".wav", false);
+			gaspTimer = 0.0;
+		}
+		return false;
 	}
 
 }
