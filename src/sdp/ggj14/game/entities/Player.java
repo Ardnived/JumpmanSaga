@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import sdp.ggj14.game.Level;
+import sdp.ggj14.util.SoundPlayer;
 import sdp.ggj14.util.Sprite;
+import sun.audio.AudioPlayer;
+import sun.audio.ContinuousAudioDataStream;
 
 public class Player extends Unit {
 	public static final int PLAYER_SIZE = 48;
@@ -63,6 +66,8 @@ public class Player extends Unit {
 	
 	private int fallingCounter = 0;
 	
+	private ContinuousAudioDataStream jetpackSound;
+	
 	private PowerUp.Type powerUp = PowerUp.Type.DIODE;
 	private double powerUpTimer = 0.0;
 	
@@ -81,8 +86,12 @@ public class Player extends Unit {
 			if (this.fuel > 0) {
 				this.modifyFuel(-FUEL_DECAY);
 				y *= JETPACK_THRUST;
+				if (jetpackSound == null){
+					jetpackSound = SoundPlayer.play("/effects/jm_jetpack_loop.wav", true);
+				}
 			} else {
 				y = 0;
+				jetpackSound = null;
 			}
 		}
 		
@@ -152,6 +161,7 @@ public class Player extends Unit {
 			this.spriteSet = JUMPING;
 			fallingCounter = 0;
 			test = "JUMPING";
+			stopJetpack();
 		} else if (super.getLinearVelocity().y > 0) {
 			if (super.getForce().y < 0 && this.fuel > 0) {
 				this.spriteSet = FLYING;
@@ -162,19 +172,29 @@ public class Player extends Unit {
 				if (fallingCounter > 10) {
 					this.spriteSet = FALLING;
 					test = "FALLING";
+					stopJetpack();
 				}
 			}
 		} else if (super.getForce().x != 0) {
 			this.spriteSet = WALKING;
 			fallingCounter = 0;
 			test = "WALKING";
+			stopJetpack();
 		} else {
 			this.spriteSet = IDLE;
 			fallingCounter = 0;
 			test = "IDLE";
+			stopJetpack();
 		}
 		
 		//System.out.println(super.getLinearVelocity().toString()+" "+test);
+	}
+	
+	private void stopJetpack() {
+		if (jetpackSound != null){
+			AudioPlayer.player.stop(jetpackSound);
+			jetpackSound = null;
+		}
 	}
 	
 	@Override
