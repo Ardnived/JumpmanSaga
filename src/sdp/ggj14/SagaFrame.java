@@ -25,8 +25,6 @@ public class SagaFrame extends JPanel implements KeyListener {
 	}
 	
 	private void startGame() {
-		
-		
 		for (Control control : Control.values()) {
 			control.isDown = false;
 		}
@@ -50,6 +48,8 @@ public class SagaFrame extends JPanel implements KeyListener {
 		startPress = false;
 		state = "menu";
 		this.repaint();
+		
+		System.exit(0);
 	}
 	
 	public void endGame() {
