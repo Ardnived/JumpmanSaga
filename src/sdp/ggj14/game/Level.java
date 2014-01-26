@@ -22,6 +22,7 @@ import sdp.ggj14.game.entities.PowerUp;
 import sdp.ggj14.game.entities.Unit;
 import sdp.ggj14.game.entities.enemies.FlayerEnemy;
 import sdp.ggj14.game.entities.enemies.SwayerEnemy;
+import sdp.ggj14.game.entities.enemies.SprayerEnemy;
 import sdp.ggj14.game.world.ForegroundTile;
 import sdp.ggj14.game.world.Tile;
 import sdp.ggj14.util.ImageLoader;
@@ -71,6 +72,7 @@ public class Level extends World implements CollisionListener {
 		
 		super.addBody(new FlayerEnemy(1000.0, GRID_SIZE * (HEIGHT - 2) + 8));
 		super.addBody(new SwayerEnemy(1200.0, 200.0));
+		super.addBody(new SprayerEnemy(600.0,GRID_SIZE * (HEIGHT - 2) + 8));
 	}
 	
 	public boolean update(double elapsedTime) {

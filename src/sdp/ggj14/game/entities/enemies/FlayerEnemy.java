@@ -13,11 +13,7 @@ public class FlayerEnemy extends Enemy {
 	public FlayerEnemy(double x, double y) {
 		super(x, y, 1);
 		super.sprite = new Sprite(new String[] {
-				"/aliens/flayer/s01.png",
-				"/aliens/flayer/s02.png",
-				"/aliens/flayer/s03.png",
-				"/aliens/flayer/s04.png",
-				"/aliens/flayer/s05.png"}, 10);
+		"/aliens/snail/s06.png"}, 10);
 		
 		super.setMass(Mass.Type.INFINITE);
 	}
