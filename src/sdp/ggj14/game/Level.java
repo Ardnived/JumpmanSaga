@@ -26,6 +26,7 @@ import sdp.ggj14.game.entities.enemies.SprayerEnemy;
 import sdp.ggj14.game.world.ForegroundTile;
 import sdp.ggj14.game.world.Tile;
 import sdp.ggj14.util.ImageLoader;
+import sdp.ggj14.util.SoundPlayer;
 
 public class Level extends World implements CollisionListener {
 	public final static int WIDTH = 50, HEIGHT = 11;
@@ -50,6 +51,8 @@ public class Level extends World implements CollisionListener {
 		super.addBody(this.player);
 		
 		this.addListener(this);
+		
+		SoundPlayer.playSound("/aud/effects/FingerprintSuccess.wav");
 	}
 	
 	public void createTestLevel() {
