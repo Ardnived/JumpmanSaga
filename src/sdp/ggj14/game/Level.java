@@ -60,6 +60,9 @@ public class Level extends World implements CollisionListener {
 		
 		this.addListener(this);
 		
+		this.shipLocation = this.getWidth();
+		this.helmLocation = this.getWidth();
+		
 		SoundPlayer.playSound("/aud/effects/FingerprintSuccess.wav");
 	}
 	
@@ -104,6 +107,10 @@ public class Level extends World implements CollisionListener {
 					break;
 				case 'B':
 					this.setTile(x+1, y, new Tile(Tile.Type.WALL, x+1, y));
+					
+					if (x+1 < shipLocation) {
+						this.shipLocation = x+1;
+					}
 					break;
 				default:
 					// Do Nothing
@@ -222,6 +229,14 @@ public class Level extends World implements CollisionListener {
 	
 	public Player getPlayer() {
 		return this.player;
+	}
+	
+	public int getShipLocation() {
+		return this.shipLocation;
+	}
+	
+	public int getHelmLocation() {
+		return this.getHelmLocation();
 	}
 
 	@Override

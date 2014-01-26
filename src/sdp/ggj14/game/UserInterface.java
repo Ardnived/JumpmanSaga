@@ -27,6 +27,14 @@ public class UserInterface {
 		graphics.drawImage(ImageLoader.get("/ui/bar.png"), 30, 30, 123, 15, null);
 		
 		graphics.drawString("Powerup Timer: "+Math.round(level.getPlayer().getPowerUpTimer()), 10, 80);
+		
+		String text;
+		if (level.getShipLocation() < level.getPlayer().getX()) {
+			text = Math.round(level.getShipLocation() - level.getPlayer().getX()/Level.GRID_SIZE)+"m to the Ship!";
+		} else {
+			text = Math.round(level.getHelmLocation() - level.getPlayer().getX()/Level.GRID_SIZE)+"m to the Helm!";
+		}
+		graphics.drawString(text, 10, 120);
 	}
 
 }
