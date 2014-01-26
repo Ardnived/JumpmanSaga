@@ -9,8 +9,8 @@
 			  __________________________________________________________________AAAAAAAAAAAAAAAAAAAAAAAAAZZZZZZ_______________________________________AAAAA___________________________________AAAAAAAAAAAAZZ_______________________________________________________________AAAAAAAAA____________________________________________ZZZZZZ__________________AAAAAAAAAAA____ZZZZZZ____________________AAAAAA________________________AAAAAAAAAAAAAAAAAAAA_________________________________________________:
 			  __________________________________ZZZZ________________________AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_______________________________________AAAAAAA________________________________AAAAAAAAAAAAAAA_____________________________________ZZ_________________________AAAAAAAAA__________________________________________ZZZZZZZZZ_________________AAAAAAAAAAAZZZZZZZZZZZ__________________AAAAAA________________________AAAAAAAAAAAAAAAAAAAAAAAA_________________________________________YYYY:
 			  __________________________________AAAAZ____________________ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA__________________________________AAAAA____________ZZZZZZZ______________AAAAAAAAAAAAAAA_____________________________________ZZZ________________________ZZZZZZZ___________________________________________ZZZZZZZZZZZZZ______________AAAAAA_ZZZZZZZZZZZZZZZZZZ_______________AAAA_________________________AAAAAAAAAAAAAAAAAAAAAAAAAAAZZZZZZ______________________________YYYYBBB:
-			  __________Z_______________________AAAAA____________________ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_________________________________AAAAA___________ZZZZZZZZ____________AAAAAAAAAAAAAAAA___________________ZZ______Z________ZZZZZZ_______________________AAAAAA__________________________________________ZZZZZZZZZZZZZZZZZZZZ_________AAZZZZZZZZZZZZZZZZZZZZZZZZZ_____________AAAAAAAA___________________AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA___________________________BBBBBBB:
-			  _________ZZZ______________________AAAAA___________________ZZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZZZZZZZZ_________________________AAAAA_________ZZZZZZZZZZ__________AAAAAAAAAAAAAAAAAAA______________ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ____________________AAAAAAAA_____________________________________ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ_____AAAAAAAAA_ZZZZZ_________ZZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZZ__ZZ___________________BBBBBBB:
+			  __________________________________AAAAA____________________ZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA_________________________________AAAAA___________ZZZZZZZZ____________AAAAAAAAAAAAAAAA___________________ZZ______Z________ZZZZZZ_______________________AAAAAA__________________________________________ZZZZZZZZZZZZZZZZZZZZ_________AAZZZZZZZZZZZZZZZZZZZZZZZZZ_____________AAAAAAAA___________________AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA___________________________BBBBBBB:
+			  __________________________________AAAAA___________________ZZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZZZZZZZZ_________________________AAAAA_________ZZZZZZZZZZ__________AAAAAAAAAAAAAAAAAAA______________ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ____________________AAAAAAAA_____________________________________ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ_____AAAAAAAAA_ZZZZZ_________ZZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZZ__ZZ___________________BBBBBBB:
 			  ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZYYYYYYY
 			  ",
 	units: [
@@ -60,16 +60,13 @@
 		{ x: 5000, y: 260, class:"enemies.SprayerEnemy" },
 		{ x: 5800, y: 60, class:"enemies.SprayerEnemy" },		
 		{ x: 7010, y: 220, class:"enemies.SprayerEnemy" },
-		{ x: 7400, y: 220, class:"enemies.SprayerEnemy" },
-		{ x: 7800, y: 220, class:"enemies.SprayerEnemy" },
-		{ x: 10200, y: 300, class:"enemies.SprayerEnemy" },
+		{ x: 7300, y: 270, class:"enemies.SprayerEnemy" },
+		{ x: 7900, y: 240, class:"enemies.SprayerEnemy" },
+		{ x: 10565, y: 270, class:"enemies.SprayerEnemy" },
 		{ x: 11400, y: 100, class:"enemies.SprayerEnemy" },
-		{ x: 12800, y: 360, class:"enemies.SprayerEnemy" },
+		{ x: 1200, y: 360, class:"enemies.SprayerEnemy" },
 		{ x: 13500, y: 360, class:"enemies.SprayerEnemy" },
 		{ x: 14300, y: 360, class:"enemies.SprayerEnemy" },
-		{ x: 14700, y: 360, class:"enemies.SprayerEnemy" },
-		{ x: 15600, y: 160, class:"enemies.SprayerEnemy" },
-		{ x: 600,  y: 120, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 890,  y: 290, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 1060,  y: 50, limit: 1500,  class:"enemies.SwayerEnemy" },
 		{ x: 1320, y: 255, limit: 1500, class:"enemies.SwayerEnemy" },
@@ -105,7 +102,6 @@
 		{ x: 9495, y: 150, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 9810, y: 170, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 10100, y: 230, limit: 1500, class:"enemies.SwayerEnemy" },
-		{ x: 10400, y: 80, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 10680, y: 220, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 10900, y: 75, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 11170, y: 300, limit: 1500, class:"enemies.SwayerEnemy" },
@@ -113,7 +109,6 @@
 		{ x: 11600, y: 110, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 11870, y: 240, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 12010, y: 95, limit: 1500, class:"enemies.SwayerEnemy" },
-		{ x: 12290, y: 310, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 12605, y: 135, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 12870, y: 190, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 13100, y: 105, limit: 1500, class:"enemies.SwayerEnemy" },
@@ -124,7 +119,6 @@
 		{ x: 14440, y: 150, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 14720, y: 85, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 15000, y: 145, limit: 1500, class:"enemies.SwayerEnemy" },
-		{ x: 15300, y: 240, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 15560, y: 290, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 15830, y: 300, limit: 1500, class:"enemies.SwayerEnemy" },
 		{ x: 800,  y: 100, class:"PowerUp", type:"OXIDE" },
