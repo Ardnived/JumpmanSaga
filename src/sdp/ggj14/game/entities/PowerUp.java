@@ -14,10 +14,10 @@ public class PowerUp extends Unit {
 	public static final int POWERUP_SIZE = (int) (10 * Level.SPRITE_SCALE);
 	
 	public enum Type {
-		DIODE(10000, "artifact/s02.png"),
-		HELIX(10000, "artifact/s06.png"),
-		BOROS(10000, "new_life_form/s03.png"),
-		OXIDE(10000, "artifact/s08.png");
+		DIODE(0, ""),
+		HELIX(2500, "artifact/s06.png"),
+		BOROS(2500, "new_life_form/s03.png"),
+		OXIDE(2500, "artifact/s08.png");
 		
 		public int duration;
 		String sprite;

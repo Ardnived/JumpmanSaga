@@ -15,6 +15,7 @@ import sdp.ggj14.util.SoundPlayer;
 @SuppressWarnings("serial")
 public class SagaFrame extends JPanel implements KeyListener {
 	String state = "menu";
+	boolean startPress = false;
 	Level level;
 	UserInterface ui;
 	
@@ -28,6 +29,7 @@ public class SagaFrame extends JPanel implements KeyListener {
 		this.level = new Level();
 		this.ui = new UserInterface(level);
 		
+		startPress = false;
 		state = "playing";
 		this.repaint();
 	}
@@ -39,7 +41,8 @@ public class SagaFrame extends JPanel implements KeyListener {
 		for (Control control : Control.values()) {
 			control.isDown = false;
 		}
-		
+
+		startPress = false;
 		state = "menu";
 		this.repaint();
 	}
@@ -48,7 +51,8 @@ public class SagaFrame extends JPanel implements KeyListener {
 		for (Control control : Control.values()) {
 			control.isDown = false;
 		}
-		
+
+		startPress = false;
 		state = "gameOver";
 	}
 	
@@ -113,17 +117,17 @@ public class SagaFrame extends JPanel implements KeyListener {
 	
 	
 	enum Control {
-		UP     (KeyEvent.VK_SPACE) 
-			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(0, -1); } },
+		JUMP  (KeyEvent.VK_W) 
+			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().jump(); } },
 		/*DOWN   (KeyEvent.VK_S) 
 			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(0, +1); } },*/
-		LEFT   (KeyEvent.VK_A) 
+		LEFT  (KeyEvent.VK_A) 
 			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(-1, 0); } },
-		RIGHT  (KeyEvent.VK_D) 
+		RIGHT (KeyEvent.VK_D) 
 			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(+1, 0); } },
-		/*ACTION (KeyEvent.VK_SPACE) 
-			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().shoot(frame.level); } },*/
-		MENU   (KeyEvent.VK_ESCAPE) 
+		JET   (KeyEvent.VK_SPACE) 
+			{ @Override public void action(SagaFrame frame) { frame.level.getPlayer().move(0, -1); } },
+		MENU  (KeyEvent.VK_ESCAPE) 
 			{ @Override public void action(SagaFrame frame) {  } };
 		
 		public boolean isDown;
@@ -151,6 +155,10 @@ public class SagaFrame extends JPanel implements KeyListener {
 				}
 			}
 			break;
+		case "menu":
+		case "gameOver":
+			startPress = true;
+			break;
 		default:
 			break;
 		}
@@ -167,10 +175,10 @@ public class SagaFrame extends JPanel implements KeyListener {
 			}
 			break;
 		case "menu":
-			this.startGame();
+			if (startPress) this.startGame();
 			break;
 		case "gameOver":
-			this.destroyGame();
+			if (startPress) this.destroyGame();
 			break;
 		}
 	}
