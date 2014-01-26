@@ -18,8 +18,7 @@ public class Unit extends SagaBody {
 	protected double hp;
 	protected Sprite sprite;
 	protected BodyFixture fixture;
-	protected boolean onGround;
-
+	
 	public Unit(double x, double y, int width, int height, double hp) {
 		this(x, y, width, height, hp, 100);
 	}
@@ -41,9 +40,7 @@ public class Unit extends SagaBody {
 	
 	@Override
 	public void update(Level level, double elapsedTime) {
-		//if (!this.onGround) {
-			move(0, 500);
-		//}
+		move(0, 500);
 		
 		if (sprite != null) {
 			sprite.update(elapsedTime);	

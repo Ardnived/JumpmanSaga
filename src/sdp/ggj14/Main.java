@@ -93,12 +93,12 @@ public class Main extends JFrame {
 		ImageLoader.get("/player/flying/loop_s01.png");
 		ImageLoader.get("/player/flying/loop_s02.png");
 		ImageLoader.get("/player/flying/loop_s03.png");
-		ImageLoader.get("/player/flyingBlue/loop_s01.png");
-		ImageLoader.get("/player/flyingBlue/loop_s02.png");
-		ImageLoader.get("/player/flyingBlue/loop_s03.png");
-		ImageLoader.get("/player/flyingGreen/loop_s01.png");
-		ImageLoader.get("/player/flyingGreen/loop_s02.png");
-		ImageLoader.get("/player/flyingGreen/loop_s03.png");
+		ImageLoader.get("/player/flying/blue_loop_s01.png");
+		ImageLoader.get("/player/flying/blue_loop_s02.png");
+		ImageLoader.get("/player/flying/blue_loop_s03.png");
+		ImageLoader.get("/player/flying/green_loop_s01.png");
+		ImageLoader.get("/player/flying/green_loop_s02.png");
+		ImageLoader.get("/player/flying/green_loop_s03.png");
 		ImageLoader.get("/player/flying/no_fuel.png");
 		ImageLoader.get("/player/walking/s01.png");
 		ImageLoader.get("/player/walking/s02.png");

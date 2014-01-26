@@ -7,6 +7,7 @@ import org.dyn4j.dynamics.Body;
 
 public abstract class SagaBody extends Body {
 	public int drawWidth, drawHeight;
+	protected boolean flipped = false;
 	
 	public SagaBody(int drawWidth, int drawHeight) {
 		super(1);
@@ -27,6 +28,10 @@ public abstract class SagaBody extends Body {
 	
 	public double getY() {
 		return super.getWorldCenter().y;
+	}
+	
+	public boolean getFlipped() {
+		return this.flipped;
 	}
 	
 	public boolean intersects(int x, int y, int width, int height) {

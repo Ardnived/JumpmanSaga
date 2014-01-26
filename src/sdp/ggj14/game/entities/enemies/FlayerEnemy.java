@@ -11,7 +11,7 @@ import sdp.ggj14.util.Sprite;
 
 public class FlayerEnemy extends Enemy {
 	public static final double SPEED = 50;
-	public static final int FLAYER_SIZE = (int) (16 * Level.SPRITE_SCALE);
+	public static final int FLAYER_SIZE = (int) (15 * Level.SPRITE_SCALE);
 	
 	public static HashMap<PowerUp.Type, Sprite> SPRITES = new HashMap<PowerUp.Type, Sprite>();
 	

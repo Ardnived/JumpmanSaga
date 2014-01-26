@@ -2,6 +2,8 @@ package sdp.ggj14.game;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -161,7 +163,7 @@ public class Level extends World implements CollisionListener {
 				SagaBody sagaBody = ((SagaBody) body);
 				
 				if (sagaBody.intersects(this.getScrollX(), 0, Main.SCREEN_WIDTH + GRID_SIZE, Main.SCREEN_HEIGHT)) {
-					Image sprite = sagaBody.getSprite(this);
+					BufferedImage sprite = sagaBody.getSprite(this);
 					
 					if (sprite != null) {
 						int x = (int) sagaBody.getX() - sagaBody.drawWidth/2 - this.getScrollX();
@@ -170,6 +172,13 @@ public class Level extends World implements CollisionListener {
 						if (body instanceof Unit) {
 							x -= Unit.COLLISION_MARGIN/2;
 							y -= Unit.COLLISION_MARGIN/2;
+						}
+						
+						if (sagaBody.getFlipped()) {
+							AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+							tx.translate(-sprite.getWidth(null), 0);
+							AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+							sprite = op.filter(sprite, null);
 						}
 						
 						graphics.drawImage(sprite, x, y, sagaBody.drawWidth, sagaBody.drawHeight, null);
