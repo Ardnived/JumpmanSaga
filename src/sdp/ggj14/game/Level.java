@@ -32,9 +32,12 @@ import sdp.ggj14.util.SoundPlayer;
 public class Level extends World implements CollisionListener {
 	//public final static int WIDTH = 50, HEIGHT = 11;
 	public final static int GRID_SIZE = 32;
-	public final static int SCROLL_OFFSET = 100;
+	public final static int SCROLL_OFFSET = 200;
 	
 	double parallaxFactor = 0.15;
+	
+	int shipLocation;
+	int helmLocation;
 	
 	Player player;
 	ArrayList<Enemy> enemies = new ArrayList<Enemy>();

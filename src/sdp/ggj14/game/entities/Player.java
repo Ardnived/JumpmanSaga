@@ -122,11 +122,11 @@ public class Player extends Unit {
 			this.onGround = false;
 		}
 		
-		if (!onGround && super.getForce().y < 0) {
+		if (super.getForce().y < 0) {
 			this.spriteSet = FLYING;
-		} else if (!onGround) {
+		} else if (super.getLinearVelocity().y > 0) {
 			this.spriteSet = FALLING;
-		} else if (onGround && super.getForce().x != 0) {
+		} else if (super.getForce().x != 0) {
 			this.spriteSet = WALKING;
 		} else {
 			this.spriteSet = IDLE;
