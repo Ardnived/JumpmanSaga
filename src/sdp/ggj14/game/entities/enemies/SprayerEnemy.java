@@ -64,6 +64,12 @@ public class SprayerEnemy extends Enemy {
 				} else {
 					direction = 1.0; // Only shoot left
 				}
+
+				if (direction > 0) {
+					this.flipped = false;
+				} else if (direction < 0) {
+					this.flipped = true;
+				}
 				
 				level.addBody(new Projectile(getX()-(x*direction), getY()+y, 1, speed*direction, false));
 			}
