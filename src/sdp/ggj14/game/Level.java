@@ -55,7 +55,7 @@ public class Level extends World implements CollisionListener {
 	// HACK IN THE CLOUDS
 	//Sprite cloud = new Sprite(new String[] {"/level/environment/cloud.png"});
 	Sprite cloud = new Sprite(Sprite.constructPaths("/level/environment/ecloud", 3, ".png"), 10);
-	int cloudPos[] = new int[] {800};
+	int cloudPos[] = new int[] {};
 	int cloudTop[] = new int[] {-50};
 	int cloudWidth[] = new int[] {(900*3/4)};
 	int cloudHeight[] = new int[] {(489*3/4)};
@@ -72,7 +72,7 @@ public class Level extends World implements CollisionListener {
 		settings.setPositionConstraintSolverIterations(5);
 		settings.setVelocityConstraintSolverIterations(5);
 
-		Map<String, Object> data = JSONLoader.get(System.getProperty("user.dir")+"/dat/levels/Level01.json");
+		Map<String, Object> data = JSONLoader.get(System.getProperty("user.dir")+"/dat/levels/Level02.json");
 		String[] terrain = ((String) data.get("terrain")).split(":");
 		this.grid = new Tile[terrain[0].length() + 2][terrain.length];
 		

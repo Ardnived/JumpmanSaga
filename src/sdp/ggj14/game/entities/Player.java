@@ -139,6 +139,8 @@ public class Player extends Unit {
 		super.update(level, elapsedTime);
 		gaspTimer += elapsedTime;
 		
+		this.modifyFuel(FUEL_DECAY/2);
+		
 		this.speedModifier = Math.min(1.0, speedModifier + 0.03);
 		
 		double airLoss = -AIR_DECAY * elapsedTime;
@@ -230,7 +232,7 @@ public class Player extends Unit {
 	public void modifyFuel(double mod) {
 		fuel = Math.min(Math.max(0, fuel + mod), MAX_FUEL);
 		if (mod > 0) {
-			SoundPlayer.play("/effects/jm_ui_fuel_pickup.wav", false);
+			//SoundPlayer.play("/effects/jm_ui_fuel_pickup.wav", false);
 		}
 	}
 	
