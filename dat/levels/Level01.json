@@ -19,7 +19,7 @@
 		{ x: 1300, y: 100, limit: 40, class:"enemies.SwayerEnemy" },
 		{ x: 1500, y: 170, limit: 60, class:"enemies.SwayerEnemy" },
 		{ x: 400,  y: 100, class:"PowerUp", type:"OXIDE" },
-		{ x: 800,  y: 225, class:"PowerUp", type:"OXIDE" },
-		{ x: 600,  y: 100, class:"Cloud" }
+		{ x: 800,  y: 225, class:"PowerUp", type:"HELIX" },
+		{ x: 1200,  y: 125, class:"PowerUp", type:"BOROS" }
 	]
 }
