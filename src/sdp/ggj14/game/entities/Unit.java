@@ -40,6 +40,14 @@ public class Unit extends SagaBody {
 		return true;
 	}
 	
+	public boolean onCollisionStart(Level level, Body other) {
+		return true;
+	}
+	
+	public void onCollisionEnd(Level level, Body other) {
+		// Do Nothing
+	}
+	
 	@Override
 	public void update(Level level, double elapsedTime) {
 		//move(0, 10*elapsedTime);

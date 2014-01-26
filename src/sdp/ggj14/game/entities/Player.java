@@ -64,6 +64,7 @@ public class Player extends Unit {
 	private PowerUp.Type powerUp = PowerUp.Type.DIODE;
 	private double powerUpTimer = 0.0;
 	
+	private double speedModifier = 1.0;
 	private double fuel = MAX_FUEL;
 	private Map<PowerUp.Type, Sprite> spriteSet;
 
@@ -99,10 +100,10 @@ public class Player extends Unit {
 			flipped = true;
 		}
 		
-		super.move(x, y);
+		super.move(x * speedModifier, y * speedModifier);
 		
-		System.out.println(super.getForce());
-		System.out.println(super.getLinearVelocity());
+		//System.out.println(super.getForce());
+		//System.out.println(super.getLinearVelocity());
 	}
 	
 	public void jump() {
@@ -177,6 +178,10 @@ public class Player extends Unit {
 	
 	public void modifyFuel(double mod) {
 		fuel = Math.min(Math.max(0, fuel + mod), MAX_FUEL);
+	}
+	
+	public void modifySpeed(double mod) {
+		speedModifier *= mod;
 	}
 	
 	public void setPowerUp(PowerUp.Type powerUp) {
