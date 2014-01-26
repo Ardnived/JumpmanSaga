@@ -25,3 +25,6 @@ public abstract class SoundPlayer {
 		}
 	}
 }
+
+//To stop sound from playing, take the returning ContinuousAudioDataStream object and call the function AudioPlayer.player.stop(dataStream);
+//Non looping sounds only return null
