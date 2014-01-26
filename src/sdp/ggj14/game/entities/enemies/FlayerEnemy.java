@@ -29,7 +29,7 @@ public class FlayerEnemy extends Enemy {
 	}
 
 	public FlayerEnemy(double x, double y, int limit) {
-		super(x, y, FLAYER_SIZE, FLAYER_SIZE, SPRITES);
+		super(x, y, FLAYER_SIZE, FLAYER_SIZE, SPRITES, limit);
 		super.contactDamage = 2;
 		
 		super.setMass(Mass.Type.INFINITE);
@@ -38,10 +38,13 @@ public class FlayerEnemy extends Enemy {
 	@Override
 	public void update(Level level, double elapsedTime) {
 		super.update(level, elapsedTime);
-		
 		if (super.isPlayerActive(level.getPlayer())) {
 			double direction = level.getPlayer().getX() - this.getX();
-			super.getLinearVelocity().set(Math.min(5/direction * SPEED * elapsedTime, direction * elapsedTime), 0);
+			System.out.println(direction+" "+this.getX()+" "+(originalPosition-limit));
+			if ((this.getX() > originalPosition-limit && direction < 0) || (this.getX() < originalPosition && direction > 0)) {
+				super.getLinearVelocity().set(Math.min(5/direction * SPEED * elapsedTime, direction * elapsedTime), 0);
+			}
+			else { super.getLinearVelocity().set(0, 0); }
 		}
 	}
 

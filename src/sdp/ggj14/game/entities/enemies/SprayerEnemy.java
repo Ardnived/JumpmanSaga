@@ -33,7 +33,7 @@ public class SprayerEnemy extends Enemy {
 	private double cooldown = 0;
 
 	public SprayerEnemy(double x, double y, int limit) {
-		super(x, y, SPRAYER_SIZE, SPRAYER_SIZE, SPRITES);
+		super(x, y, SPRAYER_SIZE, SPRAYER_SIZE, SPRITES, limit);
 		super.contactDamage = 0.4;
 		
 		super.setMass(Mass.Type.INFINITE);

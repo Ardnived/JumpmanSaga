@@ -16,9 +16,13 @@ public class Enemy extends Unit {
 	
 	protected HashMap<PowerUp.Type, Sprite> spriteData;
 	protected double contactDamage = 1;
+	protected int limit;
+	protected int originalPosition;
 
-	public Enemy(double x, double y, int width, int height, HashMap<PowerUp.Type, Sprite> spriteData) {
+	public Enemy(double x, double y, int width, int height, HashMap<PowerUp.Type, Sprite> spriteData, int limit) {
 		super(x, y, width, height, 1);
+		originalPosition = (int) x;
+		this.limit = limit;
 		
 		this.spriteData = spriteData;
 		this.fixture.setFilter(new CategoryFilter(Category.ENEMY.ordinal(), Category.PLAYER.ordinal()));
