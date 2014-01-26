@@ -33,7 +33,7 @@ public class Level extends World implements CollisionListener {
 	public final static int GRID_SIZE = 32;
 	public final static int SCROLL_OFFSET = 100;
 	
-	double parallaxFactor = 0.2;
+	double parallaxFactor = 0.15;
 	
 	Player player;
 	ArrayList<Enemy> enemies = new ArrayList<Enemy>();
@@ -117,22 +117,22 @@ public class Level extends World implements CollisionListener {
 		
 		switch(this.getPlayer().getPowerUp()) {
 		case DIODE:
-			fileName = "landscape_pixelated";
+			fileName = "landscape";
 			break;
 		case OXIDE:
-			fileName = "sky_pixelated";
+			fileName = "swamp";
 			break;
 		case HELIX:
-			fileName = "landscape_pixelated";
+			fileName = "night";
 			break;
 		case BOROS:
-			fileName = "industry_pixelated";
+			fileName = "divergence";
 			break;
 		default:
-			fileName = "landscape_pixelated";
+			fileName = "landscape";
 		}
 		
-		return ImageLoader.get("/level/"+fileName+".jpg");
+		return ImageLoader.get("/level/background/"+fileName+".jpg");
 	}
 	
 	public int getScrollX() {
