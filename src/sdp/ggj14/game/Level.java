@@ -134,14 +134,13 @@ public class Level extends World implements CollisionListener {
 			for (Map<String, String> unitData : units) {
 				String className = unitData.get("class");
 				int limit = 0;
-				if (className.contains("enemies")) {
+				if (unitData.get("limit")!=null) {
 					limit = Integer.parseInt(unitData.get("limit"));
 				}
 				double x = Double.parseDouble(unitData.get("x"));
 				double y = Double.parseDouble(unitData.get("y"));
 				Unit unit;
 				
-				System.out.println(className);
 				switch (className) {
 				case "PowerUp":
 					unit = new PowerUp(PowerUp.Type.valueOf(unitData.get("type")), x, y);

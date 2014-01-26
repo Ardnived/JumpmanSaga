@@ -125,29 +125,40 @@ public class Player extends Unit {
 				this.powerUpTimer = 0.0;
 			}
 		}
+		
+		String test = "";
+		
 		if (super.getForce().y < 0) {
 			this.spriteSet = FLYING;
 			fallingCounter = 0;
-		} else if (super.getLinearVelocity().y < 0) {
+			test = "FLYING";
+		} else if (super.getLinearVelocity().y < -10) {
 			this.spriteSet = JUMPING;
 			fallingCounter = 0;
+			test = "JUMPING";
 		} else if (super.getLinearVelocity().y > 0) {
 			if (super.getForce().y < 0 && this.fuel > 0) {
 				this.spriteSet = FLYING;
 				fallingCounter = 0;
-			} else {
+				test = "FLYING 2";
+			} else if (super.getLinearVelocity().y > 2) {
 				fallingCounter++;
 				if (fallingCounter > 10) {
 					this.spriteSet = FALLING;
+					test = "FALLING";
 				}
 			}
 		} else if (super.getForce().x != 0) {
 			this.spriteSet = WALKING;
 			fallingCounter = 0;
+			test = "WALKING";
 		} else {
 			this.spriteSet = IDLE;
 			fallingCounter = 0;
+			test = "IDLE";
 		}
+		
+		//System.out.println(super.getLinearVelocity().toString()+" "+test);
 	}
 	
 	@Override
