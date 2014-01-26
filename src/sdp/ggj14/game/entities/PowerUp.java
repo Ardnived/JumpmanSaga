@@ -7,7 +7,10 @@ import sdp.ggj14.util.Sprite;
 
 
 public class PowerUp extends Unit {
-
+	enum Type {
+		
+	}
+	
 	public PowerUp(double x, double y, int hp) {
 		super(x, y, 48, 48, hp);
 		

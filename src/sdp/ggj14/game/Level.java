@@ -17,6 +17,7 @@ import org.dyn4j.dynamics.contact.ContactConstraint;
 import sdp.ggj14.Main;
 import sdp.ggj14.game.entities.Enemy;
 import sdp.ggj14.game.entities.Player;
+import sdp.ggj14.game.entities.PowerUp;
 import sdp.ggj14.game.entities.Unit;
 import sdp.ggj14.game.entities.enemies.FlayerEnemy;
 import sdp.ggj14.game.entities.enemies.SwayerEnemy;
@@ -64,6 +65,8 @@ public class Level extends World implements CollisionListener {
 		}
 		
 		this.setTile(7, 3, new ForegroundTile("/tiles/ground/s06.png", 7, 3));
+		
+		//super.addBody(new PowerUp(PowerUp.Type.AIR, x, y));
 		
 		super.addBody(new FlayerEnemy(1000.0, GRID_SIZE * (HEIGHT - 2) + 8));
 		super.addBody(new SwayerEnemy(1200.0, 200.0));

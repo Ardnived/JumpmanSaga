@@ -1,7 +1,6 @@
 package sdp.ggj14.util;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class Sprite {
 	private String[] imagePaths;
@@ -15,7 +14,7 @@ public class Sprite {
 	}
 	
 	public void update(double elapsedTime){
-		timePassed+=elapsedTime;
+		timePassed += elapsedTime;
 		if (timePassed > 1000/speed) {
 			currentSprite++;
 			timePassed = 0;
