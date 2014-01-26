@@ -62,8 +62,6 @@ public class Level extends World implements CollisionListener {
 		
 		this.shipLocation = this.getWidth();
 		this.helmLocation = this.getWidth();
-		
-		SoundPlayer.playSound("/aud/effects/FingerprintSuccess.wav");
 	}
 	
 	public void createBounds() {
@@ -236,7 +234,7 @@ public class Level extends World implements CollisionListener {
 	}
 	
 	public int getHelmLocation() {
-		return this.getHelmLocation();
+		return this.helmLocation;
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import sdp.ggj14.game.Level;
 import sdp.ggj14.game.UserInterface;
 import sdp.ggj14.util.ImageLoader;
+import sdp.ggj14.util.SoundPlayer;
 
 @SuppressWarnings("serial")
 public class SagaFrame extends JPanel implements KeyListener {
@@ -22,6 +23,8 @@ public class SagaFrame extends JPanel implements KeyListener {
 	}
 	
 	private void startGame() {
+		SoundPlayer.play("effects/beep.wav");
+		
 		this.level = new Level();
 		this.ui = new UserInterface(level);
 		

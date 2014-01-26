@@ -26,15 +26,17 @@ public class UserInterface {
 		graphics.drawImage(ImageLoader.get("/ui/fuel.png"), 33, 33, (int)(117*(fuel/100)), 9, null);
 		graphics.drawImage(ImageLoader.get("/ui/bar.png"), 30, 30, 123, 15, null);
 		
-		graphics.drawString("Powerup Timer: "+Math.round(level.getPlayer().getPowerUpTimer()), 10, 80);
+		if (level.getPlayer().getPowerUpTimer() > 0) {
+			graphics.drawString("Powerup Timer: "+Math.round(level.getPlayer().getPowerUpTimer())+"ms", 10, 80);
+		}
 		
 		String text;
-		if (level.getShipLocation() < level.getPlayer().getX()) {
+		if (level.getShipLocation() >= level.getPlayer().getX()/Level.GRID_SIZE) {
 			text = Math.round(level.getShipLocation() - level.getPlayer().getX()/Level.GRID_SIZE)+"m to the Ship!";
 		} else {
 			text = Math.round(level.getHelmLocation() - level.getPlayer().getX()/Level.GRID_SIZE)+"m to the Helm!";
 		}
-		graphics.drawString(text, 10, 120);
+		graphics.drawString(text, 10, 100);
 	}
 
 }
