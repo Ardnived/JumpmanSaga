@@ -3,6 +3,7 @@ package sdp.ggj14.game.entities;
 import java.awt.image.BufferedImage;
 
 import org.dyn4j.dynamics.Body;
+import org.dyn4j.geometry.Mass;
 
 import sdp.ggj14.game.Level;
 import sdp.ggj14.util.ImageLoader;
@@ -31,6 +32,8 @@ public class PowerUp extends Unit {
 	public PowerUp(Type type, double x, double y) {
 		super(x, y, POWERUP_SIZE, POWERUP_SIZE, 1);
 		this.type = type;
+		
+		this.setMass(Mass.Type.INFINITE);
 	}
 	
 	@Override
