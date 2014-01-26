@@ -139,6 +139,11 @@ public class Player extends Unit {
 		return this.spriteSet.get(this.powerUp).getCurrentSprite();
 	}
 	
+	@Override
+	public Sprite getSpriteObject(Level level) {
+		return this.spriteSet.get(this.powerUp);
+	}
+	
 	public void modifyHP(double mod) {
 		hp = Math.min(Math.max(0, hp + mod), MAX_AIR);
 	}

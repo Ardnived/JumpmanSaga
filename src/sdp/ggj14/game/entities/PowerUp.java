@@ -7,7 +7,6 @@ import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.Mass;
 
 import sdp.ggj14.game.Level;
-import sdp.ggj14.game.SagaBody.Category;
 import sdp.ggj14.util.ImageLoader;
 
 

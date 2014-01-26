@@ -42,8 +42,8 @@ public class Unit extends SagaBody {
 	public void update(Level level, double elapsedTime) {
 		move(0, 500);
 		
-		if (sprite != null) {
-			sprite.update(elapsedTime);	
+		if (this.getSpriteObject(level) != null) {
+			this.getSpriteObject(level).update(elapsedTime);	
 		}
 	}
 	
@@ -58,6 +58,10 @@ public class Unit extends SagaBody {
 	
 	public double getHP() {
 		return this.hp;
+	}
+	
+	public Sprite getSpriteObject(Level level) {
+		return this.sprite;
 	}
 	
 	@Override

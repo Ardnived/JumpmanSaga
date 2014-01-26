@@ -8,7 +8,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Map;
 
-import org.dyn4j.collision.AxisAlignedBounds;
 import org.dyn4j.collision.manifold.Manifold;
 import org.dyn4j.collision.narrowphase.Penetration;
 import org.dyn4j.dynamics.Body;
@@ -20,10 +19,7 @@ import org.dyn4j.dynamics.World;
 import org.dyn4j.dynamics.contact.ContactConstraint;
 import org.dyn4j.geometry.Mass;
 import org.dyn4j.geometry.Rectangle;
-import org.dyn4j.geometry.Vector2;
-
 import sdp.ggj14.Main;
-import sdp.ggj14.game.entities.Enemy;
 import sdp.ggj14.game.entities.Player;
 import sdp.ggj14.game.entities.PowerUp;
 import sdp.ggj14.game.entities.Unit;

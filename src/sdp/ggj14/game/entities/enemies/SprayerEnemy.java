@@ -11,17 +11,17 @@ import sdp.ggj14.game.entities.Projectile;
 import sdp.ggj14.util.Sprite;
 
 public class SprayerEnemy extends Enemy {
-	public static final double SPEED = 16;
+	public static final double SPEED = 14;
 	public static final int SPRAYER_SIZE = (int) (20 * Level.SPRITE_SCALE);
 	public static final int COOLDOWN = 2000;
 	
 	public static HashMap<PowerUp.Type, Sprite> SPRITES = new HashMap<PowerUp.Type, Sprite>();
 	
 	{
-		SPRITES.put(PowerUp.Type.DIODE, new Sprite(Sprite.constructPaths("/aliens/flayer/s", 5, ".png"), 5));
-		SPRITES.put(PowerUp.Type.OXIDE, new Sprite(Sprite.constructPaths("/aliens/flayer/s", 5, ".png"), 5));
-		SPRITES.put(PowerUp.Type.HELIX, new Sprite(Sprite.constructPaths("/aliens/flayer/s", 5, ".png"), 5));
-		SPRITES.put(PowerUp.Type.BOROS, new Sprite(Sprite.constructPaths("/aliens/flayer/s", 5, ".png"), 5));
+		SPRITES.put(PowerUp.Type.DIODE, new Sprite(new String[] {"/aliens/glob/s03.png"}, 10));
+		SPRITES.put(PowerUp.Type.OXIDE, new Sprite(new String[] {"/aliens/glob/s03.png"}, 10));
+		SPRITES.put(PowerUp.Type.HELIX, new Sprite(new String[] {"/aliens/glob/s03.png"}, 10));
+		SPRITES.put(PowerUp.Type.BOROS, new Sprite(new String[] {"/aliens/glob/s03.png"}, 10));
 	}
 	
 	private double cooldown = 0;

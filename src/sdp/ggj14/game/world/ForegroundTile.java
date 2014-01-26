@@ -9,7 +9,6 @@ import org.dyn4j.geometry.Rectangle;
 
 import sdp.ggj14.game.Level;
 import sdp.ggj14.game.SagaBody;
-import sdp.ggj14.game.world.Tile.TypeSet;
 import sdp.ggj14.util.ImageLoader;
 
 public class ForegroundTile extends SagaBody implements Tile {

@@ -8,7 +8,6 @@ import org.dyn4j.dynamics.Body;
 
 import sdp.ggj14.Main;
 import sdp.ggj14.game.Level;
-import sdp.ggj14.game.SagaBody.Category;
 import sdp.ggj14.util.Sprite;
 
 
@@ -37,6 +36,11 @@ public class Enemy extends Unit {
 	@Override
 	public BufferedImage getSprite(Level level) {
 		return spriteData.get(level.getPlayer().getPowerUp()).getCurrentSprite();
+	}
+	
+	@Override
+	public Sprite getSpriteObject(Level level) {
+		return this.spriteData.get(level.getPlayer().getPowerUp());
 	}
 	
 	public boolean isPlayerActive(Player player) {

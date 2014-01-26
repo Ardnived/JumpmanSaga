@@ -11,15 +11,21 @@ import sdp.ggj14.util.Sprite;
 
 public class FlayerEnemy extends Enemy {
 	public static final double SPEED = 50;
-	public static final int FLAYER_SIZE = (int) (15 * Level.SPRITE_SCALE);
+	public static final int FLAYER_SIZE = (int) (20 * Level.SPRITE_SCALE);
 	
 	public static HashMap<PowerUp.Type, Sprite> SPRITES = new HashMap<PowerUp.Type, Sprite>();
 	
 	{
+		/*
 		SPRITES.put(PowerUp.Type.DIODE, new Sprite(new String[] {"/aliens/snail/s07.png"}, 10));
 		SPRITES.put(PowerUp.Type.OXIDE, new Sprite(new String[] {"/aliens/snail/s07.png"}, 10));
 		SPRITES.put(PowerUp.Type.HELIX, new Sprite(new String[] {"/aliens/snail/s07.png"}, 10));
 		SPRITES.put(PowerUp.Type.BOROS, new Sprite(new String[] {"/aliens/snail/s07.png"}, 10));
+		*/
+		SPRITES.put(PowerUp.Type.DIODE, new Sprite(Sprite.constructPaths("/aliens/flayer/s", 5, ".png"), 4));
+		SPRITES.put(PowerUp.Type.OXIDE, new Sprite(Sprite.constructPaths("/aliens/flayer/s", 5, ".png"), 4));
+		SPRITES.put(PowerUp.Type.HELIX, new Sprite(Sprite.constructPaths("/aliens/flayer/s", 5, ".png"), 4));
+		SPRITES.put(PowerUp.Type.BOROS, new Sprite(Sprite.constructPaths("/aliens/flayer/s", 5, ".png"), 4));
 	}
 
 	public FlayerEnemy(double x, double y) {
