@@ -23,6 +23,8 @@ import sdp.ggj14.Main;
 import sdp.ggj14.game.entities.Player;
 import sdp.ggj14.game.entities.PowerUp;
 import sdp.ggj14.game.entities.Unit;
+import sdp.ggj14.game.entities.Enemy;
+import sdp.ggj14.game.entities.enemies.*;
 import sdp.ggj14.game.world.BackgroundTile;
 import sdp.ggj14.game.world.ForegroundTile;
 import sdp.ggj14.game.world.Tile;
@@ -131,17 +133,31 @@ public class Level extends World implements CollisionListener {
 		try {
 			for (Map<String, String> unitData : units) {
 				String className = unitData.get("class");
+				int limit = 0;
+				if (className.contains("enemies")) {
+					limit = Integer.parseInt(unitData.get("limit"));
+				}
 				double x = Double.parseDouble(unitData.get("x"));
 				double y = Double.parseDouble(unitData.get("y"));
 				Unit unit;
 				
+				System.out.println(className);
 				switch (className) {
 				case "PowerUp":
 					unit = new PowerUp(PowerUp.Type.valueOf(unitData.get("type")), x, y);
 					break;
+				case "enemies.FlayerEnemy":
+					unit = new FlayerEnemy(x, y, limit);
+					break;
+				case "enemies.SprayerEnemy":
+					unit = new SprayerEnemy(x, y, limit);
+					break;
+				case "enemies.SwayerEnemy":
+					unit = new SwayerEnemy(x, y, limit);
+					break;
 				default:
 					Class<?> cls = Class.forName("sdp.ggj14.game.entities."+className);
-					unit = (Unit) cls.getDeclaredConstructor(new Class[] { double.class, double.class }).newInstance(x, y);;
+					unit = (Unit) cls.getDeclaredConstructor(new Class[] { double.class, double.class }).newInstance(x, y);
 					break;
 				}
 				

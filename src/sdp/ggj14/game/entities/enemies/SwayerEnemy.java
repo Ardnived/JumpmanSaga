@@ -26,7 +26,7 @@ public class SwayerEnemy extends Enemy {
 	
 	private double time = Math.random();
 
-	public SwayerEnemy(double x, double y) {
+	public SwayerEnemy(double x, double y, int limit) {
 		super(x, y, SWAYER_SIZE, SWAYER_SIZE, SPRITES);
 		
 		super.setMass(Mass.Type.INFINITE);

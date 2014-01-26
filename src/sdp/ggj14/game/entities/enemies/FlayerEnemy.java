@@ -28,7 +28,7 @@ public class FlayerEnemy extends Enemy {
 		SPRITES.put(PowerUp.Type.BOROS, new Sprite(Sprite.constructPaths("/aliens/flayer/s", 5, ".png"), 4));
 	}
 
-	public FlayerEnemy(double x, double y) {
+	public FlayerEnemy(double x, double y, int limit) {
 		super(x, y, FLAYER_SIZE, FLAYER_SIZE, SPRITES);
 		super.contactDamage = 2;
 		

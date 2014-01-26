@@ -26,7 +26,7 @@ public class SprayerEnemy extends Enemy {
 	
 	private double cooldown = 0;
 
-	public SprayerEnemy(double x, double y) {
+	public SprayerEnemy(double x, double y, int limit) {
 		super(x, y, SPRAYER_SIZE, SPRAYER_SIZE, SPRITES);
 		super.contactDamage = 0.4;
 		
