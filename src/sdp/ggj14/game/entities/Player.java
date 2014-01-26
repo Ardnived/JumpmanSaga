@@ -110,7 +110,7 @@ public class Player extends Unit {
 	public void update(Level level, double elapsedTime) {
 		super.update(level, elapsedTime);
 		
-		this.modifyHP(-AIR_DECAY);
+		this.modifyHP(-AIR_DECAY * elapsedTime);
 		
 		if (powerUpTimer > 0.0) {
 			powerUpTimer -= elapsedTime;
