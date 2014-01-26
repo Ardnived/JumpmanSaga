@@ -67,6 +67,7 @@ public class Player extends Unit {
 	private int fallingCounter = 0;
 	
 	private ContinuousAudioDataStream jetpackSound;
+	private ContinuousAudioDataStream breathingSound;
 	
 	private PowerUp.Type powerUp = PowerUp.Type.DIODE;
 	private double powerUpTimer = 0.0;
@@ -78,6 +79,7 @@ public class Player extends Unit {
 	public Player() {
 		super(100.0, 100.0, PLAYER_SIZE, PLAYER_SIZE, MAX_AIR, 5);
 		this.spriteSet = IDLE;
+		breathingSound = SoundPlayer.play("/effects/jm_vo_calm_loop.wav", true);
 	}
 	
 	@Override
