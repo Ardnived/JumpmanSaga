@@ -26,6 +26,10 @@ public class SagaFrame extends JPanel implements KeyListener {
 	private void startGame() {
 		SoundPlayer.play("effects/beep.wav", false);
 		
+		for (Control control : Control.values()) {
+			control.isDown = false;
+		}
+		
 		this.level = new Level();
 		this.ui = new UserInterface(level);
 		

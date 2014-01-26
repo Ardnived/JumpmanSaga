@@ -50,6 +50,13 @@ public class Level extends World implements ContactListener {
 	Player player;
 	Tile[][] grid;
 	ArrayList<BackgroundTile> backgroundTiles = new ArrayList<BackgroundTile>();
+	
+	// HACK IN THE CLOUDS
+	String cloud = "/level/environment/cloud.png";
+	int cloudPos[] = new int[] {800};
+	int cloudWidth[] = new int[] {900};
+	int cloudHeight[] = new int[] {489};
+	// // HACK
 
 	@SuppressWarnings("unchecked")
 	public Level() {
@@ -138,7 +145,7 @@ public class Level extends World implements ContactListener {
 		try {
 			for (Map<String, String> unitData : units) {
 				String className = unitData.get("class");
-				int limit = 0;
+				int limit = 500;
 				if (unitData.get("limit")!=null) {
 					limit = Integer.parseInt(unitData.get("limit"));
 				}
@@ -182,6 +189,17 @@ public class Level extends World implements ContactListener {
 			}
 		}
 		
+		for (int i = 0; i < this.cloudPos.length; i++) {
+			Player player = this.getPlayer();
+			if (this.cloudPos[i] - this.cloudWidth[i]/2 + 100 < player.getX() && player.getX() < this.cloudPos[i] + this.cloudWidth[i]/2 - 100) {
+				if (player.getPowerUp() == PowerUp.Type.HELIX) {
+					player.modifyFuel(Player.FUEL_DECAY);
+				} else {
+					player.modifySpeed(0.96);
+				}
+			}
+		}
+		
 		return super.update(elapsedTime);
 	}
 	
@@ -222,6 +240,11 @@ public class Level extends World implements ContactListener {
 					}
 				}
 			}
+		}
+		
+		// Draw Clouds
+		for (int i = 0; i < this.cloudPos.length; i++) {
+			graphics.drawImage(ImageLoader.get(cloud), (int) (this.cloudPos[i] - this.cloudWidth[i]/2 - (this.getScrollX()*0.9)), -50, null);
 		}
 	}
 	

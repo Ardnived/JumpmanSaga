@@ -9,7 +9,7 @@ import sdp.ggj14.util.Sprite;
 
 public class Player extends Unit {
 	public static final int PLAYER_SIZE = 48;
-	public static final int JETPACK_THRUST = 1000;
+	public static final int JETPACK_THRUST = 1500;
 	public static final int AIR_CONTROL = 600;
 	public static final int GROUND_CONTROL = 1000;
 	
@@ -122,6 +122,8 @@ public class Player extends Unit {
 	@Override
 	public void update(Level level, double elapsedTime) {
 		super.update(level, elapsedTime);
+		
+		this.speedModifier = Math.min(1.0, speedModifier + 0.03);
 		
 		double airLoss = -AIR_DECAY * elapsedTime;
 		
