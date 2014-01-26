@@ -40,7 +40,6 @@ public class SwayerEnemy extends Enemy {
 			time += 1 + Math.random();
 			
 			double direction = level.getPlayer().getX() - this.getX();
-			direction = -1.0; // He only goes left.
 			super.getLinearVelocity().set(Math.min(5/direction * SPEED * elapsedTime, direction * elapsedTime), 500*Math.sin(time/(8*Math.PI)));
 		}
 	}

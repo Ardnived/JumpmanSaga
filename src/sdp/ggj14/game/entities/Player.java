@@ -107,7 +107,7 @@ public class Player extends Unit {
 	
 	public void jump() {
 		if (this.spriteSet == WALKING || this.spriteSet == IDLE) {
-			super.move(0, -1000000000);
+			super.move(0, -10000000);
 		}
 	}
 	

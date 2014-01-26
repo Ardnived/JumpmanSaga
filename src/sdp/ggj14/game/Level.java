@@ -46,7 +46,7 @@ public class Level extends World implements CollisionListener {
 
 	@SuppressWarnings("unchecked")
 	public Level() {
-		super.setGravity(ZERO_GRAVITY);
+		super.setGravity(EARTH_GRAVITY.negate().multiply(10));
 		
 		Settings settings = super.getSettings();
 		settings.setContinuousDetectionMode(ContinuousDetectionMode.NONE);

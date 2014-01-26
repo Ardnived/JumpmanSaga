@@ -15,7 +15,7 @@ import sdp.ggj14.util.Sprite;
 
 public class Unit extends SagaBody {
 	public static final int COLLISION_MARGIN = 10;
-	public static final int FORCE_MULTIPLIER = 100;
+	public static final int FORCE_MULTIPLIER = 1;
 	
 	protected double hp;
 	protected Sprite sprite;
@@ -42,7 +42,7 @@ public class Unit extends SagaBody {
 	
 	@Override
 	public void update(Level level, double elapsedTime) {
-		move(0, 1*elapsedTime);
+		//move(0, 10*elapsedTime);
 		
 		if (this.getSpriteObject(level) != null) {
 			this.getSpriteObject(level).update(elapsedTime);	
