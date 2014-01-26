@@ -10,14 +10,14 @@ import sdp.ggj14.util.Sprite;
 public class Player extends Unit {
 	public static final int PLAYER_SIZE = 48;
 	public static final int JETPACK_THRUST = 1000;
-	public static final int AIR_CONTROL = 500;
+	public static final int AIR_CONTROL = 600;
 	public static final int GROUND_CONTROL = 1000;
 	
 	public static final double MAX_AIR = 100.0;
 	public static final double MAX_FUEL = 100.0;
 	
-	public static final double AIR_DECAY = 0.01;
-	public static final double FUEL_DECAY = 0.5;
+	public static final double AIR_DECAY = 0.001;
+	public static final double FUEL_DECAY = 0.25;
 
 	private static Map<PowerUp.Type, Sprite> IDLE = new HashMap<PowerUp.Type, Sprite>();
 	private static Map<PowerUp.Type, Sprite> FLYING = new HashMap<PowerUp.Type, Sprite>();
@@ -68,7 +68,7 @@ public class Player extends Unit {
 	private Map<PowerUp.Type, Sprite> spriteSet;
 
 	public Player() {
-		super(100.0, 100.0, PLAYER_SIZE, PLAYER_SIZE, MAX_AIR);
+		super(100.0, 100.0, PLAYER_SIZE, PLAYER_SIZE, MAX_AIR, 5);
 		this.spriteSet = IDLE;
 	}
 	
@@ -100,10 +100,15 @@ public class Player extends Unit {
 		}
 		
 		super.move(x, y);
+		
+		System.out.println(super.getForce());
+		System.out.println(super.getLinearVelocity());
 	}
 	
 	public void jump() {
-		
+		if (this.spriteSet == WALKING || this.spriteSet == IDLE) {
+			super.move(0, -1000000000);
+		}
 	}
 	
 	@Override
@@ -122,11 +127,14 @@ public class Player extends Unit {
 		}
 		if (super.getForce().y < 0) {
 			this.spriteSet = FLYING;
-			fallingCounter=0;
+			fallingCounter = 0;
+		} else if (super.getLinearVelocity().y < 0) {
+			this.spriteSet = JUMPING;
+			fallingCounter = 0;
 		} else if (super.getLinearVelocity().y > 0) {
 			if (super.getForce().y < 0 && this.fuel > 0) {
 				this.spriteSet = FLYING;
-				fallingCounter=0;
+				fallingCounter = 0;
 			} else {
 				fallingCounter++;
 				if (fallingCounter > 10) {
@@ -135,10 +143,10 @@ public class Player extends Unit {
 			}
 		} else if (super.getForce().x != 0) {
 			this.spriteSet = WALKING;
-			fallingCounter=0;
+			fallingCounter = 0;
 		} else {
 			this.spriteSet = IDLE;
-			fallingCounter=0;
+			fallingCounter = 0;
 		}
 	}
 	

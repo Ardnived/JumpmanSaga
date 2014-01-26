@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
+import org.dyn4j.dynamics.Force;
 import org.dyn4j.geometry.Mass;
 import org.dyn4j.geometry.Rectangle;
 import org.dyn4j.geometry.Vector2;
@@ -14,13 +15,14 @@ import sdp.ggj14.util.Sprite;
 
 public class Unit extends SagaBody {
 	public static final int COLLISION_MARGIN = 10;
+	public static final int FORCE_MULTIPLIER = 100;
 	
 	protected double hp;
 	protected Sprite sprite;
 	protected BodyFixture fixture;
 	
 	public Unit(double x, double y, int width, int height, double hp) {
-		this(x, y, width, height, hp, 100);
+		this(x, y, width, height, hp, 10);
 	}
 
 	public Unit(double x, double y, int width, int height, double hp, int mass) {
@@ -40,7 +42,7 @@ public class Unit extends SagaBody {
 	
 	@Override
 	public void update(Level level, double elapsedTime) {
-		move(0, 500);
+		move(0, 1*elapsedTime);
 		
 		if (this.getSpriteObject(level) != null) {
 			this.getSpriteObject(level).update(elapsedTime);	
@@ -48,12 +50,20 @@ public class Unit extends SagaBody {
 	}
 	
 	public void move(double x, double y) {
-		super.applyForce(new Vector2(x, y).multiply(10000));
-		/*
-		System.out.println(super.getMass());
-		System.out.println(super.getForce());
-		System.out.println(super.getWorldCenter());
-		*/
+		super.applyForce(new Force(x*FORCE_MULTIPLIER, y*FORCE_MULTIPLIER));
+	}
+	
+	public void move(double x, double y, final double duration) {
+		super.applyForce(new Force(x*FORCE_MULTIPLIER, y*FORCE_MULTIPLIER) {
+			double time = duration;
+			
+			@Override
+			public boolean isComplete(double elapsedTime) {
+				System.out.println("Complete? "+time);
+				time -= elapsedTime;
+				return time <= 0;
+			}
+		});
 	}
 	
 	public double getHP() {
