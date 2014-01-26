@@ -54,8 +54,9 @@ public class Level extends World implements ContactListener {
 	// HACK IN THE CLOUDS
 	String cloud = "/level/environment/cloud.png";
 	int cloudPos[] = new int[] {800};
-	int cloudWidth[] = new int[] {900};
-	int cloudHeight[] = new int[] {489};
+	int cloudTop[] = new int[] {-50};
+	int cloudWidth[] = new int[] {(900*3/4)};
+	int cloudHeight[] = new int[] {(489*3/4)};
 	// // HACK
 
 	@SuppressWarnings("unchecked")
@@ -191,7 +192,8 @@ public class Level extends World implements ContactListener {
 		
 		for (int i = 0; i < this.cloudPos.length; i++) {
 			Player player = this.getPlayer();
-			if (this.cloudPos[i] - this.cloudWidth[i]/2 + 100 < player.getX() && player.getX() < this.cloudPos[i] + this.cloudWidth[i]/2 - 100) {
+			if (this.cloudPos[i] - this.cloudWidth[i]/2 + 100 < player.getX() && player.getX() < this.cloudPos[i] + this.cloudWidth[i]/2 - 100
+					&& this.cloudTop[i] + 100 > player.getY() && player.getY() < this.cloudTop[i] + this.cloudHeight[i] - 100) {
 				if (player.getPowerUp() == PowerUp.Type.HELIX) {
 					player.modifyFuel(Player.FUEL_DECAY);
 				} else {
@@ -244,7 +246,7 @@ public class Level extends World implements ContactListener {
 		
 		// Draw Clouds
 		for (int i = 0; i < this.cloudPos.length; i++) {
-			graphics.drawImage(ImageLoader.get(cloud), (int) (this.cloudPos[i] - this.cloudWidth[i]/2 - (this.getScrollX()*0.9)), -50, null);
+			graphics.drawImage(ImageLoader.get(cloud), (int) (this.cloudPos[i] - this.cloudWidth[i]/2 - (this.getScrollX()*0.9)), this.cloudTop[i], this.cloudWidth[i], this.cloudHeight[i], null);
 		}
 	}
 	
