@@ -43,7 +43,7 @@ public class Level extends World implements CollisionListener {
 	public final static int SCROLL_OFFSET = 200;
 	public final static double SPRITE_SCALE = 48.0 / 16.0;
 	
-	double parallaxFactor = 0.15;
+	double parallaxFactor = 0.08;
 	
 	int shipLocation;
 	int helmLocation;
@@ -55,10 +55,10 @@ public class Level extends World implements CollisionListener {
 	// HACK IN THE CLOUDS
 	//Sprite cloud = new Sprite(new String[] {"/level/environment/cloud.png"});
 	Sprite cloud = new Sprite(Sprite.constructPaths("/level/environment/ecloud", 3, ".png"), 10);
-	int cloudPos[] = new int[] {};
-	int cloudTop[] = new int[] {-50};
-	int cloudWidth[] = new int[] {(900*3/4)};
-	int cloudHeight[] = new int[] {(489*3/4)};
+	int cloudPos[] = new int[] {800, 5000};
+	int cloudTop[] = new int[] {-50, -50};
+	int cloudWidth[] = new int[] {(900*3/4), 900};
+	int cloudHeight[] = new int[] {(489*3/4), 489};
 	// // HACK
 
 	@SuppressWarnings("unchecked")

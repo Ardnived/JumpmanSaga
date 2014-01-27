@@ -139,7 +139,7 @@ public class Player extends Unit {
 		super.update(level, elapsedTime);
 		gaspTimer += elapsedTime;
 		
-		this.modifyFuel(FUEL_DECAY/2);
+		this.modifyFuel(FUEL_DECAY/5);
 		
 		this.speedModifier = Math.min(1.0, speedModifier + 0.03);
 		
