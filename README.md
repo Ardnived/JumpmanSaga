@@ -7,8 +7,8 @@ SPACEBAR - Jump-pack
 
 Credits
 -------------
-Scott Inglis - Sr. Executive Programmer
-Devindra Payment - Code Architect
+Scott Inglis - Programmer
+Devindra Payment - Programmer
 Patrick O'Brien - Designer
 Jacob Burgess - Voice Over
 Rodrigo Langing -SFX
@@ -25,3 +25,7 @@ The Tree of Audio
 
 Radioactive Radiation for being nuclear squared
 
+Other background art:
+http://gate-to-nowhere.deviantart.com/art/Black-Hole-Rising-207545791
+http://mylafox.deviantart.com/art/Divergence-363474656
+http://handsinpantsdance.deviantart.com/art/Sci-fi-17604171
