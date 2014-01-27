@@ -2,7 +2,7 @@ Controls
 -----------
 W - Jump
 A,S - Left, Right
-SPACEBAR - Jump-pack
+SPACEBAR - Jetpack
 
 
 Credits
